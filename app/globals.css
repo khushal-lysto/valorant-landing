@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Tungsten ─────────────────────────────────────────────── */
+@font-face {
+  font-family: "Tungsten";
+  src: url("/fonts/Tungsten-Light.woff2") format("woff2"),
+       url("/fonts/Tungsten-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
+@font-face {
+  font-family: "Tungsten";
+  src: url("/fonts/Tungsten-Book.woff2") format("woff2"),
+       url("/fonts/Tungsten-Book.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Tungsten";
+  src: url("/fonts/Tungsten-Medium.woff2") format("woff2"),
+       url("/fonts/Tungsten-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Tungsten";
+  src: url("/fonts/Tungsten-Semibold.woff2") format("woff2"),
+       url("/fonts/Tungsten-Semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Tungsten";
+  src: url("/fonts/Tungsten-Bold.woff2") format("woff2"),
+       url("/fonts/Tungsten-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Mark Pro ─────────────────────────────────────────────── */
+@font-face {
+  font-family: "Mark Pro";
+  src: url("/fonts/MarkPro-Light.woff2") format("woff2"),
+       url("/fonts/MarkPro-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mark Pro";
+  src: url("/fonts/MarkPro.woff2") format("woff2"),
+       url("/fonts/MarkPro.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mark Pro";
+  src: url("/fonts/MarkPro-Medium.woff2") format("woff2"),
+       url("/fonts/MarkPro-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mark Pro";
+  src: url("/fonts/MarkPro-Bold.woff2") format("woff2"),
+       url("/fonts/MarkPro-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mark Pro";
+  src: url("/fonts/MarkPro-Heavy.woff2") format("woff2"),
+       url("/fonts/MarkPro-Heavy.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Theme ────────────────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: #0B1924;
+  --font-tungsten: "Tungsten", sans-serif;
+  --font-mark: "Mark Pro", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ── Base ─────────────────────────────────────────────────── */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0B1924;
+  font-family: "Mark Pro", sans-serif;
 }
