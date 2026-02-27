@@ -1,0 +1,16 @@
+/* Subtle grid background — matches the original sample */
+.gridBg {
+  background-color: #ECE8E1;
+  background-image:
+    linear-gradient(rgba(15, 25, 35, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 25, 35, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Card hover lift */
+.card {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.card:hover {
+  transform: translateY(-8px);
+}

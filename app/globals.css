@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-/* ── Tungsten ─────────────────────────────────────────────── */
+/* ── Tungsten (uncomment when font files are placed in public/fonts/) ─────── */
+/*
 @font-face {
   font-family: "Tungsten";
   src: url("/fonts/Tungsten-Light.woff2") format("woff2"),
@@ -9,7 +10,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Tungsten";
   src: url("/fonts/Tungsten-Book.woff2") format("woff2"),
@@ -18,7 +18,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Tungsten";
   src: url("/fonts/Tungsten-Medium.woff2") format("woff2"),
@@ -27,7 +26,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Tungsten";
   src: url("/fonts/Tungsten-Semibold.woff2") format("woff2"),
@@ -36,7 +34,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Tungsten";
   src: url("/fonts/Tungsten-Bold.woff2") format("woff2"),
@@ -45,8 +42,10 @@
   font-style: normal;
   font-display: swap;
 }
+*/
 
-/* ── Mark Pro ─────────────────────────────────────────────── */
+/* ── Mark Pro (uncomment when font files are placed in public/fonts/) ─────── */
+/*
 @font-face {
   font-family: "Mark Pro";
   src: url("/fonts/MarkPro-Light.woff2") format("woff2"),
@@ -55,7 +54,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Mark Pro";
   src: url("/fonts/MarkPro.woff2") format("woff2"),
@@ -64,7 +62,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Mark Pro";
   src: url("/fonts/MarkPro-Medium.woff2") format("woff2"),
@@ -73,7 +70,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Mark Pro";
   src: url("/fonts/MarkPro-Bold.woff2") format("woff2"),
@@ -82,7 +78,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Mark Pro";
   src: url("/fonts/MarkPro-Heavy.woff2") format("woff2"),
@@ -91,16 +86,47 @@
   font-style: normal;
   font-display: swap;
 }
+*/
 
-/* ── Theme ────────────────────────────────────────────────── */
-@theme inline {
-  --color-bg: #0B1924;
-  --font-tungsten: "Tungsten", sans-serif;
-  --font-mark: "Mark Pro", sans-serif;
+/* ── Button shimmer animation ────────────────────────────── */
+@keyframes btn-shimmer {
+  0%   { transform: translateX(-150%) skewX(-20deg); }
+  100% { transform: translateX(350%)  skewX(-20deg); }
+}
+
+.btn-animated {
+  position: relative;
+  overflow: hidden;
+}
+.btn-animated::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  animation: btn-shimmer 2.2s ease-in-out infinite;
+}
+
+/* ── Shared cream grid background (WhyBuyFromUs / BattlePass / LatestNews) ── */
+@layer utilities {
+  .bg-cream-grid {
+    background-color: #ECE8E1;
+    background-image:
+      linear-gradient(rgba(15, 25, 35, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 25, 35, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
 }
 
 /* ── Base ─────────────────────────────────────────────────── */
 body {
   background-color: #0B1924;
-  font-family: "Mark Pro", sans-serif;
+  overflow-x: hidden;
 }

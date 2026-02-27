@@ -1,0 +1,105 @@
+/* Scanlines overlay */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.18) 2px,
+    rgba(0, 0, 0, 0.18) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+/* Gradient heading text */
+.gradientText {
+  background: linear-gradient(180deg, #ffffff 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Floating icon animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+.floating {
+  animation: float 4s ease-in-out infinite;
+}
+.floatingDelay1 {
+  animation: float 4s ease-in-out 0.5s infinite;
+}
+.floatingDelay2 {
+  animation: float 4s ease-in-out 1s infinite;
+}
+
+/* Card hover lift */
+.techCard {
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.4s ease;
+}
+.techCard:hover {
+  transform: translateY(-10px) scale(1.02);
+  background: rgba(20, 20, 30, 0.85) !important;
+}
+
+/* Glow intensifies on hover */
+.techCard:hover .visualGlow {
+  opacity: 0.7 !important;
+}
+
+/* Feature pill hover */
+.featurePill {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+.featurePill:hover {
+  transform: translateY(-6px);
+  border-color: rgba(139, 92, 246, 0.6) !important;
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.25);
+}
+.featurePill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.07), transparent);
+  transition: left 0.5s;
+}
+.featurePill:hover::before {
+  left: 100%;
+}
+.featurePill:hover .pillIcon {
+  box-shadow: 0 0 14px rgba(88, 101, 242, 0.7);
+}
+
+/* Button shimmer sweep */
+.actionBtn {
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: border-color 0.3s, background 0.3s, text-shadow 0.3s;
+}
+.actionBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+.actionBtn:hover::before {
+  left: 100%;
+}
