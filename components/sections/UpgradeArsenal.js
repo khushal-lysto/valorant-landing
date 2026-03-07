@@ -1,6 +1,6 @@
 export default function UpgradeArsenal() {
   return (
-    <section className="bg-cream-grid py-24 min-h-screen relative flex flex-col justify-center border-b border-gray-300">
+    <section id="arsenal" className="bg-cream-grid py-24 min-h-screen relative flex flex-col justify-center border-b border-gray-300">
       <div className="max-w-[1440px] mx-auto px-16 w-full">
 
         {/* Dark card with chamfered bottom-right */}

@@ -26,7 +26,7 @@ const cards = [
 
 export default function WhyBuyFromUs() {
   return (
-    <section className="bg-cream-grid w-full min-h-screen py-20 border-b border-gray-300 flex flex-col justify-center">
+    <section id="why-us" className="bg-cream-grid w-full min-h-screen py-20 border-b border-gray-300 flex flex-col justify-center">
       <div className="max-w-[1440px] mx-auto px-16">
 
         {/* Heading */}

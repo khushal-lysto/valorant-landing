@@ -30,7 +30,7 @@ const cards = [
 
 export default function HowItWorks() {
   return (
-    <section className="relative w-full min-h-screen py-24 px-16 overflow-hidden flex flex-col justify-center" style={{ background: "#0F1820" }}>
+    <section id="how-it-works" className="relative w-full min-h-screen py-24 px-16 overflow-hidden flex flex-col justify-center" style={{ background: "rgba(14, 14, 20, 0.6)" }}>
       {/* Scanlines */}
       <div className={styles.scanlines} />
 
@@ -44,15 +44,22 @@ export default function HowItWorks() {
             style={{ color: "#8b5cf6" }}
           >
             <span className="w-10 h-px bg-purple-500" />
-            // Bot Integration
+            // let the games begin
             <span className="w-10 h-px bg-purple-500" />
           </div>
+
+          <h2
+            className="text-7xl font-bold uppercase leading-none"
+            style={{ fontFamily: "var(--font-tungsten), sans-serif", color: "#fff" }}
+          >
+            VP, Skins, Bundles, Battlepass
+          </h2>
 
           <h2
             className={`${styles.gradientText} text-7xl font-bold uppercase italic leading-none`}
             style={{ fontFamily: "var(--font-tungsten), sans-serif" }}
           >
-            Get Valorant Points
+            Instantly on Discord
           </h2>
 
           <p
@@ -64,6 +71,37 @@ export default function HowItWorks() {
             next Night Market pull.
           </p>
         </header>
+
+      {/* Buttons */}
+      <div className="flex items-center justify-center gap-4 mt-2">
+        {/* Add to Discord DM */}
+        <a
+          href="#"
+          className={`${styles.featurePill} flex items-center gap-3 px-8 py-4 text-sm font-bold tracking-widest text-white uppercase rounded-lg`}
+          style={{
+            fontFamily: "var(--font-tungsten), sans-serif",
+            backgroundColor: "#5865F2",
+            border: "1px solid #5865F2",
+          }}
+        >
+          <RiDiscordFill size={20} />
+          Add to Discord DM
+        </a>
+
+        {/* Invite Bot to Server */}
+        <a
+          href="#"
+          className={`${styles.featurePill} flex items-center justify-center px-8 py-4 text-sm font-bold tracking-widest uppercase rounded-lg`}
+          style={{
+            fontFamily: "var(--font-tungsten), sans-serif",
+            backgroundColor: "#E8E8F0",
+            color: "#5865F2",
+            border: "1px solid #E8E8F0",
+          }}
+        >
+          Invite bot to server
+        </a>
+      </div>
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">

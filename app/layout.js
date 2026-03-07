@@ -1,7 +1,5 @@
 import { Lexend, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 
 const lexend = Lexend({
   subsets: ["latin"],
@@ -17,7 +15,7 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata = {
-  title: "Lysto",
+  title: "ValoBot",
   description: "",
 };
 
@@ -25,9 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${lexend.variable} ${barlowCondensed.variable} antialiased`}>
-        <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );

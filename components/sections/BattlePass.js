@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function BattlePass() {
   return (
-    <section className="bg-cream-grid w-full min-h-screen py-24 px-0 flex flex-col justify-center border-b border-gray-300">
+    <section id="battle-pass" className="bg-cream-grid w-full min-h-screen py-24 px-0 flex flex-col justify-center border-b border-gray-300">
       <div className="max-w-[1440px] mx-auto px-16 w-full">
 
         {/* Header row */}
