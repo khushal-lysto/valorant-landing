@@ -1,4 +1,5 @@
 import HowItWorks from "@/components/sections/HowItWorks";
+import ActBanner from "@/components/sections/ActBanner";
 import MonthlyBundles from "@/components/sections/MonthlyBundles";
 import WhyBuyFromUs from "@/components/sections/WhyBuyFromUs";
 import BattlePass from "@/components/sections/BattlePass";
@@ -11,6 +12,7 @@ export default function Home() {
     <>
 
     <HowItWorks />
+    <ActBanner />
     <MonthlyBundles />
     <WhyBuyFromUs />
     <BattlePass />

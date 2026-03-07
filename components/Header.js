@@ -3,10 +3,10 @@ import { useState } from "react";
 import { RiMenuLine, RiCloseLine, RiDiscordFill, RiArrowLeftLine } from "react-icons/ri";
 
 const navLinks = [
-  { label: "Home",        href: "/"            },
-  { label: "Store",       href: "#monthly-bundles" },
-  { label: "Battle Pass", href: "#battle-pass"  },
-  { label: "News",        href: "#news"         },
+  { label: "Home",        href: "#top"              },
+  { label: "Store",       href: "#monthly-bundles"  },
+  { label: "Battle Pass", href: "#battle-pass"      },
+  { label: "News",        href: "#news"             },
 ];
 
 function scrollTo(href) {
@@ -20,8 +20,8 @@ export default function Header() {
   const handleNav = (e, href) => {
     e.preventDefault();
     setOpen(false);
-    if (href === "/") {
-      window.location.href = "/";
+    if (href === "#top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       scrollTo(href);
     }
@@ -35,7 +35,7 @@ export default function Header() {
       >
         {/* Back button */}
         <a
-          href="/"
+          href="/valorant-landing"
           className="flex items-center gap-2 text-sm font-bold tracking-widest text-white/70 uppercase hover:text-white transition-colors shrink-0"
           style={{ fontFamily: "var(--font-tungsten), sans-serif" }}
         >
