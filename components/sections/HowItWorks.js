@@ -96,7 +96,9 @@ export default function HowItWorks() {
             Add to Discord DM
           </a>
           <a
-            href="#"
+            href="https://discord.com/oauth2/authorize?client_id=1414466801852481606"
+            target="_blank"
+            rel="noopener noreferrer"
             className={`${styles.featurePill} flex items-center justify-center px-8 py-4 text-sm font-bold tracking-widest uppercase rounded-lg`}
             style={{
               fontFamily: "var(--font-tungsten), sans-serif",

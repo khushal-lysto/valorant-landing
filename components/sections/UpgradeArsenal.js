@@ -40,7 +40,7 @@ export default function UpgradeArsenal() {
             </p>
             <div className="flex flex-col md:flex-row gap-4">
               <a
-                href="https://discord.com/users/1460236363365351562"
+                href="https://discord.com/oauth2/authorize?client_id=1414466801852481606"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block text-xl font-bold uppercase tracking-widest px-8 py-4 text-white transition-colors hover:bg-white hover:text-[#FF4655] min-w-[200px] text-center"

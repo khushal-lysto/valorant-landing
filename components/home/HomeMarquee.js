@@ -6,7 +6,7 @@ export default function HomeMarquee() {
     >
       <div className="max-w-4xl mx-auto text-center">
         <p
-          className="font-bold text-white leading-[1.15]"
+          className="text-white leading-[1.15]"
           style={{
             fontSize: "clamp(2.5rem, 5vw, 4rem)",
             fontFamily: "var(--font-lexend), sans-serif",

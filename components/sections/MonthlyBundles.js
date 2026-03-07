@@ -76,8 +76,14 @@ export default function MonthlyBundles() {
           {/* Overlay */}
           <div className="absolute bottom-0 left-0 p-5 md:p-7">
             <span
-              className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1.5 mb-2"
-              style={{ background: "#FF4655", color: "#fff" }}
+              className="inline-block text-sm font-bold uppercase tracking-widest px-4 py-1.5 mb-2"
+              style={{
+                background: "#FF4655",
+                color: "#fff",
+                fontFamily: "var(--font-tungsten), sans-serif",
+                clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%)",
+                paddingRight: "28px",
+              }}
             >
               Bundle Price : 5,795 VP
             </span>
@@ -122,13 +128,17 @@ export default function MonthlyBundles() {
                   className="w-full h-auto"
                 />
                 {label && (
-                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2" style={{ background: "rgba(0,0,0,0.6)" }}>
-                    <p
-                      className="text-xs font-bold uppercase text-white tracking-wide"
-                      style={{ fontFamily: "var(--font-tungsten), sans-serif" }}
+                  <div className="absolute bottom-0 left-0 right-0 px-3 py-3">
+                    <span
+                      className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1.5 text-white"
+                      style={{
+                        fontFamily: "var(--font-tungsten), sans-serif",
+                        border: "1.5px solid rgba(255,255,255,0.75)",
+                        background: "rgba(0,0,0,0.35)",
+                      }}
                     >
                       {label}
-                    </p>
+                    </span>
                   </div>
                 )}
               </div>
