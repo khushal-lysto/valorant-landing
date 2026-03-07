@@ -1,14 +1,14 @@
 export default function UpgradeArsenal() {
   return (
-    <section id="arsenal" className="bg-cream-grid py-24 min-h-screen relative flex flex-col justify-center border-b border-gray-300">
-      <div className="max-w-[1440px] mx-auto px-16 w-full">
+    <section id="arsenal" className="bg-cream-grid py-24 relative border-b border-gray-300">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-16 w-full">
 
         {/* Dark card with chamfered bottom-right */}
         <div
           className="relative overflow-hidden p-12 md:p-24"
           style={{
             background: "#0F1923",
-            clipPath: "polygon(0 0, 100% 0, 100% 88%, 92% 100%, 0 100%)",
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
           }}
         >
           {/* Red skew overlay */}

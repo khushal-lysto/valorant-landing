@@ -116,6 +116,9 @@
 
 /* ── Shared cream grid background (WhyBuyFromUs / BattlePass / LatestNews) ── */
 @layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
   .bg-cream-grid {
     background-color: #ECE8E1;
     background-image:

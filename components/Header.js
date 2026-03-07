@@ -3,11 +3,12 @@ import { useState } from "react";
 import { RiMenuLine, RiCloseLine, RiDiscordFill } from "react-icons/ri";
 
 const navLinks = [
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Why Us",       href: "#why-us"       },
-  { label: "Battle Pass",  href: "#battle-pass"  },
-  { label: "News",         href: "#news"          },
-  { label: "Arsenal",      href: "#arsenal"       },
+  { label: "How It Works",    href: "#how-it-works"    },
+  { label: "Monthly Bundles", href: "#monthly-bundles" },
+  { label: "Why Us",          href: "#why-us"          },
+  { label: "Battle Pass",     href: "#battle-pass"     },
+  { label: "News",            href: "#news"            },
+  { label: "Arsenal",         href: "#arsenal"         },
 ];
 
 function scrollTo(href) {
@@ -41,7 +42,7 @@ export default function Header() {
         </a>
 
         {/* Center nav — absolutely centered so it's unaffected by logo/CTA widths */}
-        <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+        <nav className="hidden md:flex items-center gap-5 absolute left-1/2 -translate-x-1/2">
           {navLinks.map(({ label, href }) => (
             <a
               key={label}

@@ -4,7 +4,7 @@ export default function LatestNews() {
   return (
     <section
       id="news"
-      className="bg-cream-grid py-24 min-h-screen relative overflow-hidden flex flex-col justify-center border-b border-gray-300"
+      className="bg-cream-grid py-24 relative overflow-hidden border-b border-gray-300"
     >
       {/* Decorative slanted right panel */}
       <div
@@ -88,12 +88,12 @@ export default function LatestNews() {
 
           {/* ── Masters Madrid Card (col 4, row 1) ── */}
           <div className="col-span-1 min-h-[288px] group cursor-pointer relative overflow-hidden p-7 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300" style={{ background: "#0F1923" }}>
-            <Image
+            {/* <Image
               src="https://images.unsplash.com/photo-1624138784181-2999e46ef284?q=80&w=800&auto=format&fit=crop"
               alt="Masters Madrid"
               fill
               className="object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-            />
+            /> */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0F1923] via-transparent to-transparent" />
             <div className="relative z-10">
               <span className="text-[#FF4655] font-mono text-xs uppercase tracking-widest">
