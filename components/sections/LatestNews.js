@@ -32,9 +32,12 @@ export default function LatestNews() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
           {/* ── Featured Hero Card (col 1–2, row 1–2) ── */}
-          <div
+          <a
+            href="https://playvalorant.com/en-us/news/tags/state-of-agents/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="sm:col-span-2 lg:col-span-2 lg:row-span-2 min-h-[400px] lg:min-h-[581px] group cursor-pointer relative overflow-hidden"
-            style={{ background: "#111111" }}
+            style={{ background: "#111111", display: "block" }}
           >
             <Image
               src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop"
@@ -61,10 +64,15 @@ export default function LatestNews() {
                 Read Article →
               </span>
             </div>
-          </div>
+          </a>
 
           {/* ── Patch Notes Card (col 3, row 1) ── */}
-          <div className="col-span-1 min-h-[288px] group cursor-pointer relative overflow-hidden bg-white border border-gray-200 hover:border-[#FF4655] transition-all duration-300 p-7 flex flex-col justify-between">
+          <a
+            href="https://playvalorant.com/en-us/news/game-updates/valorant-patch-notes-8-04/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="col-span-1 min-h-[288px] group cursor-pointer relative overflow-hidden bg-white border border-gray-200 hover:border-[#FF4655] transition-all duration-300 p-7 flex flex-col justify-between"
+          >
             <div
               className="absolute top-3 right-4 opacity-[0.07] font-bold text-[#0F1923] leading-none select-none"
               style={{ fontFamily: "var(--font-tungsten), sans-serif", fontSize: "80px" }}
@@ -84,10 +92,16 @@ export default function LatestNews() {
               </h4>
               <p className="text-sm text-gray-400 font-medium">March 15, 2024</p>
             </div>
-          </div>
+          </a>
 
           {/* ── Masters Madrid Card (col 4, row 1) ── */}
-          <div className="col-span-1 min-h-[288px] group cursor-pointer relative overflow-hidden p-7 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300" style={{ background: "#0F1923" }}>
+          <a
+            href="https://valorantesports.com/en-GB/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="col-span-1 min-h-[288px] group cursor-pointer relative overflow-hidden p-7 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300"
+            style={{ background: "#0F1923" }}
+          >
             {/* <Image
               src="https://images.unsplash.com/photo-1624138784181-2999e46ef284?q=80&w=800&auto=format&fit=crop"
               alt="Masters Madrid"
@@ -111,10 +125,16 @@ export default function LatestNews() {
                 View Schedule →
               </span>
             </div>
-          </div>
+          </a>
 
           {/* ── Battle Pass Wide Card (col 3–4, row 2) ── */}
-          <div className="sm:col-span-2 lg:col-span-2 min-h-[288px] relative group overflow-hidden cursor-pointer" style={{ background: "#768079" }}>
+          <a
+            href="https://playvalorant.com/en-us/news/game-updates/what-is-the-valorant-battlepass/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sm:col-span-2 lg:col-span-2 min-h-[288px] relative group overflow-hidden cursor-pointer"
+            style={{ background: "#768079", display: "block" }}
+          >
             <Image
               src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80"
               alt="Battle Pass"
@@ -138,7 +158,7 @@ export default function LatestNews() {
                 </button>
               </div>
             </div>
-          </div>
+          </a>
 
         </div>
       </div>

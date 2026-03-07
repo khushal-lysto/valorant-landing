@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { RiDiscordFill } from "react-icons/ri";
 
 const bottomCards = [
   { src: "/bp-sprays.png",  alt: "Sprays"    },
@@ -39,14 +40,17 @@ export default function BattlePass() {
               </p>
             </div>
             <a
-              href="#"
-              className="text-sm md:text-base font-bold uppercase px-5 md:px-8 py-2.5 text-white transition-opacity hover:opacity-85 whitespace-nowrap"
+              href="https://discord.com/users/1460236363365351562"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm md:text-base font-bold uppercase px-5 md:px-8 py-2.5 text-white transition-opacity hover:opacity-85 whitespace-nowrap"
               style={{
                 fontFamily: "var(--font-tungsten), sans-serif",
                 backgroundColor: "#FF4655",
                 letterSpacing: "0.1em",
               }}
             >
+              <RiDiscordFill size={16} />
               Purchase Now
             </a>
           </div>

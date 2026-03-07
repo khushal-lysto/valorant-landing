@@ -40,7 +40,9 @@ export default function UpgradeArsenal() {
             </p>
             <div className="flex flex-col md:flex-row gap-4">
               <a
-                href="#"
+                href="https://discord.com/users/1460236363365351562"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block text-xl font-bold uppercase tracking-widest px-8 py-4 text-white transition-colors hover:bg-white hover:text-[#FF4655] min-w-[200px] text-center"
                 style={{
                   fontFamily: "var(--font-tungsten), sans-serif",
@@ -50,7 +52,9 @@ export default function UpgradeArsenal() {
                 Add Bot
               </a>
               <a
-                href="#"
+                href="https://discord.com/users/1460236363365351562"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block text-xl font-bold uppercase tracking-widest px-8 py-4 text-white border border-white/30 transition-colors hover:bg-white hover:text-[#0F1923] min-w-[200px] text-center"
                 style={{ fontFamily: "var(--font-tungsten), sans-serif" }}
               >

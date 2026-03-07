@@ -82,7 +82,9 @@ export default function HowItWorks() {
         {/* Buttons */}
         <div className="flex items-center justify-center gap-4">
           <a
-            href="#"
+            href="https://discord.com/users/1460236363365351562"
+            target="_blank"
+            rel="noopener noreferrer"
             className={`${styles.featurePill} flex items-center gap-3 px-8 py-4 text-sm font-bold tracking-widest text-white uppercase rounded-lg`}
             style={{
               fontFamily: "var(--font-tungsten), sans-serif",

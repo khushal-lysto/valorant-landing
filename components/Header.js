@@ -61,7 +61,9 @@ export default function Header() {
         {/* Right side */}
         <div className="flex items-center gap-4 shrink-0">
           <a
-            href="#"
+            href="https://discord.com/users/1460236363365351562"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:flex items-center gap-2 text-sm font-bold tracking-widest text-white uppercase hover:bg-white/10 transition-colors px-5 py-2"
             style={{ fontFamily: "var(--font-tungsten), sans-serif", border: "1px solid #2A5298" }}
           >
@@ -112,7 +114,9 @@ export default function Header() {
             </nav>
 
             <a
-              href="#"
+              href="https://discord.com/users/1460236363365351562"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-auto flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold tracking-widest text-white uppercase hover:bg-white/10 transition-colors"
               style={{ fontFamily: "var(--font-tungsten), sans-serif", border: "1px solid #2A5298" }}
             >
