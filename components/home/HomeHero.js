@@ -28,7 +28,7 @@ const notifications = [
 
 const ctaButtons = [
   { label: "Add to Discord DM",       href: "https://discord.com/users/1460236363365351562",                    Icon: RiDiscordFill  },
-  { label: "Add to Friend Server",    href: "https://discord.com/oauth2/authorize?client_id=1414466801852481606", Icon: RiUserAddLine  },
+  { label: "Add to Friend Server",    href: null,                                                                Icon: RiUserAddLine,  comingSoon: true },
   { label: "Add to Community Server", href: "https://discord.com/oauth2/authorize?client_id=1414466801852481606", Icon: RiBuildingLine },
 ];
 
@@ -73,7 +73,7 @@ export default function HomeHero() {
 
       {/* ── Shrinking heading ── */}
       <div
-        className="sticky top-0 z-10 flex items-center justify-center pt-28 pb-16 px-6 pointer-events-none"
+        className="sticky top-0 z-10 flex items-center justify-center pt-20 md:pt-28 pb-16 px-6 pointer-events-none"
         style={{ background: "#f5f0e8" }}
       >
         <h1
@@ -97,7 +97,7 @@ export default function HomeHero() {
         <div className="max-w-6xl mx-auto">
 
           {/* Phone + floating notifications */}
-          <div className="relative flex justify-center" style={{ minHeight: 620 }}>
+          <div className="relative flex justify-center" style={{ minHeight: "min(620px, 80vw)" }}>
 
             {/* Diffused red glow — grows with scroll, sits behind everything */}
             <div
@@ -115,7 +115,7 @@ export default function HomeHero() {
             {notifications.map((n) => (
               <div
                 key={n.id}
-                className="absolute flex items-center gap-2 px-4 py-2.5 rounded-xl shadow-md text-sm font-medium"
+                className="absolute hidden md:flex items-center gap-2 px-4 py-2.5 rounded-xl shadow-md text-sm font-medium"
                 style={{
                   background: "#ede8de",
                   color: "#222",
@@ -207,20 +207,32 @@ export default function HomeHero() {
           </p>
 
           {/* CTA buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {ctaButtons.map(({ label, href, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-semibold transition-opacity hover:opacity-90"
-                style={{ background: "#e8003d" }}
-              >
-                <Icon size={16} />
-                {label}
-              </a>
-            ))}
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 px-4">
+            {ctaButtons.map(({ label, href, Icon, comingSoon }) =>
+              comingSoon ? (
+                <div
+                  key={label}
+                  className="flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto justify-center"
+                  style={{ background: "#2a2a2a", color: "#666", cursor: "not-allowed" }}
+                >
+                  <Icon size={16} />
+                  {label}
+                  <span className="ml-1 text-xs px-2 py-0.5 rounded-full" style={{ background: "#333", color: "#888" }}>Soon</span>
+                </div>
+              ) : (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-semibold transition-opacity hover:opacity-90 w-full sm:w-auto justify-center"
+                  style={{ background: "#e8003d" }}
+                >
+                  <Icon size={16} />
+                  {label}
+                </a>
+              )
+            )}
           </div>
         </div>
       </div>

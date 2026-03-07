@@ -131,12 +131,12 @@ export default function HomeBento() {
 
           {/* Card 3 — Smart Promotions */}
           <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: "#1a1a1a" }}>
-            <div className="flex items-center justify-center p-6" style={{ height: 300 }}>
-              <div className="grid grid-cols-4 gap-3 w-full">
+            <div className="p-6 overflow-hidden" style={{ height: 300 }}>
+              <div className="grid grid-cols-4 gap-2 h-full">
                 {gameLogos.map((g, i) => (
                   <div
                     key={i}
-                    className="rounded-xl flex items-center justify-center text-xs font-bold aspect-square"
+                    className="rounded-xl flex items-center justify-center text-xs font-bold"
                     style={{ background: g.bg, color: g.text }}
                   >
                     {g.label}

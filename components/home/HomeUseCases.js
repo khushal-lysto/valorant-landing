@@ -11,8 +11,9 @@ const useCases = [
     title:    "Small Friend Servers",
     subtitle: "Squads, clans, school friends, bootcamps.",
     steps:    "Add to your private server. Enable /shop + weekly drops. Share squad-only deals. Group cashback, birthday gifts, and win-streak rewards for scrim nights.",
-    cta:      "Add to my friend server",
-    href:     "https://discord.com/oauth2/authorize?client_id=1414466801852481606",
+    cta:      "Coming Soon",
+    href:     null,
+    comingSoon: true,
     illustrationBg: "#eae6f5",
   },
   {
@@ -83,15 +84,24 @@ export default function HomeUseCases() {
 
                 {/* Button pushed to bottom */}
                 <div className="mt-auto pt-4">
-                  <a
-                    href={uc.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-5 py-2.5 rounded-full text-white text-sm font-medium hover:opacity-90 transition-opacity"
-                    style={{ background: "#111" }}
-                  >
-                    {uc.cta}
-                  </a>
+                  {uc.comingSoon ? (
+                    <span
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium"
+                      style={{ background: "#f0f0f0", color: "#aaa", cursor: "not-allowed" }}
+                    >
+                      Coming Soon
+                    </span>
+                  ) : (
+                    <a
+                      href={uc.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block px-5 py-2.5 rounded-full text-white text-sm font-medium hover:opacity-90 transition-opacity"
+                      style={{ background: "#111" }}
+                    >
+                      {uc.cta}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
