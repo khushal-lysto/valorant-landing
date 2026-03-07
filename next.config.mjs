@@ -3,18 +3,18 @@ const nextConfig = {
   output: "export",
 
   // Required for GitHub Pages project repos (e.g. username.github.io/valorant-landing).
-  // Remove if deploying to a root domain / custom domain.
+  // Remove (and clear NEXT_PUBLIC_BASEPATH below) if deploying to a root domain / custom domain.
   basePath: "/valorant-landing",
 
+  env: {
+    // Must match basePath above. Read by imageLoader.js to prefix public-folder images.
+    NEXT_PUBLIC_BASEPATH: "/valorant-landing",
+  },
+
   images: {
-    // next/image optimization requires a server; GitHub Pages is static-only.
-    unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-    ],
+    // Custom loader prepends basePath to public-folder image srcs in the static export.
+    loader: "custom",
+    loaderFile: "./imageLoader.js",
   },
 };
 
