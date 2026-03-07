@@ -1,14 +1,12 @@
 "use client";
 import { useState } from "react";
-import { RiMenuLine, RiCloseLine, RiDiscordFill } from "react-icons/ri";
+import { RiMenuLine, RiCloseLine, RiDiscordFill, RiArrowLeftLine } from "react-icons/ri";
 
 const navLinks = [
-  { label: "How It Works",    href: "#how-it-works"    },
-  { label: "Monthly Bundles", href: "#monthly-bundles" },
-  { label: "Why Us",          href: "#why-us"          },
-  { label: "Battle Pass",     href: "#battle-pass"     },
-  { label: "News",            href: "#news"            },
-  { label: "Arsenal",         href: "#arsenal"         },
+  { label: "Home",        href: "/"            },
+  { label: "Store",       href: "#monthly-bundles" },
+  { label: "Battle Pass", href: "#battle-pass"  },
+  { label: "News",        href: "#news"         },
 ];
 
 function scrollTo(href) {
@@ -22,7 +20,11 @@ export default function Header() {
   const handleNav = (e, href) => {
     e.preventDefault();
     setOpen(false);
-    scrollTo(href);
+    if (href === "/") {
+      window.location.href = "/";
+    } else {
+      scrollTo(href);
+    }
   };
 
   return (
@@ -31,18 +33,18 @@ export default function Header() {
         className="sticky top-0 z-50 w-full relative flex items-center justify-between px-8 md:px-16 py-4"
         style={{ borderBottom: "1px solid #2A5298", background: "#0B1924" }}
       >
-        {/* Logo */}
+        {/* Back button */}
         <a
-          href="#"
-          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-          className="text-sm font-bold tracking-widest text-white uppercase hover:text-white/70 transition-colors shrink-0"
+          href="/"
+          className="flex items-center gap-2 text-sm font-bold tracking-widest text-white/70 uppercase hover:text-white transition-colors shrink-0"
           style={{ fontFamily: "var(--font-tungsten), sans-serif" }}
         >
-          ValoBot
+          <RiArrowLeftLine size={16} />
+          Back
         </a>
 
-        {/* Center nav — absolutely centered so it's unaffected by logo/CTA widths */}
-        <nav className="hidden md:flex items-center gap-5 absolute left-1/2 -translate-x-1/2">
+        {/* Center nav */}
+        <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
           {navLinks.map(({ label, href }) => (
             <a
               key={label}
@@ -64,7 +66,7 @@ export default function Header() {
             style={{ fontFamily: "var(--font-tungsten), sans-serif", border: "1px solid #2A5298" }}
           >
             <RiDiscordFill size={16} />
-            Add to Discord
+            DM Discord Bot
           </a>
 
           <button
@@ -115,7 +117,7 @@ export default function Header() {
               style={{ fontFamily: "var(--font-tungsten), sans-serif", border: "1px solid #2A5298" }}
             >
               <RiDiscordFill size={16} />
-              Add to Discord
+              DM Discord Bot
             </a>
           </div>
         </div>
