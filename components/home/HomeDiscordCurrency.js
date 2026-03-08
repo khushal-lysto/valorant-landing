@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const pills = [
   {
@@ -114,7 +115,7 @@ export default function HomeDiscordCurrency() {
             ))}
           </div>
 
-          <a
+          <Link
             href="/valorant"
             className="inline-flex items-center gap-2 group"
             style={{
@@ -133,7 +134,7 @@ export default function HomeDiscordCurrency() {
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" width={16} height={16}>
               <path d="M3 8h10M9 4l4 4-4 4" />
             </svg>
-          </a>
+          </Link>
         </div>
 
         {/* Right */}

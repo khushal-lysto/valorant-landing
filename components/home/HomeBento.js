@@ -34,8 +34,8 @@ function GameLogoIcon({ game, size = 28 }) {
   );
 }
 
-// 10 items for the carousel (8 games + first 2 repeated)
-const carouselItems = [...gameLogos, gameLogos[0], gameLogos[1]];
+// 3× repetition so one copy (24 × 136px = 3264px) always exceeds any viewport width
+const carouselItems = [...gameLogos, ...gameLogos, ...gameLogos];
 
 export default function HomeBento() {
   const ref = useRef(null);
@@ -222,7 +222,7 @@ export default function HomeBento() {
         <div className="relative overflow-hidden pb-12" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)" }}>
           <div
             className="flex gap-4 w-max"
-            style={{ animation: "scrollIcons 32s linear infinite" }}
+            style={{ animation: "scrollIcons 77s linear infinite" }}
           >
             {/* First copy */}
             {carouselItems.map((g, i) => (
@@ -262,7 +262,7 @@ export default function HomeBento() {
         <style jsx>{`
           @keyframes scrollIcons {
             from { transform: translateX(0); }
-            to   { transform: translateX(-1360px); }
+            to   { transform: translateX(-3264px); }
           }
         `}</style>
 

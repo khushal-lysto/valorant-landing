@@ -1,19 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import {
   RiSwordLine, RiCustomerService2Line, RiGamepadLine, RiStore2Line,
-  RiGroupLine, RiMessage3Line, RiDiscordFill, RiGiftLine, RiSettings4Line,
+  RiGroupLine, RiMessage3Line, RiDiscordFill,
   RiBuildingLine, RiUserAddLine,
 } from "react-icons/ri";
-
-const giftCards = [
-  { name: "BGMI",           discount: "8% off",   sub: "Unknown Cash"                  },
-  { name: "Genshin Impact", discount: "15% off",  sub: "Genesis Crystals"              },
-  { name: "Minecraft",      discount: "3% off",   sub: "Minecoins"                     },
-  { name: "Roblox",         discount: "7.5% off", sub: "USD Credits"                   },
-  { name: "Steam",          discount: "3.5% off", sub: "Steam Wallet Balance (INR)"    },
-  { name: "Valorant",       discount: "15% off",  sub: "Valorant Points"               },
-];
 
 // finalRot: resting angle facing radially outward
 // startX/startY: offset from final position back to phone centre (minHeight 620, centre ~310px)
@@ -132,67 +124,16 @@ export default function HomeHero() {
               </div>
             ))}
 
-            {/* Phone frame */}
-            <div
-              className="relative flex-shrink-0"
-              style={{
-                zIndex: 10,
-                width: 280,
-                borderRadius: 40,
-                background: "#111",
-                padding: "14px 8px 20px",
-                boxShadow: "0 40px 100px rgba(0,0,0,0.35)",
-              }}
-            >
-              <div className="mx-auto mb-2" style={{ width: 80, height: 6, background: "#333", borderRadius: 10 }} />
-
-              <div className="overflow-hidden" style={{ borderRadius: 28, background: "#1e1f22", minHeight: 520 }}>
-                <div
-                  className="flex items-center gap-2 px-3 py-2 text-xs font-semibold"
-                  style={{ background: "#2b2d31", color: "#fff", borderBottom: "1px solid #3a3c41" }}
-                >
-                  <RiGiftLine size={12} style={{ color: "#b5bac1" }} />
-                  Gift Card Shop
-                </div>
-
-                <div className="px-3 py-2">
-                  <p className="text-xs font-semibold mb-2" style={{ color: "#b5bac1" }}>Available Gift Cards</p>
-                  <div className="space-y-1">
-                    {giftCards.map((card) => (
-                      <div key={card.name}>
-                        <div className="text-xs font-bold" style={{ color: "#fff" }}>
-                          {card.name} <span style={{ color: "#57f287" }}>({card.discount})</span>
-                        </div>
-                        <div className="text-xs" style={{ color: "#888" }}>{card.sub}</div>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-xs mt-3 mb-2" style={{ color: "#888" }}>
-                    Select a title from the dropdown below to view available denominations.
-                  </p>
-                  <div
-                    className="flex items-center justify-between px-3 py-2 rounded-md mb-2"
-                    style={{ background: "#2b2d31", border: "1px solid #444" }}
-                  >
-                    <span className="text-xs" style={{ color: "#aaa" }}>Choose a title</span>
-                    <span style={{ color: "#aaa" }}>›</span>
-                  </div>
-                  <button className="w-full py-2 rounded-md text-xs font-semibold" style={{ background: "#2b2d31", color: "#fff" }}>
-                    Need Help?
-                  </button>
-                </div>
-
-                <div className="flex items-center gap-2 px-3 py-2 mt-2" style={{ background: "#1e1f22", borderTop: "1px solid #2a2a2a" }}>
-                  <span style={{ color: "#aaa", fontSize: 18, lineHeight: 1 }}>+</span>
-                  <RiSettings4Line size={16} style={{ color: "#aaa" }} />
-                  <RiGiftLine size={16} style={{ color: "#aaa" }} />
-                  <div className="flex-1 rounded-md px-2 py-1 text-xs" style={{ background: "#2b2d31", color: "#aaa" }}>
-                    Message #gift-shop...
-                  </div>
-                </div>
-              </div>
-
-              <div className="mx-auto mt-2" style={{ width: 60, height: 4, background: "#444", borderRadius: 10 }} />
+            {/* Phone screenshot */}
+            <div className="relative flex-shrink-0" style={{ zIndex: 10, width: 280 }}>
+              <Image
+                src="/device.png"
+                alt="Artemis Discord bot gift card shop"
+                width={560}
+                height={1140}
+                style={{ width: 280, height: "auto", display: "block" }}
+                priority
+              />
             </div>
           </div>
 

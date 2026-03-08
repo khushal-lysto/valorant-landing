@@ -5,7 +5,7 @@ const useCases = [
     steps:    "DM Artemis → /shop. Pick title & denomination. Pay → code delivered instantly.",
     cta:      "Open DM & start shopping",
     href:     "https://discord.com/users/1460236363365351562",
-    illustrationBg: "#ede8e0",
+    img:      "/usecase-dm-bot.png",
   },
   {
     title:    "Small Friend Servers",
@@ -14,7 +14,7 @@ const useCases = [
     cta:      "Coming Soon",
     href:     null,
     comingSoon: true,
-    illustrationBg: "#eae6f5",
+    img:      "/usecase-friend-server.png",
   },
   {
     title:    "Community Server",
@@ -22,9 +22,11 @@ const useCases = [
     steps:    "Add Artemis and go live. Monetize traffic without leaving Discord — rewards loop increases retention.",
     cta:      "Partner my server",
     href:     "https://discord.com/oauth2/authorize?client_id=1414466801852481606",
-    illustrationBg: "#e4ede4",
+    img:      "/usecase-community-server.png",
   },
 ];
+
+import Image from "next/image";
 
 export default function HomeUseCases() {
   return (
@@ -49,22 +51,15 @@ export default function HomeUseCases() {
               className="rounded-2xl overflow-hidden flex flex-col"
               style={{ background: "#fff", boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}
             >
-              {/* Illustration area */}
-              <div
-                className="flex items-center justify-center"
-                style={{ height: 260, background: uc.illustrationBg }}
-              >
-                <div
-                  className="rounded-xl flex items-center justify-center"
-                  style={{
-                    width: "75%",
-                    height: "75%",
-                    background: "rgba(255,255,255,0.45)",
-                    border: "1px dashed rgba(0,0,0,0.12)",
-                  }}
-                >
-                  <span style={{ color: "#bbb", fontSize: 13 }}>Illustration</span>
-                </div>
+              {/* Illustration */}
+              <div className="overflow-hidden" style={{ height: 260 }}>
+                <Image
+                  src={uc.img}
+                  alt={uc.title}
+                  width={600}
+                  height={400}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+                />
               </div>
 
               {/* Content — flex-1 + flex col so button always sits at bottom */}

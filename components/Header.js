@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { RiMenuLine, RiCloseLine, RiDiscordFill, RiArrowLeftLine } from "react-icons/ri";
 
 const navLinks = [
@@ -16,6 +17,7 @@ function scrollTo(href) {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const handleNav = (e, href) => {
     e.preventDefault();
@@ -34,14 +36,14 @@ export default function Header() {
         style={{ borderBottom: "1px solid #2A5298", background: "#0B1924" }}
       >
         {/* Back button */}
-        <a
-          href="/valorant-landing"
+        <button
+          onClick={() => router.back()}
           className="flex items-center gap-2 text-sm font-bold tracking-widest text-white/70 uppercase hover:text-white transition-colors shrink-0"
-          style={{ fontFamily: "var(--font-tungsten), sans-serif" }}
+          style={{ fontFamily: "var(--font-tungsten), sans-serif", background: "none", border: "none", cursor: "pointer" }}
         >
           <RiArrowLeftLine size={16} />
           Back
-        </a>
+        </button>
 
         {/* Center nav */}
         <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
