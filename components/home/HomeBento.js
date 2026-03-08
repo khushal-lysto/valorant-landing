@@ -5,31 +5,25 @@ import {
   RiShieldCheckLine, RiDiscountPercentLine, RiBellLine,
   RiDiscordFill, RiGamepadLine,
 } from "react-icons/ri";
-import { SiPlaystation, SiSteam, SiValorant, SiRoblox } from "react-icons/si";
-
 const gameLogos = [
-  { label: "PlayStation", bg: "#003087", Icon: SiPlaystation },
+  { label: "PlayStation", bg: "#003087", src: "/logos/playstation.svg" },
   { label: "Xbox",        bg: "#107C10", src: "/logos/xbox.svg" },
-  { label: "Steam",       bg: "#1b2838", Icon: SiSteam },
-  { label: "Valorant",    bg: "#ff4655", Icon: SiValorant },
-  { label: "BGMI",        bg: "#c8860a", src: "/logos/bgmi.svg" },
+  { label: "Steam",       bg: "#1b2838", src: "/logos/steam.svg" },
+  { label: "Valorant",    bg: "#ff4655", src: "/logos/valorant.svg" },
+  { label: "BGMI",        bg: "#1a1a1a", src: "/logos/bgmi.svg",     noFilter: true },
   { label: "Genshin",     bg: "#1e4fa3", src: "/logos/genshin.svg" },
-  { label: "Roblox",      bg: "#cc0000", Icon: SiRoblox },
+  { label: "Roblox",      bg: "#1a1a1a", src: "/logos/roblox.svg",   noFilter: true },
   { label: "Minecraft",   bg: "#5a8a35", src: "/logos/minecraft.svg" },
 ];
 
 function GameLogoIcon({ game, size = 28 }) {
-  if (game.Icon) {
-    const Icon = game.Icon;
-    return <Icon size={size} color="#fff" />;
-  }
   return (
     <Image
       src={game.src}
       alt={game.label}
       width={size}
       height={size}
-      style={{ filter: "brightness(0) invert(1)" }}
+      style={game.noFilter ? {} : { filter: "brightness(0) invert(1)" }}
     />
   );
 }
