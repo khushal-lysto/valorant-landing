@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
-  RiShieldCheckLine, RiDiscountPercentLine, RiBellLine, RiPlug2Line,
+  RiShieldCheckLine, RiDiscountPercentLine, RiBellLine,
   RiDiscordFill, RiGamepadLine,
 } from "react-icons/ri";
 import { SiPlaystation, SiSteam, SiValorant, SiRoblox } from "react-icons/si";
@@ -94,31 +94,45 @@ export default function HomeBento() {
 
           {/* Card 1 — Instant Delivery */}
           <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: "#1a1a1a" }}>
-            <div className="flex items-center justify-center py-10 px-6" style={{ height: 300 }}>
-              <div className="w-52 rounded-2xl overflow-hidden shadow-2xl" style={{ background: "#2b2d31" }}>
-                <div className="p-4">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div
-                      className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
-                      style={{ background: "conic-gradient(from 0deg, #ff6b35, #f7c59f, #5bc0eb, #9b59b6, #ff6b35)" }}
-                    >A</div>
-                    <div>
-                      <div className="text-white text-xs font-semibold">Artemis</div>
-                      <div className="text-xs" style={{ color: "#888" }}>Welcome</div>
+            <div className="flex flex-col justify-center px-5 py-6 gap-2" style={{ height: 300, background: "#1e1f22" }}>
+              {/* Channel header */}
+              <div className="flex items-center gap-2 pb-2 mb-1" style={{ borderBottom: "1px solid #2e2e2e" }}>
+                <span style={{ color: "#72767d", fontSize: 15 }}>#</span>
+                <span className="text-xs font-semibold" style={{ color: "#c8cbcf" }}>artemis-shop</span>
+              </div>
+              {/* User command */}
+              <div className="flex items-start gap-2.5">
+                <div className="w-7 h-7 rounded-full flex-shrink-0" style={{ background: "#5865F2" }}>
+                  <div className="w-full h-full rounded-full flex items-center justify-center text-white text-xs font-bold">U</div>
+                </div>
+                <div>
+                  <span className="text-xs font-semibold" style={{ color: "#fff" }}>you </span>
+                  <span className="text-xs" style={{ color: "#72767d" }}>Today at 4:20 PM</span>
+                  <p className="text-xs mt-0.5" style={{ color: "#dcddde" }}>/shop <span style={{ color: "#5865F2" }}>valorant</span> 475VP</p>
+                </div>
+              </div>
+              {/* Bot response — embed */}
+              <div className="flex items-start gap-2.5">
+                <div className="w-7 h-7 rounded-full flex-shrink-0 overflow-hidden">
+                  <Image src="/artemis-logo.jpeg" alt="Artemis" width={28} height={28} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <span className="text-xs font-semibold" style={{ color: "#fff" }}>Artemis</span>
+                    <span className="text-xs px-1 rounded" style={{ background: "#5865F2", color: "#fff", fontSize: 9 }}>APP</span>
+                    <span className="text-xs" style={{ color: "#72767d" }}>4:20 PM</span>
+                  </div>
+                  {/* Embed */}
+                  <div className="rounded-md p-2.5" style={{ background: "#2b2d31", borderLeft: "3px solid #57f287" }}>
+                    <p className="text-xs font-semibold mb-1" style={{ color: "#57f287" }}>✅ Gift Card Delivered!</p>
+                    <p className="text-xs mb-1.5" style={{ color: "#b5bac1" }}>Valorant — 475 VP</p>
+                    <div className="rounded px-2 py-1 text-center text-xs font-mono font-bold tracking-widest" style={{ background: "#1e1f22", color: "#fff" }}>
+                      XXXX-XXXX-XXXX
                     </div>
+                    <p className="text-xs mt-1.5 flex items-center gap-1" style={{ color: "#72767d" }}>
+                      <span>⚡</span> Delivered in 1.4s
+                    </p>
                   </div>
-                  <div className="text-xs mb-3" style={{ color: "#aaa" }}>to Artemis by Athena</div>
-                  <div className="space-y-1.5 mb-4">
-                    {["Trusted & secure", "Instant delivery", "Official gift cards sourced directly from Athena."].map((item) => (
-                      <div key={item} className="flex items-start gap-2 text-xs" style={{ color: "#ccc" }}>
-                        <span className="text-green-400 mt-0.5 flex-shrink-0">✓</span>
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <button className="w-full py-2 rounded text-white text-xs font-medium" style={{ background: "#5865F2" }}>
-                    <RiGamepadLine size={12} className="inline mr-1" /> Buy a Gift Card
-                  </button>
                 </div>
               </div>
             </div>
@@ -131,16 +145,37 @@ export default function HomeBento() {
 
           {/* Card 2 — Lowest prices */}
           <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: "#1a1a1a" }}>
-            <div className="flex items-center justify-center relative overflow-hidden" style={{ height: 300 }}>
-              <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 50% 50%, rgba(255,180,0,0.2) 0%, transparent 65%)" }} />
-              <div
-                className="relative z-10 w-28 h-28 rounded-full flex items-center justify-center"
-                style={{
-                  background: "radial-gradient(circle at 38% 32%, #ffe066, #d4860a)",
-                  boxShadow: "0 0 60px rgba(255,180,0,0.4), inset 0 2px 6px rgba(255,255,255,0.25)",
-                }}
-              >
-                <span className="text-5xl font-bold" style={{ color: "#7a4400" }}>₹</span>
+            <div className="flex flex-col justify-center px-5 py-5" style={{ height: 300, background: "#1e1f22" }}>
+              {/* Bot message header */}
+              <div className="flex items-center gap-2 mb-2.5">
+                <div className="w-7 h-7 rounded-full flex-shrink-0 overflow-hidden">
+                  <Image src="/artemis-logo.jpeg" alt="Artemis" width={28} height={28} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-semibold" style={{ color: "#fff" }}>Artemis</span>
+                  <span className="text-xs px-1 rounded" style={{ background: "#5865F2", color: "#fff", fontSize: 9 }}>APP</span>
+                </div>
+              </div>
+              {/* Embed */}
+              <div className="rounded-md p-3" style={{ background: "#2b2d31", borderLeft: "3px solid #f7c559" }}>
+                <p className="text-xs font-semibold mb-2" style={{ color: "#f7c559" }}>🏷️ Best Deals Today</p>
+                <div className="flex flex-col gap-1.5">
+                  {[
+                    { game: "Valorant",       off: "15% off", orig: "₹470",  price: "₹399"  },
+                    { game: "Genshin Impact", off: "15% off", orig: "₹800",  price: "₹680"  },
+                    { game: "BGMI",           off: "8% off",  orig: "₹350",  price: "₹322"  },
+                    { game: "Roblox",         off: "7.5% off",orig: "₹650",  price: "₹601"  },
+                  ].map((d) => (
+                    <div key={d.game} className="flex items-center justify-between">
+                      <span className="text-xs" style={{ color: "#b5bac1" }}>{d.game}</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs line-through" style={{ color: "#4f545c" }}>{d.orig}</span>
+                        <span className="text-xs font-semibold" style={{ color: "#57f287" }}>{d.price}</span>
+                        <span className="text-xs px-1 rounded" style={{ background: "#1e3a2e", color: "#57f287", fontSize: 9 }}>{d.off}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
             <div className="p-6" style={{ height: 170 }}>
@@ -175,30 +210,40 @@ export default function HomeBento() {
             </div>
           </div>
 
-          {/* Card 4 — Plug & Play */}
+          {/* Card 4 — Push Notifications */}
           <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: "#1a1a1a" }}>
-            <div className="flex items-center justify-center relative overflow-hidden" style={{ height: 300 }}>
-              <div className="absolute right-0 top-0 bottom-0 w-2/3" style={{ background: "radial-gradient(circle at 80% 50%, rgba(255,255,255,0.06) 0%, transparent 70%)" }} />
-              <div className="relative z-10 bg-white rounded-2xl p-5 shadow-2xl w-48" style={{ transform: "rotate(3deg)" }}>
-                <div className="text-black text-xs font-semibold mb-3">Server</div>
-                <div className="space-y-1.5 mb-3">
-                  <div className="h-2 rounded" style={{ background: "#e5e5e5" }} />
-                  <div className="h-2 rounded w-3/4" style={{ background: "#e5e5e5" }} />
-                </div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs" style={{ color: "#666" }}>$</span>
-                  <div className="flex gap-1">
-                    <div className="w-4 h-4 rounded-full" style={{ background: "#e0e0e0" }} />
-                    <div className="w-4 h-4 rounded-full opacity-50" style={{ background: "#e0e0e0" }} />
+            <div className="flex flex-col items-center justify-center gap-2.5 px-6 py-8 relative overflow-hidden" style={{ height: 300 }}>
+              <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(88,101,242,0.15) 0%, transparent 65%)" }} />
+              {[
+                { icon: "⚡", label: "Artemis", tag: "APP", text: "475 VP delivered to @neo", sub: "Payment confirmed • ₹399", dot: "#57f287" },
+                { icon: "🔔", label: "Artemis", tag: "APP", text: "Scheduled drop is live in #shop", sub: "Squad bundle unlocked", dot: "#f7c559" },
+                { icon: "✅", label: "Artemis", tag: "APP", text: "Ticket #88 closed for @mira", sub: "Support resolved instantly", dot: "#5bc0eb" },
+              ].map((n, i) => (
+                <div
+                  key={i}
+                  className="relative z-10 w-full rounded-xl px-3 py-2.5 flex items-start gap-3"
+                  style={{ background: "#242424", border: "1px solid #2e2e2e" }}
+                >
+                  <div
+                    className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-sm"
+                    style={{ background: "#5865F2" }}
+                  >{n.icon}</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-1.5 mb-0.5">
+                      <span className="text-white text-xs font-semibold">{n.label}</span>
+                      <span className="text-xs px-1 rounded" style={{ background: "#5865F2", color: "#fff", fontSize: 9 }}>{n.tag}</span>
+                    </div>
+                    <p className="text-xs truncate" style={{ color: "#ccc" }}>{n.text}</p>
+                    <p className="text-xs" style={{ color: "#555" }}>{n.sub}</p>
                   </div>
+                  <div className="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style={{ background: n.dot }} />
                 </div>
-                <button className="w-full py-1.5 rounded text-white text-xs font-bold" style={{ background: "#111" }}>SELL</button>
-              </div>
+              ))}
             </div>
             <div className="p-6" style={{ height: 170 }}>
-              <RiPlug2Line size={20} className="mb-2" style={{ color: "#555" }} />
-              <h3 className="text-white text-base font-semibold mb-1">Plug & Play:</h3>
-              <p className="text-sm" style={{ color: "#666", fontFamily: "var(--font-dm-sans), sans-serif" }}>Go live in minutes.</p>
+              <RiBellLine size={20} className="mb-2" style={{ color: "#555" }} />
+              <h3 className="text-white text-base font-semibold mb-1">Push Notifications:</h3>
+              <p className="text-sm" style={{ color: "#666", fontFamily: "var(--font-dm-sans), sans-serif" }}>Stay on top of your activity with instant alerts for all transactions.</p>
             </div>
           </div>
 

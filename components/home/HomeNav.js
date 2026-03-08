@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { RiMenuLine, RiCloseLine } from "react-icons/ri";
 
 const navLinks = [
@@ -71,10 +72,9 @@ export default function HomeNav() {
           className="flex items-center gap-2 px-3 py-2 rounded-full shadow-2xl"
           style={{ background: "#111111", border: "1px solid #2a2a2a" }}
         >
-          <div
-            className="w-7 h-7 rounded-full flex-shrink-0"
-            style={{ background: "conic-gradient(from 0deg, #ff6b35 0%, #f7c59f 20%, #a8e6cf 40%, #5bc0eb 60%, #9b59b6 80%, #ff6b35 100%)" }}
-          />
+          <div className="w-7 h-7 rounded-full flex-shrink-0 overflow-hidden">
+            <Image src="/artemis-logo.jpeg" alt="Artemis" width={28} height={28} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+          </div>
           <div className="relative flex items-center ml-1">
             <div
               className="absolute rounded-full pointer-events-none"

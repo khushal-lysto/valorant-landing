@@ -27,8 +27,8 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata = {
-  title: "ValoBot",
-  description: "",
+  title: "Artemis by Athena",
+  description: "Instant game gift cards delivered to your Discord DMs.",
 };
 
 export default function RootLayout({ children }) {
