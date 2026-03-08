@@ -2,18 +2,18 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
-  RiShieldCheckLine, RiDiscountPercentLine, RiBellLine,
+  RiShieldCheckLine, RiDiscountPercentLine, RiBellLine, RiNotification2Line,
   RiDiscordFill, RiGamepadLine,
 } from "react-icons/ri";
 const gameLogos = [
   { label: "PlayStation", bg: "#003087", src: "/logos/playstation.svg" },
-  { label: "Xbox",        bg: "#107C10", src: "/logos/xbox.svg" },
-  { label: "Steam",       bg: "#1b2838", src: "/logos/steam.svg" },
+  { label: "Xbox",        bg: "#107C10", src: "/logos/xbox.svg",      noFilter: true },
+  { label: "Steam",       bg: "#1b2838", src: "/logos/steam.svg",     noFilter: true },
   { label: "Valorant",    bg: "#ff4655", src: "/logos/valorant.svg" },
-  { label: "BGMI",        bg: "#1a1a1a", src: "/logos/bgmi.svg",     noFilter: true },
+  { label: "BGMI",        bg: "#1a1a1a", src: "/logos/bgmi.svg",      noFilter: true },
   { label: "Genshin",     bg: "#1e4fa3", src: "/logos/genshin.svg" },
-  { label: "Roblox",      bg: "#1a1a1a", src: "/logos/roblox.svg",   noFilter: true },
-  { label: "Minecraft",   bg: "#5a8a35", src: "/logos/minecraft.svg" },
+  { label: "Roblox",      bg: "#1a1a1a", src: "/logos/roblox.svg",    noFilter: true },
+  { label: "Minecraft",   bg: "#5a8a35", src: "/logos/minecraft.svg", noFilter: true },
 ];
 
 function GameLogoIcon({ game, size = 28 }) {
@@ -235,7 +235,7 @@ export default function HomeBento() {
               ))}
             </div>
             <div className="p-6" style={{ height: 170 }}>
-              <RiBellLine size={20} className="mb-2" style={{ color: "#555" }} />
+              <RiNotification2Line size={20} className="mb-2" style={{ color: "#555" }} />
               <h3 className="text-white text-base font-semibold mb-1">Push Notifications:</h3>
               <p className="text-sm" style={{ color: "#666", fontFamily: "var(--font-dm-sans), sans-serif" }}>Stay on top of your activity with instant alerts for all transactions.</p>
             </div>
