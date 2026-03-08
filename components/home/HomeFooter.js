@@ -89,7 +89,7 @@ export default function HomeFooter() {
         >
           {/* Stay in touch */}
           <div className="flex flex-col gap-4 pt-8">
-            <p className="text-sm font-medium" style={{ color: "#aaa" }}>
+            <p className="text-sm font-medium" style={{ color: "#aaa", fontFamily: "var(--font-dm-sans), sans-serif" }}>
               Stay in touch
             </p>
             <div className="flex items-center gap-2">

@@ -36,8 +36,8 @@ export default function HomeUseCases() {
 
       <div className="relative max-w-6xl mx-auto">
         <h2
-          className="text-5xl md:text-6xl font-bold text-center mb-16"
-          style={{ color: "#111", fontFamily: "var(--font-lexend), sans-serif" }}
+          className="text-5xl md:text-6xl text-center mb-16"
+          style={{ color: "#111", fontFamily: "var(--font-source-serif), serif", fontWeight: 400 }}
         >
           Built for Every Way You Play
         </h2>
@@ -75,10 +75,10 @@ export default function HomeUseCases() {
                 >
                   {uc.title}
                 </h3>
-                <p className="text-sm font-semibold" style={{ color: "#444" }}>
+                <p className="text-sm font-semibold" style={{ color: "#444", fontFamily: "var(--font-dm-sans), sans-serif" }}>
                   {uc.subtitle}
                 </p>
-                <p className="text-sm leading-relaxed mt-1" style={{ color: "#777" }}>
+                <p className="text-sm leading-relaxed mt-1" style={{ color: "#777", fontFamily: "var(--font-dm-sans), sans-serif" }}>
                   {uc.steps}
                 </p>
 

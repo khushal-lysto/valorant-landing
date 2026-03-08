@@ -79,7 +79,8 @@ export default function HomeHero() {
         <h1
           className="text-center leading-[1.05] max-w-4xl"
           style={{
-            fontFamily: "var(--font-lexend), sans-serif",
+            fontFamily: "var(--font-source-serif), serif",
+            fontWeight: 400,
             fontSize: "clamp(2.8rem, 8vw, 7rem)",
             color: "#111",
             transform: `scale(${scale})`,
@@ -202,7 +203,7 @@ export default function HomeHero() {
           />
 
           {/* Caption */}
-          <p className="text-center text-xl md:text-2xl font-medium max-w-lg mx-auto mb-10" style={{ color: "#333" }}>
+          <p className="text-center text-xl md:text-2xl font-medium max-w-lg mx-auto mb-10" style={{ color: "#333", fontFamily: "var(--font-dm-sans), sans-serif" }}>
             Instant game currency, best discounts, and no-nonsense delivery—built for gamers.
           </p>
 

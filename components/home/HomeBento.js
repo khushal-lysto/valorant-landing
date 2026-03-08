@@ -1,20 +1,41 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import {
   RiShieldCheckLine, RiDiscountPercentLine, RiBellLine, RiPlug2Line,
   RiDiscordFill, RiGamepadLine,
 } from "react-icons/ri";
+import { SiPlaystation, SiSteam, SiValorant, SiRoblox } from "react-icons/si";
 
 const gameLogos = [
-  { label: "PS",      bg: "#003087", text: "#fff"    },
-  { label: "Xbox",    bg: "#107C10", text: "#fff"    },
-  { label: "Steam",   bg: "#1b2838", text: "#c6d4df" },
-  { label: "VALO",    bg: "#ff4655", text: "#fff"    },
-  { label: "BGMI",    bg: "#e8a020", text: "#000"    },
-  { label: "Genshin", bg: "#1e4fa3", text: "#fff"    },
-  { label: "Roblox",  bg: "#cc0000", text: "#fff"    },
-  { label: "MC",      bg: "#5a8a35", text: "#fff"    },
+  { label: "PlayStation", bg: "#003087", Icon: SiPlaystation },
+  { label: "Xbox",        bg: "#107C10", src: "/logos/xbox.svg" },
+  { label: "Steam",       bg: "#1b2838", Icon: SiSteam },
+  { label: "Valorant",    bg: "#ff4655", Icon: SiValorant },
+  { label: "BGMI",        bg: "#c8860a", src: "/logos/bgmi.svg" },
+  { label: "Genshin",     bg: "#1e4fa3", src: "/logos/genshin.svg" },
+  { label: "Roblox",      bg: "#cc0000", Icon: SiRoblox },
+  { label: "Minecraft",   bg: "#5a8a35", src: "/logos/minecraft.svg" },
 ];
+
+function GameLogoIcon({ game, size = 28 }) {
+  if (game.Icon) {
+    const Icon = game.Icon;
+    return <Icon size={size} color="#fff" />;
+  }
+  return (
+    <Image
+      src={game.src}
+      alt={game.label}
+      width={size}
+      height={size}
+      style={{ filter: "brightness(0) invert(1)" }}
+    />
+  );
+}
+
+// 10 items for the carousel (8 games + first 2 repeated)
+const carouselItems = [...gameLogos, gameLogos[0], gameLogos[1]];
 
 export default function HomeBento() {
   const ref = useRef(null);
@@ -46,13 +67,13 @@ export default function HomeBento() {
         {/* ── Header row ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 md:px-12 pt-12 pb-10 items-start">
           <h2
-            className="text-3xl md:text-4xl font-bold leading-snug text-white"
-            style={{ fontFamily: "var(--font-lexend), sans-serif" }}
+            className="text-3xl md:text-4xl leading-snug text-white"
+            style={{ fontFamily: "var(--font-source-serif), serif", fontWeight: 400 }}
           >
             Your all-in-one game top-up engine. Built for gamers, ready for scale.
           </h2>
           <div className="flex flex-col gap-4 md:pt-1">
-            <p className="text-sm leading-relaxed" style={{ color: "#888" }}>
+            <p className="text-sm leading-relaxed" style={{ color: "#888", fontFamily: "var(--font-dm-sans), sans-serif" }}>
               Instant delivery, smart promos, and fraud-safe checkout with zero extra ops.
             </p>
             <a
@@ -104,7 +125,7 @@ export default function HomeBento() {
             <div className="p-6" style={{ height: 170 }}>
               <RiShieldCheckLine size={20} className="mb-2" style={{ color: "#555" }} />
               <h3 className="text-white text-base font-semibold mb-1">Instant Delivery:</h3>
-              <p className="text-sm" style={{ color: "#666" }}>Codes arrive in DM in seconds</p>
+              <p className="text-sm" style={{ color: "#666", fontFamily: "var(--font-dm-sans), sans-serif" }}>Codes arrive in DM in seconds</p>
             </div>
           </div>
 
@@ -125,7 +146,7 @@ export default function HomeBento() {
             <div className="p-6" style={{ height: 170 }}>
               <RiDiscountPercentLine size={20} className="mb-2" style={{ color: "#555" }} />
               <h3 className="text-white text-base font-semibold mb-1">Lowest prices, highest perks:</h3>
-              <p className="text-sm" style={{ color: "#666" }}>Best in-game discounts & rewards</p>
+              <p className="text-sm" style={{ color: "#666", fontFamily: "var(--font-dm-sans), sans-serif" }}>Best in-game discounts & rewards</p>
             </div>
           </div>
 
@@ -136,10 +157,13 @@ export default function HomeBento() {
                 {gameLogos.map((g, i) => (
                   <div
                     key={i}
-                    className="rounded-xl flex items-center justify-center text-xs font-bold"
-                    style={{ background: g.bg, color: g.text }}
+                    className="rounded-xl flex flex-col items-center justify-center gap-1.5"
+                    style={{ background: g.bg }}
                   >
-                    {g.label}
+                    <GameLogoIcon game={g} size={24} />
+                    <span className="text-white text-[9px] font-semibold leading-none opacity-80">
+                      {g.label}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -147,7 +171,7 @@ export default function HomeBento() {
             <div className="p-6" style={{ height: 170 }}>
               <RiBellLine size={20} className="mb-2" style={{ color: "#555" }} />
               <h3 className="text-white text-base font-semibold mb-1">Smart Promotions:</h3>
-              <p className="text-sm" style={{ color: "#666" }}>Scheduled drops, XP-based perks, and first-purchase boosts.</p>
+              <p className="text-sm" style={{ color: "#666", fontFamily: "var(--font-dm-sans), sans-serif" }}>Scheduled drops, XP-based perks, and first-purchase boosts.</p>
             </div>
           </div>
 
@@ -174,7 +198,7 @@ export default function HomeBento() {
             <div className="p-6" style={{ height: 170 }}>
               <RiPlug2Line size={20} className="mb-2" style={{ color: "#555" }} />
               <h3 className="text-white text-base font-semibold mb-1">Plug & Play:</h3>
-              <p className="text-sm" style={{ color: "#666" }}>Go live in minutes.</p>
+              <p className="text-sm" style={{ color: "#666", fontFamily: "var(--font-dm-sans), sans-serif" }}>Go live in minutes.</p>
             </div>
           </div>
 
@@ -186,7 +210,8 @@ export default function HomeBento() {
             className="text-white text-center leading-[1.15] max-w-4xl mx-auto"
             style={{
               fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-              fontFamily: "var(--font-lexend), sans-serif",
+              fontFamily: "var(--font-source-serif), serif",
+              fontWeight: 400,
             }}
           >
             Top titles, always fresh. We update denominations and stock in real time—so your players never wait.
@@ -200,47 +225,35 @@ export default function HomeBento() {
             style={{ animation: "scrollIcons 32s linear infinite" }}
           >
             {/* First copy */}
-            {Array.from({ length: 10 }).map((_, i) => (
+            {carouselItems.map((g, i) => (
               <div
                 key={`a-${i}`}
                 className="flex-shrink-0 rounded-2xl flex flex-col items-center justify-center gap-3"
                 style={{
                   width: 120,
                   height: 120,
-                  background: "#1e1e1e",
-                  border: "1px solid #2a2a2a",
+                  background: g.bg,
+                  border: "1px solid rgba(255,255,255,0.08)",
                 }}
               >
-                <div
-                  className="rounded-xl"
-                  style={{ width: 64, height: 64, background: "#2e2e2e" }}
-                />
-                <div
-                  className="rounded"
-                  style={{ width: 60, height: 8, background: "#2e2e2e" }}
-                />
+                <GameLogoIcon game={g} size={40} />
+                <span className="text-white text-xs font-semibold opacity-80">{g.label}</span>
               </div>
             ))}
             {/* Second copy — identical, for seamless loop */}
-            {Array.from({ length: 10 }).map((_, i) => (
+            {carouselItems.map((g, i) => (
               <div
                 key={`b-${i}`}
                 className="flex-shrink-0 rounded-2xl flex flex-col items-center justify-center gap-3"
                 style={{
                   width: 120,
                   height: 120,
-                  background: "#1e1e1e",
-                  border: "1px solid #2a2a2a",
+                  background: g.bg,
+                  border: "1px solid rgba(255,255,255,0.08)",
                 }}
               >
-                <div
-                  className="rounded-xl"
-                  style={{ width: 64, height: 64, background: "#2e2e2e" }}
-                />
-                <div
-                  className="rounded"
-                  style={{ width: 60, height: 8, background: "#2e2e2e" }}
-                />
+                <GameLogoIcon game={g} size={40} />
+                <span className="text-white text-xs font-semibold opacity-80">{g.label}</span>
               </div>
             ))}
           </div>

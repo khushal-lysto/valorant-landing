@@ -2,6 +2,7 @@ import HomeNav from "@/components/home/HomeNav";
 import HomeHero from "@/components/home/HomeHero";
 import HomeBento from "@/components/home/HomeBento";
 import HomeUseCases from "@/components/home/HomeUseCases";
+import HomeDiscordCurrency from "@/components/home/HomeDiscordCurrency";
 import HomeFooter from "@/components/home/HomeFooter";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       <HomeNav />
       <HomeHero />
       <HomeBento />
+      <HomeDiscordCurrency />
       <HomeUseCases />
       <HomeFooter />
     </main>
