@@ -27,13 +27,13 @@ export default function BattlePass() {
           <div className="flex items-center gap-4">
             <div className="text-right hidden sm:block">
               <p
-                className="text-xs font-bold tracking-widest uppercase"
+                className="text-base font-bold tracking-widest uppercase"
                 style={{ color: "#FF4655", fontFamily: "var(--font-tungsten), sans-serif" }}
               >
                 Premium
               </p>
               <p
-                className="text-sm font-bold"
+                className="text-2xl font-bold"
                 style={{ color: "#0F1923", fontFamily: "var(--font-tungsten), sans-serif" }}
               >
                 1000 VP
@@ -43,7 +43,7 @@ export default function BattlePass() {
               href="https://discord.com/users/1460236363365351562"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm md:text-base font-bold uppercase px-5 md:px-8 py-2.5 text-white transition-opacity hover:opacity-85 whitespace-nowrap"
+              className="val-btn flex items-center gap-2 text-sm md:text-base font-bold uppercase px-5 md:px-8 py-2.5 text-white whitespace-nowrap"
               style={{
                 fontFamily: "var(--font-tungsten), sans-serif",
                 backgroundColor: "#FF4655",

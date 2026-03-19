@@ -153,7 +153,7 @@ export default function LatestNews() {
                 >
                   Battle Pass
                 </h3>
-                <button className="bg-white text-[#0F1923] px-8 py-2.5 font-bold uppercase text-sm tracking-widest hover:bg-[#0F1923] hover:text-white transition-colors duration-300">
+                <button className="val-btn bg-white text-[#0F1923] px-8 py-2.5 font-bold uppercase text-sm tracking-widest hover:bg-[#0F1923] hover:text-white">
                   View Rewards
                 </button>
               </div>

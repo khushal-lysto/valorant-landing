@@ -114,6 +114,34 @@
   animation: btn-shimmer 2.2s ease-in-out infinite;
 }
 
+/* ── Valorant pentagon buttons (bottom-right corner cut) ─── */
+.val-btn {
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+  border-radius: 0;
+  transition: transform 0.25s ease, background-color 0.3s ease,
+              color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+.val-btn:hover {
+  transform: translateY(-3px);
+}
+.val-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -110%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.val-btn:hover::before {
+  left: 150%;
+}
+
 /* ── Shared cream grid background (WhyBuyFromUs / BattlePass / LatestNews) ── */
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar { display: none; }

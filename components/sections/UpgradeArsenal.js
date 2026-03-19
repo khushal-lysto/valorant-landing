@@ -1,3 +1,5 @@
+import { RiDiscordFill } from "react-icons/ri";
+
 export default function UpgradeArsenal() {
   return (
     <section id="arsenal" className="bg-cream-grid py-24 relative border-b border-gray-300">
@@ -43,19 +45,20 @@ export default function UpgradeArsenal() {
                 href="https://discord.com/oauth2/authorize?client_id=1414466801852481606"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block text-xl font-bold uppercase tracking-widest px-8 py-4 text-white transition-colors hover:bg-white hover:text-[#FF4655] min-w-[200px] text-center"
+                className="val-btn inline-flex items-center justify-center gap-3 text-xl font-bold uppercase tracking-widest px-8 py-4 text-white hover:bg-white hover:text-[#FF4655] min-w-[200px] text-center"
                 style={{
                   fontFamily: "var(--font-tungsten), sans-serif",
                   background: "#FF4655",
                 }}
               >
+                <RiDiscordFill size={22} />
                 Add Bot
               </a>
               <a
                 href="https://discord.com/users/1460236363365351562"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block text-xl font-bold uppercase tracking-widest px-8 py-4 text-white border border-white/30 transition-colors hover:bg-white hover:text-[#0F1923] min-w-[200px] text-center"
+                className="val-btn inline-block text-xl font-bold uppercase tracking-widest px-8 py-4 text-white border border-white/30 hover:bg-white hover:text-[#0F1923] min-w-[200px] text-center"
                 style={{ fontFamily: "var(--font-tungsten), sans-serif" }}
               >
                 View Commands

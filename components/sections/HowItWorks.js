@@ -38,7 +38,7 @@ function FeaturePill({ Icon, label }) {
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="relative w-full min-h-screen py-24 px-16 overflow-hidden flex flex-col justify-center" style={{ background: "rgba(14, 14, 20, 0.6)" }}>
+    <section id="how-it-works" className="relative w-full min-h-screen py-24 px-16 flex flex-col justify-center" style={{ background: "rgba(14, 14, 20, 0.6)" }}>
       {/* Scanlines */}
       <div className={styles.scanlines} />
 
@@ -63,7 +63,7 @@ export default function HowItWorks() {
           </h2>
 
           <h2
-            className={`${styles.gradientText} text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase italic leading-none`}
+            className={`${styles.gradientText} w-full text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase italic leading-none`}
             style={{ fontFamily: "var(--font-tungsten), sans-serif" }}
           >
             Instantly on Discord
@@ -85,7 +85,7 @@ export default function HowItWorks() {
             href="https://discord.com/users/1460236363365351562"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${styles.featurePill} flex items-center gap-3 px-8 py-4 text-sm font-bold tracking-widest text-white uppercase rounded-lg`}
+            className="val-btn flex items-center gap-3 px-8 py-4 text-sm font-bold tracking-widest text-white uppercase"
             style={{
               fontFamily: "var(--font-tungsten), sans-serif",
               backgroundColor: "#5865F2",
@@ -99,7 +99,7 @@ export default function HowItWorks() {
             href="https://discord.com/oauth2/authorize?client_id=1414466801852481606"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${styles.featurePill} flex items-center justify-center px-8 py-4 text-sm font-bold tracking-widest uppercase rounded-lg`}
+            className="val-btn flex items-center justify-center px-8 py-4 text-sm font-bold tracking-widest uppercase"
             style={{
               fontFamily: "var(--font-tungsten), sans-serif",
               backgroundColor: "#E8E8F0",

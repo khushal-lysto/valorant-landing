@@ -33,13 +33,13 @@ export default function MonthlyBundles() {
           <div className="flex items-center gap-4">
             <div className="text-right hidden sm:block">
               <p
-                className="text-base font-bold"
+                className="text-2xl font-bold"
                 style={{ color: "#FF4655", fontFamily: "var(--font-tungsten), sans-serif", letterSpacing: "0.05em" }}
               >
                 3233 VP
               </p>
               <p
-                className="text-sm line-through"
+                className="text-lg line-through"
                 style={{ color: "#888899", fontFamily: "var(--font-tungsten), sans-serif" }}
               >
                 4000 VP
@@ -49,7 +49,7 @@ export default function MonthlyBundles() {
               href="https://discord.com/users/1460236363365351562"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm md:text-base font-bold uppercase px-5 md:px-8 py-2.5 text-white transition-opacity hover:opacity-85 whitespace-nowrap"
+              className="val-btn flex items-center gap-2 text-sm md:text-base font-bold uppercase px-5 md:px-8 py-2.5 text-white whitespace-nowrap"
               style={{
                 fontFamily: "var(--font-tungsten), sans-serif",
                 backgroundColor: "#FF4655",
@@ -97,7 +97,7 @@ export default function MonthlyBundles() {
             {/* CTA — hidden until card hovered */}
             <a
               href="#"
-              className="inline-flex items-center gap-2 text-sm font-bold uppercase px-6 py-2.5 text-white
+              className="val-btn inline-flex items-center gap-2 text-sm font-bold uppercase px-6 py-2.5 text-white
                          translate-y-3 opacity-0
                          group-hover:translate-y-0 group-hover:opacity-100
                          transition-all duration-300 ease-out"
