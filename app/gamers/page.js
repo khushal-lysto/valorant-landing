@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef, useState, useMemo } from "react";
 import Image from "next/image";
 import {
   RiArrowRightLine,
@@ -22,16 +23,16 @@ const gameLogos = [
 ];
 
 const helpCards = [
-  { Icon: RiLayoutGridLine, title: "/shop in your DMs",   desc: "Type /shop to browse titles, pick a denom, and pay—no servers or forms."             },
-  { Icon: RiBarChartLine,   title: "Instant delivery",    desc: "Codes land in seconds; UC/VP top-ups auto-apply where supported."                    },
-  { Icon: RiBellLine,       title: "Deals & rewards",     desc: "Flash discounts, promo alerts, and cashback coins every time you buy."               },
-  { Icon: RiCursorLine,     title: "Protected checkout",  desc: "Secure payments, receipts in thread, easy refunds, and full order history."          },
+  { Icon: RiLayoutGridLine, title: "/shop in your DMs",   desc: "Type /shop to browse titles, pick a denom, and pay—no servers or forms."    },
+  { Icon: RiBarChartLine,   title: "Instant delivery",    desc: "Codes land in seconds; UC/VP top-ups auto-apply where supported."           },
+  { Icon: RiBellLine,       title: "Deals & rewards",     desc: "Flash discounts, promo alerts, and cashback coins every time you buy."      },
+  { Icon: RiCursorLine,     title: "Protected checkout",  desc: "Secure payments, receipts in thread, easy refunds, and full order history." },
 ];
 
 const pillars = [
-  { title: "Tap, pick, play",         desc: "Pick a title & denom, checkout, code lands instantly."                       },
-  { title: "Promos, bundles & drops", desc: "Smart alerts for price cuts, season passes, crates, and event bundles"       },
-  { title: "Bank-grade safety",       desc: "Protected checkout, consented DMs, optional 2FA/OTP, refund support"         },
+  { title: "Tap, pick, play",         desc: "Pick a title & denom, checkout, code lands instantly."                   },
+  { title: "Promos, bundles & drops", desc: "Smart alerts for price cuts, season passes, crates, and event bundles"   },
+  { title: "Bank-grade safety",       desc: "Protected checkout, consented DMs, optional 2FA/OTP, refund support"     },
 ];
 
 const steps = [
@@ -51,6 +52,23 @@ const steps = [
     img: "/usecase-friend-server.png",
   },
 ];
+
+/* ── useFadeIn ─────────────────────────────────────────────────────────── */
+function useFadeIn(threshold = 0.1) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVisible(true); },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return [ref, visible];
+}
 
 /* ── decorative shapes ─────────────────────────────────────────────────── */
 function JackShape() {
@@ -89,12 +107,54 @@ function HelixShape() {
 
 /* ── page ──────────────────────────────────────────────────────────────── */
 export default function GamersPage() {
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const fn = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
+
+  /* ── scroll-driven hero values ── */
+  const heroProgress  = Math.min(scrollY / 360, 1);
+  const phoneParallax = scrollY * 0.07;
+  const jackTransform  = `rotate(-15deg) translateY(${10 + heroProgress * 26}px) translateX(${-heroProgress * 34}px)`;
+  const helixTransform = `rotate(10deg) translateY(${-8 - heroProgress * 26}px) translateX(${heroProgress * 34}px)`;
+
+  /* ── section fade-ins ── */
+  const [featuresRef, featuresVis] = useFadeIn(0.1);
+  const [mosaicRef,   mosaicVis]   = useFadeIn(0.08);
+  const [cardsRef,    cardsVis]    = useFadeIn(0.08);
+  const [darkRef,     darkVis]     = useFadeIn(0.08);
+  const [stepsRef,    stepsVis]    = useFadeIn(0.06);
+
+  /* ── animation helpers ── */
+  const fadeIn = (vis, delay = 0) => ({
+    opacity:    vis ? 1 : 0,
+    transform:  vis ? "translateY(0)" : "translateY(40px)",
+    transition: `opacity 0.7s ease-out ${delay}s, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}s`,
+  });
+  const scaleIn = (vis) => ({
+    opacity:    vis ? 1 : 0,
+    transform:  vis ? "scale(1) translateY(0)" : "scale(0.92) translateY(50px)",
+    transition: "transform 0.75s cubic-bezier(0.22,1,0.36,1), opacity 0.75s ease-out",
+  });
+
+  /* ── stable star positions (memoized so scroll re-renders don't re-randomize) ── */
+  const stars = useMemo(() =>
+    Array.from({length: 55}).map(() => ({
+      w:       Math.random() < 0.7 ? 1.5 : 2.5,
+      opacity: 0.15 + Math.random() * 0.45,
+      top:     `${Math.random() * 80}%`,
+      left:    `${Math.random() * 100}%`,
+    }))
+  , []);
+
   return (
     <main style={{ fontFamily:"var(--font-dm-sans),sans-serif", background:"#f0eeea", minHeight:"100vh" }}>
 
       {/* ── 1. Hero ───────────────────────────────────────────────── */}
-      <section className="px-5 pt-10 pb-0 md:px-10 md:pt-16" style={{ background:"#f5f0e8" }}>
-        <div className="max-w-[540px] md:max-w-4xl mx-auto"
+      <section className="px-4 md:px-8 pt-10 pb-0 md:pt-16" style={{ background:"#f5f0e8" }}>
+        <div className="max-w-[540px] md:max-w-none mx-auto"
           style={{ border:"1.5px solid #3a6ff8", borderRadius:22, overflow:"hidden", background:"#f5f0e8" }}>
 
           {/* copy */}
@@ -118,18 +178,19 @@ export default function GamersPage() {
             </a>
           </div>
 
-          {/* phone + shapes */}
+          {/* phone + shapes — scroll-driven */}
           <div className="flex items-end justify-center pt-2 overflow-hidden min-h-[400px] md:min-h-[560px]">
-            <div style={{ alignSelf:"center", marginRight:-24, zIndex:5, transform:"rotate(-15deg) translateY(10px)" }}>
+            <div style={{ alignSelf:"center", marginRight:-24, zIndex:5, transform: jackTransform }}>
               <div className="md:scale-[1.35] origin-bottom">
                 <JackShape/>
               </div>
             </div>
-            <div className="relative z-10 w-[230px] md:w-[300px] shrink-0">
+            <div className="relative z-10 w-[230px] md:w-[300px] shrink-0"
+              style={{ transform: `translateY(-${phoneParallax}px)` }}>
               <Image src="/device.png" alt="Artemis Discord bot" width={560} height={1140}
                 style={{ width:"100%", height:"auto", display:"block" }} priority/>
             </div>
-            <div style={{ alignSelf:"center", marginLeft:-20, zIndex:5, transform:"rotate(10deg) translateY(-8px)" }}>
+            <div style={{ alignSelf:"center", marginLeft:-20, zIndex:5, transform: helixTransform }}>
               <div className="md:scale-[1.35] origin-bottom">
                 <HelixShape/>
               </div>
@@ -162,8 +223,9 @@ export default function GamersPage() {
       </section>
 
       {/* ── 2. Features text ─────────────────────────────────────── */}
-      <section className="px-7 pb-[52px] md:px-10 md:pb-20" style={{ background:"#f5f0e8" }}>
-        <div className="max-w-[540px] md:max-w-4xl mx-auto">
+      <section ref={featuresRef} className="px-7 pb-[52px] md:px-16 md:pb-20"
+        style={{ background:"#f5f0e8", ...fadeIn(featuresVis) }}>
+        <div className="max-w-[540px] md:max-w-none mx-auto">
           <p className="mb-9 md:mb-12"
             style={{ fontSize:"clamp(1.55rem,4.5vw,2.8rem)", color:"#111",
               lineHeight:1.45, fontFamily:"var(--font-lexend),sans-serif" }}>
@@ -179,9 +241,9 @@ export default function GamersPage() {
       </section>
 
       {/* ── 3. Screenshots mosaic ────────────────────────────────── */}
-      <section className="px-5 pb-16 md:px-10 md:pb-20" style={{ background:"#f5f0e8" }}>
-        <div className="max-w-[540px] md:max-w-4xl mx-auto p-4 md:p-6"
-          style={{ background:"#eae5dc", borderRadius:20 }}>
+      <section className="px-4 pb-16 md:px-8 md:pb-20" style={{ background:"#f5f0e8" }}>
+        <div ref={mosaicRef} className="max-w-[540px] md:max-w-none mx-auto p-4 md:p-6"
+          style={{ background:"#eae5dc", borderRadius:20, ...scaleIn(mosaicVis) }}>
           <div className="grid gap-2.5 md:gap-4"
             style={{ gridTemplateColumns:"1fr 1fr", gridTemplateRows:"auto auto" }}>
             {/* left tall */}
@@ -218,17 +280,18 @@ export default function GamersPage() {
       </section>
 
       {/* ── 4. "Artemis helps you" cards ─────────────────────────── */}
-      <section className="px-5 pb-[72px] md:px-10 md:pb-24" style={{ background:"#f5f0e8" }}>
-        <div className="max-w-[540px] md:max-w-4xl mx-auto">
+      <section ref={cardsRef} className="px-4 pb-[72px] md:px-8 md:pb-24" style={{ background:"#f5f0e8" }}>
+        <div className="max-w-[540px] md:max-w-none mx-auto">
           <h2 className="text-center mb-7 md:mb-10"
             style={{ fontSize:"clamp(1.6rem,4vw,2.5rem)", fontWeight:400, color:"#111",
               fontFamily:"var(--font-source-serif),serif" }}>
             Artemis helps you...
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 md:gap-5">
-            {helpCards.map(({Icon,title,desc})=>(
+            {helpCards.map(({Icon,title,desc}, i)=>(
               <div key={title} className="flex flex-col gap-2.5 p-5 md:p-7"
-                style={{ background:"#fff", borderRadius:16, boxShadow:"0 1px 4px rgba(0,0,0,0.05)" }}>
+                style={{ background:"#fff", borderRadius:16,
+                  boxShadow:"0 1px 4px rgba(0,0,0,0.05)", ...fadeIn(cardsVis, i * 0.08) }}>
                 <div className="w-9 h-9 md:w-12 md:h-12 rounded-[10px] flex items-center justify-center"
                   style={{ background:"rgba(88,101,242,0.1)" }}>
                   <Icon size={18} style={{ color:"#5865F2" }}/>
@@ -248,9 +311,9 @@ export default function GamersPage() {
       </section>
 
       {/* ── 5. Dark "pocket game shop" section ───────────────────── */}
-      <section className="px-5 md:px-10" style={{ background:"#f0eeea" }}>
-        <div className="max-w-[540px] md:max-w-4xl mx-auto"
-          style={{ background:"#060606", borderRadius:24, overflow:"hidden" }}>
+      <section className="px-4 md:px-8" style={{ background:"#f0eeea" }}>
+        <div ref={darkRef} className="max-w-[540px] md:max-w-none mx-auto"
+          style={{ background:"#060606", borderRadius:24, overflow:"hidden", ...scaleIn(darkVis) }}>
           <div className="px-7 pt-12 pb-0 md:px-16 md:pt-16">
             <h2 className="mb-9 md:mb-14"
               style={{ fontSize:"clamp(2rem,6vw,3.5rem)", fontWeight:700,
@@ -291,16 +354,16 @@ export default function GamersPage() {
               ))}
             </div>
           </div>
-
           <div className="h-9 md:h-14"/>
         </div>
       </section>
 
       {/* ── 6. How it works — Tap / Pay / Play ───────────────────── */}
-      <section className="py-16 px-5 md:py-24 md:px-10" style={{ background:"#ebebeb" }}>
-        <div className="max-w-[540px] md:max-w-4xl mx-auto flex flex-col gap-14 md:gap-24">
-          {steps.map(s=>(
-            <div key={s.n} className="grid grid-cols-2 gap-6 md:gap-16 items-center">
+      <section ref={stepsRef} className="py-16 px-4 md:py-24 md:px-8" style={{ background:"#ebebeb" }}>
+        <div className="max-w-[540px] md:max-w-none mx-auto flex flex-col gap-14 md:gap-24">
+          {steps.map((s, i)=>(
+            <div key={s.n} className="grid grid-cols-2 gap-6 md:gap-16 items-center"
+              style={{ ...fadeIn(stepsVis, i * 0.15) }}>
               {/* text */}
               <div>
                 <p className="text-[13px] md:text-base mb-2 md:mb-3"
@@ -313,10 +376,10 @@ export default function GamersPage() {
                   {s.heading}
                 </h3>
                 <p className="text-[13px] md:text-base" style={{ color:"#666", lineHeight:1.65, margin:0 }}>
-                  {s.body.split("/shop").map((part,i,arr)=>
-                    i < arr.length-1
-                      ? <span key={i}>{part}<strong style={{color:"#333"}}>/shop</strong></span>
-                      : <span key={i}>{part}</span>
+                  {s.body.split("/shop").map((part,j,arr)=>
+                    j < arr.length-1
+                      ? <span key={j}>{part}<strong style={{color:"#333"}}>/shop</strong></span>
+                      : <span key={j}>{part}</span>
                   )}
                 </p>
               </div>
@@ -332,19 +395,32 @@ export default function GamersPage() {
       </section>
 
       {/* ── 7. Footer ────────────────────────────────────────────── */}
-      <div className="px-5 pb-5 md:px-10 md:pb-10" style={{ background:"#ebebeb" }}>
+      <div className="px-4 pb-4 md:px-8 md:pb-8" style={{ background:"#ebebeb" }}>
         <footer style={{ background:"#0a0a0a", borderRadius:24, overflow:"hidden", position:"relative" }}>
 
           {/* starfield */}
           <div style={{ position:"absolute", inset:0, pointerEvents:"none" }}>
-            {Array.from({length:55}).map((_,i)=>(
+            {stars.map((s, i)=>(
               <div key={i} style={{ position:"absolute", borderRadius:"50%",
-                width: Math.random()<0.7?1.5:2.5,
-                height: Math.random()<0.7?1.5:2.5,
-                background:"#fff",
-                opacity: 0.15+Math.random()*0.45,
-                top: `${Math.random()*80}%`,
-                left:`${Math.random()*100}%` }}/>
+                width:s.w, height:s.w, background:"#fff",
+                opacity:s.opacity, top:s.top, left:s.left }}/>
+            ))}
+          </div>
+
+          {/* shooting stars */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[
+              { left:"15%", top:"20%", delay:"0s"   },
+              { left:"40%", top:"12%", delay:"1.4s" },
+              { left:"65%", top:"35%", delay:"2.8s" },
+              { left:"80%", top:"8%",  delay:"0.7s" },
+            ].map((s, i)=>(
+              <div key={i} className="absolute"
+                style={{ left:s.left, top:s.top, width:120, height:1.5,
+                  background:"linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent)",
+                  transform:"rotate(35deg)",
+                  animation:"shoot 3.5s ease-in-out infinite",
+                  animationDelay:s.delay, opacity:0 }}/>
             ))}
           </div>
 
@@ -382,8 +458,10 @@ export default function GamersPage() {
 
             {/* email */}
             <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-              <p className="text-[13px] md:text-sm" style={{ color:"#aaa", margin:0,
-                fontFamily:"var(--font-dm-sans),sans-serif" }}>Stay in touch</p>
+              <p className="text-[13px] md:text-sm"
+                style={{ color:"#aaa", margin:0, fontFamily:"var(--font-dm-sans),sans-serif" }}>
+                Stay in touch
+              </p>
               <div style={{ display:"flex", alignItems:"center", gap:8 }}>
                 <input type="email" placeholder="name@email.com"
                   className="md:w-[240px] md:text-sm"
