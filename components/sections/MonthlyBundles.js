@@ -96,7 +96,9 @@ export default function MonthlyBundles() {
 
             {/* CTA — hidden until card hovered */}
             <a
-              href="#"
+              href="https://discord.com/users/1460236363365351562"
+              target="_blank"
+              rel="noopener noreferrer"
               className="val-btn inline-flex items-center gap-2 text-sm font-bold uppercase px-6 py-2.5 text-white
                          translate-y-3 opacity-0
                          group-hover:translate-y-0 group-hover:opacity-100
@@ -113,7 +115,7 @@ export default function MonthlyBundles() {
         </div>
 
         {/* 4-column grid — scale on hover */}
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {gridItems.map(({ src, label }, i) => (
             <div
               key={i}

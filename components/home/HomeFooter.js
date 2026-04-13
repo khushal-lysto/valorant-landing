@@ -1,7 +1,16 @@
 "use client";
+import { useState } from "react";
 import { RiTwitterXFill, RiLinkedinFill, RiInstagramLine, RiSendPlaneLine } from "react-icons/ri";
 
 export default function HomeFooter() {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = () => {
+    if (!email.trim()) return;
+    setSubscribed(true);
+  };
+
   return (
     /* Outer wrapper gives the footer a floating card feel with all 4 corners visible */
     <div className="px-4 md:px-8 pb-4" style={{ background: "#f0ebe3" }}>
@@ -92,25 +101,34 @@ export default function HomeFooter() {
             <p className="text-sm font-medium" style={{ color: "#aaa", fontFamily: "var(--font-dm-sans), sans-serif" }}>
               Stay in touch
             </p>
-            <div className="flex items-center gap-2">
-              <input
-                type="email"
-                placeholder="name@email.com"
-                className="rounded-lg px-4 py-2.5 text-sm outline-none"
-                style={{
-                  background: "#1a1a1a",
-                  border:     "1px solid #2a2a2a",
-                  color:      "#fff",
-                  width:      220,
-                }}
-              />
-              <button
-                className="flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-medium text-white transition-colors hover:bg-white/10"
-                style={{ background: "#1a1a1a", border: "1px solid #2a2a2a" }}
-              >
-                <RiSendPlaneLine size={13} /> Subscribe
-              </button>
-            </div>
+            {subscribed ? (
+              <p className="text-sm" style={{ color: "#4ade80", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                Thanks! You&apos;re on the list.
+              </p>
+            ) : (
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <input
+                  type="email"
+                  placeholder="name@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === "Enter") handleSubscribe(); }}
+                  className="rounded-lg px-4 py-2.5 text-sm outline-none w-full sm:w-[200px]"
+                  style={{
+                    background: "#1a1a1a",
+                    border:     "1px solid #2a2a2a",
+                    color:      "#fff",
+                  }}
+                />
+                <button
+                  onClick={handleSubscribe}
+                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-medium text-white"
+                  style={{ background: "#1a1a1a", border: "1px solid #2a2a2a", cursor: "pointer" }}
+                >
+                  <RiSendPlaneLine size={13} /> Subscribe
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Social icons */}

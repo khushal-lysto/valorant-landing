@@ -158,6 +158,7 @@
 
 /* ── Base ─────────────────────────────────────────────────── */
 body {
-  background-color: #0d0d0d;
+  background-color: #f5f0e8;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }

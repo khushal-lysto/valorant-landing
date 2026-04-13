@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, useMemo } from "react";
 import Image from "next/image";
+import CreatorCommerceNav from "@/components/CreatorCommerceNav";
 import {
   RiArrowRightLine,
   RiLayoutGridLine,
@@ -108,6 +109,13 @@ function HelixShape() {
 /* ── page ──────────────────────────────────────────────────────────────── */
 export default function GamersPage() {
   const [scrollY, setScrollY] = useState(0);
+  const [subEmail, setSubEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = () => {
+    if (!subEmail.trim()) return;
+    setSubscribed(true);
+  };
   useEffect(() => {
     const fn = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", fn, { passive: true });
@@ -151,11 +159,12 @@ export default function GamersPage() {
 
   return (
     <main style={{ fontFamily:"var(--font-dm-sans),sans-serif", background:"#f0eeea", minHeight:"100vh" }}>
+      <CreatorCommerceNav />
 
       {/* ── 1. Hero ───────────────────────────────────────────────── */}
       <section className="px-4 md:px-8 pt-10 pb-0 md:pt-16" style={{ background:"#f5f0e8" }}>
         <div className="max-w-[540px] md:max-w-none mx-auto"
-          style={{ border:"1.5px solid #3a6ff8", borderRadius:22, overflow:"hidden", background:"#f5f0e8" }}>
+          style={{ border:"1.5px solid rgba(58,111,248,0.5)", borderRadius:22, overflow:"hidden", background:"#f5f0e8", boxShadow:"0 2px 24px rgba(58,111,248,0.06)" }}>
 
           {/* copy */}
           <div className="px-8 pt-11 pb-7 text-center md:px-20 md:pt-16 md:pb-10">
@@ -223,25 +232,23 @@ export default function GamersPage() {
       </section>
 
       {/* ── 2. Features text ─────────────────────────────────────── */}
-      <section ref={featuresRef} className="px-7 pb-[52px] md:px-16 md:pb-20"
-        style={{ background:"#f5f0e8", ...fadeIn(featuresVis) }}>
-        <div className="max-w-[540px] md:max-w-none mx-auto">
-          <p className="mb-9 md:mb-12"
-            style={{ fontSize:"clamp(1.55rem,4.5vw,2.8rem)", color:"#111",
-              lineHeight:1.45, fontFamily:"var(--font-lexend),sans-serif" }}>
-            <strong>Tap, pay, play.</strong> Buy from your DMs—no apps, no
-            forms—just instant codes that work.
+      <section ref={featuresRef} style={{ background:"#f5f0e8", padding:"clamp(40px,6vw,72px) clamp(20px,5vw,64px)", ...fadeIn(featuresVis) }}>
+        <div style={{ maxWidth:680 }}>
+          <p style={{ fontSize:"clamp(1.25rem,3.5vw,2.25rem)", color:"#111",
+            lineHeight:1.45, fontFamily:"var(--font-lexend),sans-serif", marginBottom:"clamp(24px,3vw,40px)" }}>
+            <strong>Tap, pay, play.</strong> Buy from your DMs — no apps, no
+            forms — just instant codes that work.
           </p>
-          <p style={{ fontSize:"clamp(1.55rem,4.5vw,2.8rem)", color:"#111",
+          <p style={{ fontSize:"clamp(1.25rem,3.5vw,2.25rem)", color:"#444",
             lineHeight:1.45, fontFamily:"var(--font-lexend),sans-serif" }}>
-            <strong>Stacked with tools.</strong> Price drops &amp; bundles,
+            <strong style={{color:"#111"}}>Stacked with tools.</strong> Price drops &amp; bundles,
             protected checkout, purchase history, one-click support, and loyalty rewards.
           </p>
         </div>
       </section>
 
       {/* ── 3. Screenshots mosaic ────────────────────────────────── */}
-      <section className="px-4 pb-16 md:px-8 md:pb-20" style={{ background:"#f5f0e8" }}>
+      <section style={{ background:"#f5f0e8", padding:"0 clamp(16px,3vw,32px) clamp(40px,5vw,64px)" }}>
         <div ref={mosaicRef} className="max-w-[540px] md:max-w-none mx-auto p-4 md:p-6"
           style={{ background:"#eae5dc", borderRadius:20, ...scaleIn(mosaicVis) }}>
           <div className="grid gap-2.5 md:gap-4"
@@ -280,28 +287,29 @@ export default function GamersPage() {
       </section>
 
       {/* ── 4. "Artemis helps you" cards ─────────────────────────── */}
-      <section ref={cardsRef} className="px-4 pb-[72px] md:px-8 md:pb-24" style={{ background:"#f5f0e8" }}>
-        <div className="max-w-[540px] md:max-w-none mx-auto">
-          <h2 className="text-center mb-7 md:mb-10"
-            style={{ fontSize:"clamp(1.6rem,4vw,2.5rem)", fontWeight:400, color:"#111",
-              fontFamily:"var(--font-source-serif),serif" }}>
+      <section ref={cardsRef} style={{ background:"#f5f0e8", padding:"clamp(40px,5vw,72px) clamp(16px,3vw,32px)" }}>
+        <div style={{ maxWidth:1160, margin:"0 auto" }}>
+          <h2 style={{ textAlign:"center", marginBottom:"clamp(28px,4vw,48px)",
+            fontSize:"clamp(1.5rem,3.5vw,2.25rem)", fontWeight:400, color:"#111",
+            fontFamily:"var(--font-source-serif),serif", letterSpacing:"-0.01em" }}>
             Artemis helps you...
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 md:gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
             {helpCards.map(({Icon,title,desc}, i)=>(
-              <div key={title} className="flex flex-col gap-2.5 p-5 md:p-7"
-                style={{ background:"#fff", borderRadius:16,
-                  boxShadow:"0 1px 4px rgba(0,0,0,0.05)", ...fadeIn(cardsVis, i * 0.08) }}>
-                <div className="w-9 h-9 md:w-12 md:h-12 rounded-[10px] flex items-center justify-center"
-                  style={{ background:"rgba(88,101,242,0.1)" }}>
+              <div key={title}
+                style={{ display:"flex", flexDirection:"column", gap:12, padding:"clamp(16px,2vw,28px)",
+                  background:"#fff", borderRadius:16, border:"1px solid rgba(0,0,0,0.05)",
+                  boxShadow:"0 1px 4px rgba(0,0,0,0.04)", ...fadeIn(cardsVis, i * 0.08) }}>
+                <div style={{ width:40, height:40, borderRadius:10, display:"flex", alignItems:"center",
+                  justifyContent:"center", background:"rgba(88,101,242,0.1)", flexShrink:0 }}>
                   <Icon size={18} style={{ color:"#5865F2" }}/>
                 </div>
-                <p className="text-sm md:text-base"
-                  style={{ fontWeight:700, color:"#111", lineHeight:1.3,
-                    fontFamily:"var(--font-lexend),sans-serif", margin:0 }}>
+                <p style={{ fontWeight:700, color:"#111", lineHeight:1.3, margin:0,
+                  fontFamily:"var(--font-lexend),sans-serif", fontSize:"clamp(12px,1.5vw,15px)" }}>
                   {title}
                 </p>
-                <p className="text-xs md:text-sm" style={{ color:"#888", lineHeight:1.6, margin:0 }}>
+                <p style={{ color:"#888", lineHeight:1.6, margin:0, fontSize:"clamp(11px,1.2vw,13px)",
+                  fontFamily:"var(--font-dm-sans),sans-serif" }}>
                   {desc}
                 </p>
               </div>
@@ -311,7 +319,7 @@ export default function GamersPage() {
       </section>
 
       {/* ── 5. Dark "pocket game shop" section ───────────────────── */}
-      <section className="px-4 md:px-8" style={{ background:"#f0eeea" }}>
+      <section style={{ background:"#f0eeea", padding:"clamp(32px,4vw,56px) clamp(16px,3vw,32px)" }}>
         <div ref={darkRef} className="max-w-[540px] md:max-w-none mx-auto"
           style={{ background:"#060606", borderRadius:24, overflow:"hidden", ...scaleIn(darkVis) }}>
           <div className="px-7 pt-12 pb-0 md:px-16 md:pt-16">
@@ -323,7 +331,7 @@ export default function GamersPage() {
             </h2>
 
             {/* three pillars */}
-            <div className="grid grid-cols-3 gap-2.5 md:gap-5 mb-7 md:mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 md:gap-5 mb-7 md:mb-10">
               {pillars.map((p,i)=>(
                 <div key={p.title} className="px-[14px] py-[18px] md:p-6"
                   style={{ background: i===0 ? "#1e1e1e" : "transparent", borderRadius:14 }}>
@@ -359,23 +367,38 @@ export default function GamersPage() {
       </section>
 
       {/* ── 6. How it works — Tap / Pay / Play ───────────────────── */}
-      <section ref={stepsRef} className="py-16 px-4 md:py-24 md:px-8" style={{ background:"#ebebeb" }}>
-        <div className="max-w-[540px] md:max-w-none mx-auto flex flex-col gap-14 md:gap-24">
+      <section ref={stepsRef} style={{ background:"#ebebeb", padding:"clamp(48px,6vw,96px) clamp(16px,3vw,32px)" }}>
+        {/* Section header */}
+        <div style={{ maxWidth:1160, margin:"0 auto 48px" }}>
+          <div style={{ display:"inline-flex", alignItems:"center", gap:6,
+            background:"rgba(0,0,0,0.06)", borderRadius:100, padding:"5px 14px",
+            fontSize:11, fontWeight:700, letterSpacing:"0.08em", textTransform:"uppercase",
+            color:"#666", fontFamily:"var(--font-dm-sans),sans-serif", marginBottom:16 }}>
+            How it works
+          </div>
+          <h2 style={{ fontSize:"clamp(1.6rem,3.5vw,2.5rem)", fontWeight:400, color:"#111",
+            fontFamily:"var(--font-source-serif),serif", letterSpacing:"-0.01em", lineHeight:1.2 }}>
+            Three steps to your next top-up
+          </h2>
+        </div>
+
+        <div style={{ maxWidth:1160, margin:"0 auto", display:"flex", flexDirection:"column", gap:"clamp(40px,6vw,80px)" }}>
           {steps.map((s, i)=>(
-            <div key={s.n} className="grid grid-cols-2 gap-6 md:gap-16 items-center"
+            <div key={s.n}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-16 items-center"
               style={{ ...fadeIn(stepsVis, i * 0.15) }}>
-              {/* text */}
-              <div>
-                <p className="text-[13px] md:text-base mb-2 md:mb-3"
-                  style={{ fontWeight:600, color:"#5865F2", fontFamily:"var(--font-lexend),sans-serif" }}>
+              {/* text — flip order on alternate rows on desktop */}
+              <div style={{ order: i % 2 === 1 ? 2 : 1 }}>
+                <p style={{ fontWeight:700, color:"#5865F2", fontFamily:"var(--font-lexend),sans-serif",
+                  fontSize:13, letterSpacing:"0.04em", textTransform:"uppercase", marginBottom:12 }}>
                   {s.n}
                 </p>
-                <h3 className="mb-4 md:mb-6"
-                  style={{ fontSize:"clamp(2.2rem,8vw,5rem)", fontWeight:700,
-                    color:"#111", lineHeight:1, fontFamily:"var(--font-lexend),sans-serif" }}>
+                <h3 style={{ fontSize:"clamp(2rem,6vw,4rem)", fontWeight:700, color:"#111",
+                  lineHeight:1, fontFamily:"var(--font-lexend),sans-serif", marginBottom:"clamp(12px,2vw,24px)" }}>
                   {s.heading}
                 </h3>
-                <p className="text-[13px] md:text-base" style={{ color:"#666", lineHeight:1.65, margin:0 }}>
+                <p style={{ color:"#666", lineHeight:1.7, margin:0, fontSize:"clamp(13px,1.3vw,15px)",
+                  fontFamily:"var(--font-dm-sans),sans-serif", maxWidth:400 }}>
                   {s.body.split("/shop").map((part,j,arr)=>
                     j < arr.length-1
                       ? <span key={j}>{part}<strong style={{color:"#333"}}>/shop</strong></span>
@@ -384,8 +407,8 @@ export default function GamersPage() {
                 </p>
               </div>
               {/* screenshot card */}
-              <div className="rounded-[18px] md:rounded-3xl overflow-hidden relative"
-                style={{ background:"#e0ddd8", aspectRatio:"3/4" }}>
+              <div style={{ borderRadius:"clamp(16px,2vw,24px)", overflow:"hidden", position:"relative",
+                background:"#e0ddd8", aspectRatio:"3/4", order: i % 2 === 1 ? 1 : 2 }}>
                 <Image src={s.img} alt={s.heading} fill
                   style={{ objectFit:"cover", objectPosition:"top" }}/>
               </div>
@@ -395,7 +418,7 @@ export default function GamersPage() {
       </section>
 
       {/* ── 7. Footer ────────────────────────────────────────────── */}
-      <div className="px-4 pb-4 md:px-8 md:pb-8" style={{ background:"#ebebeb" }}>
+      <div style={{ background:"#ebebeb", padding:"0 clamp(16px,3vw,32px) clamp(16px,2vw,32px)" }}>
         <footer style={{ background:"#0a0a0a", borderRadius:24, overflow:"hidden", position:"relative" }}>
 
           {/* starfield */}
@@ -446,12 +469,16 @@ export default function GamersPage() {
 
             {/* nav links */}
             <nav style={{ display:"flex", flexDirection:"column", gap:8 }}>
-              {["Home","Guides","Support","404"].map(l=>(
-                <a key={l} href="#" className="text-[13px] md:text-sm"
+              {[
+                { label:"Home",    href:"/"    },
+                { label:"Guides",  href:"#"    },
+                { label:"Support", href:"#"    },
+              ].map(({label,href})=>(
+                <a key={label} href={href} className="text-[13px] md:text-sm"
                   style={{ color:"#666", textDecoration:"none", fontFamily:"var(--font-dm-sans),sans-serif" }}
                   onMouseEnter={e=>e.currentTarget.style.color="#fff"}
                   onMouseLeave={e=>e.currentTarget.style.color="#666"}>
-                  {l}
+                  {label}
                 </a>
               ))}
             </nav>
@@ -462,20 +489,29 @@ export default function GamersPage() {
                 style={{ color:"#aaa", margin:0, fontFamily:"var(--font-dm-sans),sans-serif" }}>
                 Stay in touch
               </p>
-              <div style={{ display:"flex", alignItems:"center", gap:8 }}>
-                <input type="email" placeholder="name@email.com"
-                  className="md:w-[240px] md:text-sm"
-                  style={{ background:"#1a1a1a", border:"1px solid #2a2a2a",
-                    color:"#fff", borderRadius:10, padding:"10px 14px",
-                    fontSize:13, outline:"none", width:190 }}/>
-                <button className="md:text-sm"
-                  style={{ display:"flex", alignItems:"center", gap:6,
-                    background:"#1a1a1a", border:"1px solid #2a2a2a", color:"#fff",
-                    borderRadius:10, padding:"10px 14px", fontSize:13,
-                    fontWeight:500, cursor:"pointer" }}>
-                  <RiSendPlaneLine size={13}/> Subscribe
-                </button>
-              </div>
+              {subscribed ? (
+                <p className="text-[13px] md:text-sm"
+                  style={{ color:"#4ade80", margin:0, fontFamily:"var(--font-dm-sans),sans-serif" }}>
+                  Thanks! You&apos;re on the list.
+                </p>
+              ) : (
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                  <input type="email" placeholder="name@email.com"
+                    value={subEmail}
+                    onChange={e=>setSubEmail(e.target.value)}
+                    onKeyDown={e=>{ if(e.key==="Enter") handleSubscribe(); }}
+                    className="w-full sm:w-[200px] md:w-[240px] text-[13px] md:text-sm"
+                    style={{ background:"#1a1a1a", border:"1px solid #2a2a2a",
+                      color:"#fff", borderRadius:10, padding:"10px 14px", outline:"none" }}/>
+                  <button onClick={handleSubscribe}
+                    className="flex items-center justify-center gap-[6px] text-[13px] md:text-sm"
+                    style={{ background:"#1a1a1a", border:"1px solid #2a2a2a", color:"#fff",
+                      borderRadius:10, padding:"10px 14px",
+                      fontWeight:500, cursor:"pointer" }}>
+                    <RiSendPlaneLine size={13}/> Subscribe
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* social */}

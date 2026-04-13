@@ -1,0 +1,335 @@
+/* ─── Scoped wrapper: sets CC design tokens only for nav + modal ─── */
+/* DM Sans is loaded globally via next/font/google in app/layout.js */
+.cc-nav-root {
+  --bg: #0A0A0F;
+  --surface: #141419;
+  --dark-card: #141419;
+  --text: #F0F0F2;
+  --text-secondary: #8A8A9A;
+  --text-muted: #55555F;
+  --text-inverse: #0A0A0F;
+  --accent: #C6F135;
+  --accent-hover: #D4F85A;
+  --border: #222230;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+  font-family: var(--font-body);
+}
+
+.cc-nav-root .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (min-width: 768px) { .cc-nav-root .container { padding: 0 40px; } }
+@media (min-width: 1024px) { .cc-nav-root .container { padding: 0 48px; } }
+
+/* ─── Nav ─── */
+.cc-nav-root .nav {
+  --nav-bg: rgba(10,10,15,0.85);
+  --nav-border: var(--border);
+  --nav-text: var(--text-secondary);
+  --nav-text-hover: var(--text);
+  --nav-active-bg: rgba(255,255,255,0.08);
+  --nav-brand-color: var(--text);
+  --nav-toggle-color: var(--text);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--nav-border);
+}
+.cc-nav-root .nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+}
+.cc-nav-root .nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.cc-nav-root .nav-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--nav-brand-color);
+}
+.cc-nav-root .nav-brand-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--nav-brand-color);
+  letter-spacing: -0.01em;
+}
+.cc-nav-root .nav-links {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+@media (min-width: 768px) { .cc-nav-root .nav-links { display: flex; } }
+.cc-nav-root .nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--nav-text);
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: color 200ms var(--ease-out), background 200ms var(--ease-out);
+}
+.cc-nav-root .nav-links a:hover {
+  color: var(--nav-text-hover);
+  background: var(--nav-active-bg);
+}
+.cc-nav-root .nav-links a.active {
+  color: var(--nav-text-hover);
+  background: var(--nav-active-bg);
+  font-weight: 600;
+}
+.cc-nav-root .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 20px;
+  background: var(--accent);
+  color: var(--text-inverse);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background 200ms var(--ease-out), transform 200ms var(--ease-out);
+}
+.cc-nav-root .nav-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.cc-nav-root .nav-cta:active { transform: translateY(0); }
+
+.cc-nav-root .nav-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--nav-toggle-color);
+  border-radius: var(--radius-sm);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+@media (min-width: 768px) { .cc-nav-root .nav-toggle { display: none; } }
+
+/* ─── Mobile menu ─── */
+.cc-nav-root .mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(10,10,15,0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  flex-direction: column;
+  padding: 24px;
+}
+.cc-nav-root .mobile-menu.is-open { display: flex; }
+.cc-nav-root .mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+.cc-nav-root .mobile-menu-close {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  border-radius: var(--radius-full);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.cc-nav-root .mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cc-nav-root .mobile-menu-links a {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: color 200ms, background 200ms;
+}
+.cc-nav-root .mobile-menu-links a:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.05);
+}
+.cc-nav-root .mobile-menu-links a.active {
+  color: var(--text);
+  background: rgba(255,255,255,0.08);
+  font-weight: 600;
+}
+.cc-nav-root .mobile-menu-cta {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  background: var(--accent);
+  color: var(--text-inverse);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background 200ms var(--ease-out);
+}
+.cc-nav-root .mobile-menu-cta:hover { background: var(--accent-hover); }
+
+/* ─── Modal ─── */
+.cc-nav-root .modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms var(--ease-out), visibility 300ms;
+}
+.cc-nav-root .modal-overlay.is-open { opacity: 1; visibility: visible; }
+
+.cc-nav-root .modal {
+  background: var(--dark-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  width: 100%;
+  max-width: 520px;
+  padding: 40px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  transform: translateY(24px) scale(0.97);
+  transition: transform 350ms var(--ease-out);
+  position: relative;
+}
+.cc-nav-root .modal-overlay.is-open .modal { transform: translateY(0) scale(1); }
+@media (min-width: 768px) { .cc-nav-root .modal { padding: 48px; } }
+
+.cc-nav-root .modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  border-radius: var(--radius-full);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 150ms, color 150ms;
+}
+.cc-nav-root .modal-close:hover { background: rgba(255,255,255,0.06); color: var(--text); }
+
+.cc-nav-root .modal-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.cc-nav-root .modal-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+.cc-nav-root .modal-form { display: grid; gap: 16px; }
+.cc-nav-root .modal-form label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.cc-nav-root .modal-form input,
+.cc-nav-root .modal-form select,
+.cc-nav-root .modal-form textarea {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--text);
+  font-family: var(--font-body);
+  transition: border-color 200ms var(--ease-out), background 200ms var(--ease-out);
+  appearance: none;
+  box-sizing: border-box;
+}
+.cc-nav-root .modal-form input::placeholder,
+.cc-nav-root .modal-form textarea::placeholder { color: var(--text-muted); }
+.cc-nav-root .modal-form input:focus,
+.cc-nav-root .modal-form select:focus,
+.cc-nav-root .modal-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+.cc-nav-root .modal-form select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239898AE' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-color: rgba(255,255,255,0.04);
+  padding-right: 40px;
+}
+.cc-nav-root .modal-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 52px;
+  background: var(--accent);
+  color: var(--text-inverse);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  border: none;
+  border-radius: var(--radius-md);
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 200ms var(--ease-out), transform 200ms var(--ease-out);
+}
+.cc-nav-root .modal-submit:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.cc-nav-root .modal-submit:active { transform: translateY(0); }
+.cc-nav-root .modal-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 12px;
+}

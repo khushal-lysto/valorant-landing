@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import {
   RiSwordLine, RiCustomerService2Line, RiGamepadLine, RiStore2Line,
@@ -7,8 +7,6 @@ import {
   RiBuildingLine, RiUserAddLine,
 } from "react-icons/ri";
 
-// finalRot: resting angle facing radially outward
-// startX/startY: offset from final position back to phone centre (minHeight 620, centre ~310px)
 const notifications = [
   { id: 1, Icon: RiSwordLine,            iconColor: "#ff4655", text: "VALORANT • 475 VP delivered to @neo",      side: "left",  top: "10%", finalRot: -24, startX:  460, startY:  248 },
   { id: 2, Icon: RiCustomerService2Line, iconColor: "#5865F2", text: "Support • Ticket #124 closed for @mira",  side: "right", top: "10%", finalRot:  24, startX: -460, startY:  248 },
@@ -19,9 +17,9 @@ const notifications = [
 ];
 
 const ctaButtons = [
-  { label: "Add to Discord DM",       href: "https://discord.com/users/1460236363365351562",                    Icon: RiDiscordFill  },
-  { label: "Add to Friend Server",    href: null,                                                                Icon: RiUserAddLine,  comingSoon: true },
-  { label: "Add to Community Server", href: "https://discord.com/oauth2/authorize?client_id=1414466801852481606", Icon: RiBuildingLine },
+  { label: "Add to Discord DM",       href: "https://discord.com/users/1460236363365351562",                     Icon: RiDiscordFill,   primary: true  },
+  { label: "Add to Community Server", href: "https://discord.com/oauth2/authorize?client_id=1414466801852481606", Icon: RiBuildingLine,  primary: false },
+  { label: "Add to Friend Server",    href: null,                                                                  Icon: RiUserAddLine,   comingSoon: true },
 ];
 
 export default function HomeHero() {
@@ -33,72 +31,65 @@ export default function HomeHero() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Heading shrinks + fades over first 320px of scroll
-  const progress = Math.min(scrollY / 320, 1);
-  const scale    = 1 - progress * 0.35;
-  const opacity  = Math.max(0, 1 - progress * 1.6);
-
-  // Notifications + glow driven by scroll (80px → 560px)
-  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+  const progress     = Math.min(scrollY / 320, 1);
+  const scale        = 1 - progress * 0.35;
+  const opacity      = Math.max(0, 1 - progress * 1.6);
+  const easeOut      = (t) => 1 - Math.pow(1 - t, 3);
   const phoneProgress = Math.min(Math.max((scrollY - 80) / 480, 0), 1);
 
   const getNotifStyle = (n) => {
     const stagger = (n.id - 1) * 0.09;
     const p = easeOut(Math.min(Math.max((phoneProgress - stagger) / 0.58, 0), 1));
-    // Translate radially from phone centre; rotation stays fixed at finalRot throughout
-    const x = n.startX * (1 - p);
-    const y = n.startY * (1 - p);
     return {
-      transform: `translateY(calc(-50% + ${y}px)) translateX(${x}px) rotate(${n.finalRot}deg)`,
+      transform: `translateY(calc(-50% + ${n.startY * (1 - p)}px)) translateX(${n.startX * (1 - p)}px) rotate(${n.finalRot}deg)`,
       opacity:   Math.min(1, p * 2.2),
       zIndex:    5,
     };
   };
 
-  // Glow grows from 80px → 600px diameter
-  const glowSize   = 80  + phoneProgress * 520;
-  const glowBlur   = 40  + phoneProgress * 40;
-  const glowOpacity = phoneProgress * 0.7;
+  const glowSize    = 80  + phoneProgress * 520;
+  const glowBlur    = 40  + phoneProgress * 40;
+  const glowOpacity = phoneProgress * 0.65;
 
   return (
     <section id="home" style={{ background: "#f5f0e8" }}>
 
-      {/* ── Shrinking heading ── */}
+      {/* ── Sticky shrinking heading ── */}
       <div
-        className="sticky top-0 z-10 flex items-center justify-center pt-20 md:pt-28 pb-16 px-6 pointer-events-none"
-        style={{ background: "#f5f0e8" }}
+        className="sticky top-0 z-10 flex items-center justify-center pointer-events-none"
+        style={{ background: "#f5f0e8", paddingTop: "clamp(64px, 8vw, 112px)", paddingBottom: "clamp(48px, 6vw, 80px)", paddingLeft: 24, paddingRight: 24 }}
       >
         <h1
-          className="text-center leading-[1.05] max-w-4xl"
+          className="text-center max-w-4xl"
           style={{
-            fontFamily: "var(--font-source-serif), serif",
-            fontWeight: 400,
-            fontSize: "clamp(2.8rem, 8vw, 7rem)",
-            color: "#111",
-            transform: `scale(${scale})`,
+            fontFamily:    "var(--font-source-serif), serif",
+            fontWeight:    400,
+            fontSize:      "clamp(2.4rem, 7vw, 6.5rem)",
+            lineHeight:    1.05,
+            letterSpacing: "-0.01em",
+            color:         "#0f0f0f",
+            transform:     `scale(${scale})`,
             opacity,
             transformOrigin: "top center",
-            transition: "transform 0.05s linear, opacity 0.05s linear",
+            transition:    "transform 0.05s linear, opacity 0.05s linear",
           }}
         >
           Top up your favorite games in seconds
         </h1>
       </div>
 
-      {/* ── Phone section ── */}
-      <div className="relative px-8 pb-24" style={{ background: "#f5f0e8", zIndex: 20 }}>
+      {/* ── Phone + notifications ── */}
+      <div className="relative px-4 md:px-8 pb-20 md:pb-28" style={{ background: "#f5f0e8", zIndex: 20 }}>
         <div className="max-w-6xl mx-auto">
 
-          {/* Phone + floating notifications */}
           <div className="relative flex justify-center" style={{ minHeight: "min(620px, 80vw)" }}>
 
-            {/* Diffused red glow — grows with scroll, sits behind everything */}
+            {/* Glow */}
             <div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
               style={{
-                width:   glowSize,
-                height:  glowSize,
-                background: "radial-gradient(circle, rgba(232,0,61,0.55) 0%, rgba(232,0,61,0.2) 45%, transparent 70%)",
+                width:   glowSize, height: glowSize,
+                background: "radial-gradient(circle, rgba(232,0,61,0.5) 0%, rgba(232,0,61,0.15) 50%, transparent 70%)",
                 filter:  `blur(${glowBlur}px)`,
                 opacity: glowOpacity,
                 zIndex:  1,
@@ -108,58 +99,78 @@ export default function HomeHero() {
             {notifications.map((n) => (
               <div
                 key={n.id}
-                className="absolute hidden md:flex items-center gap-2 px-4 py-2.5 rounded-xl shadow-md text-sm font-medium"
+                className="absolute hidden md:flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium"
                 style={{
-                  background: "#ede8de",
-                  color: "#222",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                  top: n.top,
+                  background:   "#fff",
+                  color:        "#1a1a1a",
+                  border:       "1px solid rgba(0,0,0,0.07)",
+                  borderRadius: 100,
+                  top:          n.top,
                   ...(n.side === "left" ? { left: 0 } : { right: 0 }),
-                  whiteSpace: "nowrap",
+                  whiteSpace:   "nowrap",
+                  boxShadow:    "0 2px 12px rgba(0,0,0,0.06)",
+                  fontFamily:   "var(--font-dm-sans), sans-serif",
                   ...getNotifStyle(n),
                 }}
               >
-                <n.Icon size={14} style={{ color: n.iconColor, flexShrink: 0 }} />
-                <span>{n.text}</span>
+                <n.Icon size={13} style={{ color: n.iconColor, flexShrink: 0 }} />
+                <span style={{ fontSize: 13 }}>{n.text}</span>
               </div>
             ))}
 
-            {/* Phone screenshot */}
-            <div className="relative flex-shrink-0" style={{ zIndex: 10, width: 280 }}>
+            {/* Phone */}
+            <div className="relative flex-shrink-0" style={{ zIndex: 10, width: "min(280px, 56vw)" }}>
               <Image
                 src="/device.png"
                 alt="Artemis Discord bot gift card shop"
-                width={560}
-                height={1140}
-                style={{ width: 280, height: "auto", display: "block" }}
+                width={560} height={1140}
+                style={{ width: "100%", height: "auto", display: "block" }}
                 priority
               />
             </div>
           </div>
 
-          {/* Glow */}
+          {/* Subtle glow bar */}
           <div
-            className="-mt-16 mb-12 mx-auto rounded-full blur-3xl opacity-40"
-            style={{ width: 320, height: 80, background: "radial-gradient(ellipse, rgba(255,80,80,0.5), transparent)" }}
+            className="mx-auto rounded-full"
+            style={{ width: 280, height: 1, background: "linear-gradient(90deg, transparent, rgba(232,0,61,0.3), transparent)", marginTop: -48, marginBottom: 40 }}
           />
 
           {/* Caption */}
-          <p className="text-center text-xl md:text-2xl font-medium max-w-lg mx-auto mb-10" style={{ color: "#333", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-            Instant game currency, best discounts, and no-nonsense delivery—built for gamers.
+          <p
+            className="text-center max-w-md mx-auto mb-10"
+            style={{
+              fontSize:   "clamp(15px, 2.5vw, 18px)",
+              lineHeight: 1.65,
+              color:      "#5a5a5a",
+              fontFamily: "var(--font-dm-sans), sans-serif",
+              fontWeight: 400,
+            }}
+          >
+            Instant game currency, best discounts, and no-nonsense delivery — built for gamers.
           </p>
 
           {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 px-4">
-            {ctaButtons.map(({ label, href, Icon, comingSoon }) =>
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3">
+            {ctaButtons.map(({ label, href, Icon, primary, comingSoon }) =>
               comingSoon ? (
                 <div
                   key={label}
-                  className="flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto justify-center"
-                  style={{ background: "#2a2a2a", color: "#666", cursor: "not-allowed" }}
+                  className="flex items-center gap-2 w-full sm:w-auto justify-center"
+                  style={{
+                    background:   "#f0ece6",
+                    color:        "#aaa",
+                    padding:      "13px 24px",
+                    borderRadius: 100,
+                    fontSize:     14,
+                    fontWeight:   600,
+                    cursor:       "not-allowed",
+                    fontFamily:   "var(--font-dm-sans), sans-serif",
+                  }}
                 >
-                  <Icon size={16} />
+                  <Icon size={15} />
                   {label}
-                  <span className="ml-1 text-xs px-2 py-0.5 rounded-full" style={{ background: "#333", color: "#888" }}>Soon</span>
+                  <span style={{ fontSize: 11, padding: "2px 8px", background: "#e8e4de", borderRadius: 100, color: "#bbb", marginLeft: 4 }}>Soon</span>
                 </div>
               ) : (
                 <a
@@ -167,10 +178,20 @@ export default function HomeHero() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-semibold transition-opacity hover:opacity-90 w-full sm:w-auto justify-center"
-                  style={{ background: "#e8003d" }}
+                  className="flex items-center gap-2 w-full sm:w-auto justify-center transition-opacity hover:opacity-80"
+                  style={{
+                    background:   primary ? "#e8003d" : "#111",
+                    color:        "#fff",
+                    padding:      "13px 24px",
+                    borderRadius: 100,
+                    fontSize:     14,
+                    fontWeight:   600,
+                    textDecoration: "none",
+                    fontFamily:   "var(--font-dm-sans), sans-serif",
+                    letterSpacing: "0.01em",
+                  }}
                 >
-                  <Icon size={16} />
+                  <Icon size={15} />
                   {label}
                 </a>
               )
@@ -178,7 +199,6 @@ export default function HomeHero() {
           </div>
         </div>
       </div>
-
     </section>
   );
 }
