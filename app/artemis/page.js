@@ -552,6 +552,22 @@ export default function ArtemisPage() {
                 </div>
               </div>
             </div>
+            <div className="testimonial">
+              <div className="testimonial__stars">★★★★★</div>
+              <p>&quot;Setting up Artemis took under two minutes and immediately gave our community a reason to stay active. The gift card drops and cashback system have made our server one of the most engaged gaming hubs we&apos;ve seen — members love the rewards.&quot;</p>
+              <div className="testimonial__author">
+                {/* Replace with <img className="avatar avatar--img" src=".../harsh.png" alt="Harsh" /> when image is available */}
+                <div className="avatar" style={{
+                  background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontWeight: 700, fontSize: 18, color: "#fff", flexShrink: 0,
+                }}>H</div>
+                <div>
+                  <strong>Harsh</strong>
+                  <span>Community Owner — Gaming Hub</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

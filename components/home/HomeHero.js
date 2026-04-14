@@ -158,19 +158,20 @@ export default function HomeHero() {
                   key={label}
                   className="flex items-center gap-2 w-full sm:w-auto justify-center"
                   style={{
-                    background:   "#f0ece6",
-                    color:        "#aaa",
-                    padding:      "13px 24px",
+                    background:   "#fff",
+                    color:        "#bbb",
+                    padding:      "12px 24px",
                     borderRadius: 100,
                     fontSize:     14,
                     fontWeight:   600,
                     cursor:       "not-allowed",
                     fontFamily:   "var(--font-dm-sans), sans-serif",
+                    border:       "1px solid #e0ddd8",
                   }}
                 >
                   <Icon size={15} />
                   {label}
-                  <span style={{ fontSize: 11, padding: "2px 8px", background: "#e8e4de", borderRadius: 100, color: "#bbb", marginLeft: 4 }}>Soon</span>
+                  <span style={{ fontSize: 11, padding: "2px 8px", background: "#f3f0eb", borderRadius: 100, color: "#bbb", marginLeft: 4, border: "1px solid #e8e4de" }}>Soon</span>
                 </div>
               ) : (
                 <a

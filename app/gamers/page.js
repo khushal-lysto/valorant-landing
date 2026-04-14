@@ -8,9 +8,6 @@ import {
   RiBarChartLine,
   RiBellLine,
   RiCursorLine,
-  RiTwitterXFill,
-  RiLinkedinFill,
-  RiInstagramLine,
   RiSendPlaneLine,
 } from "react-icons/ri";
 
@@ -371,7 +368,7 @@ export default function GamersPage() {
       {/* ── 1. Hero ───────────────────────────────────────────────── */}
       <section className="px-4 md:px-8 pt-10 pb-0 md:pt-16" style={{ background:"#f5f0e8" }}>
         <div className="max-w-[540px] md:max-w-none mx-auto"
-          style={{ border:"1.5px solid rgba(58,111,248,0.5)", borderRadius:22, overflow:"hidden", background:"#f5f0e8", boxShadow:"0 2px 24px rgba(58,111,248,0.06)" }}>
+          style={{ borderRadius:22, overflow:"hidden", background:"#f5f0e8", boxShadow:"0 2px 24px rgba(0,0,0,0.06)" }}>
 
           {/* copy */}
           <div className="px-8 pt-11 pb-7 text-center md:px-20 md:pt-16 md:pb-10">
@@ -424,6 +421,7 @@ export default function GamersPage() {
 
       {/* ── 2. Features text ─────────────────────────────────────── */}
       <section ref={featuresRef} style={{ background:"#f5f0e8", padding:"clamp(40px,6vw,72px) clamp(20px,5vw,64px)", ...fadeIn(featuresVis) }}>
+        <div style={{ maxWidth:1160, margin:"0 auto" }}>
         <div style={{ maxWidth:680 }}>
           <p style={{ fontSize:"clamp(1.25rem,3.5vw,2.25rem)", color:"#111",
             lineHeight:1.45, fontFamily:"var(--font-lexend),sans-serif", marginBottom:"clamp(24px,3vw,40px)" }}>
@@ -436,10 +434,12 @@ export default function GamersPage() {
             protected checkout, purchase history, one-click support, and loyalty rewards.
           </p>
         </div>
+        </div>
       </section>
 
       {/* ── 3. Screenshots mosaic ────────────────────────────────── */}
       <section style={{ background:"#f5f0e8", padding:"0 clamp(16px,3vw,32px) clamp(40px,5vw,64px)" }}>
+        <div style={{ maxWidth:1160, margin:"0 auto" }}>
         <div ref={mosaicRef} className="max-w-[540px] md:max-w-none mx-auto p-4 md:p-6"
           style={{ background:"#eae5dc", borderRadius:20, ...scaleIn(mosaicVis) }}>
           <div className="grid gap-2.5 md:gap-4"
@@ -472,6 +472,7 @@ export default function GamersPage() {
               <CommunityServerIllustration />
             </div>
           </div>
+        </div>
         </div>
       </section>
 
@@ -584,8 +585,11 @@ export default function GamersPage() {
               </div>
               {/* illustration card */}
               <div style={{ borderRadius:"clamp(16px,2vw,24px)", overflow:"hidden",
-                background:"#1e1f22", aspectRatio:"3/4", order: i % 2 === 1 ? 1 : 2 }}>
-                {stepIllustrations[s.stepType]}
+                background:"#1e1f22", aspectRatio:"3/4", order: i % 2 === 1 ? 1 : 2,
+                position:"relative", minHeight:320 }}>
+                <div style={{ position:"absolute", inset:0 }}>
+                  {stepIllustrations[s.stepType]}
+                </div>
               </div>
             </div>
           ))}
@@ -689,37 +693,8 @@ export default function GamersPage() {
               )}
             </div>
 
-            {/* social */}
-            <div style={{ display:"flex", alignItems:"center", gap:10, alignSelf:"flex-end", paddingBottom:4 }}>
-              {[
-                {Icon:RiTwitterXFill,  label:"Twitter"  },
-                {Icon:RiLinkedinFill,  label:"LinkedIn" },
-                {Icon:RiInstagramLine, label:"Instagram"},
-              ].map(({Icon,label})=>(
-                <a key={label} href="#" aria-label={label}
-                  className="w-9 h-9 md:w-11 md:h-11 flex items-center justify-center"
-                  style={{ borderRadius:"50%", background:"#1a1a1a", border:"1px solid #2a2a2a",
-                    color:"#888", textDecoration:"none" }}
-                  onMouseEnter={e=>{e.currentTarget.style.color="#fff";e.currentTarget.style.borderColor="#444"}}
-                  onMouseLeave={e=>{e.currentTarget.style.color="#888";e.currentTarget.style.borderColor="#2a2a2a"}}>
-                  <Icon size={14}/>
-                </a>
-              ))}
-            </div>
           </div>
 
-          <style jsx>{`
-            @keyframes shoot {
-              0%   { opacity:0; transform:rotate(35deg) translateX(-40px); }
-              20%  { opacity:0.8; }
-              60%  { opacity:0.8; }
-              100% { opacity:0; transform:rotate(35deg) translateX(160px); }
-            }
-            @keyframes gamersMarquee {
-              0%   { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-          `}</style>
         </footer>
       </div>
 

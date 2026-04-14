@@ -1120,7 +1120,7 @@ html { scroll-behavior: smooth; }
 /* ─── TESTIMONIALS ─── */
 .testimonials {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
@@ -1426,6 +1426,7 @@ html { scroll-behavior: smooth; }
 
 .testimonial:nth-child(2) { transition-delay: .08s; }
 .testimonial:nth-child(3) { transition-delay: .16s; }
+.testimonial:nth-child(4) { transition-delay: .24s; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {

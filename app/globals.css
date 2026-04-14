@@ -156,6 +156,19 @@
   }
 }
 
+/* ── Gamers page carousel & footer animations ────────────── */
+@keyframes gamersMarquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes shoot {
+  0%   { opacity: 0; transform: rotate(35deg) translateX(-40px); }
+  20%  { opacity: 0.8; }
+  60%  { opacity: 0.8; }
+  100% { opacity: 0; transform: rotate(35deg) translateX(160px); }
+}
+
 /* ── Base ─────────────────────────────────────────────────── */
 body {
   background-color: #f5f0e8;

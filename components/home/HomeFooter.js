@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { RiTwitterXFill, RiLinkedinFill, RiInstagramLine, RiSendPlaneLine } from "react-icons/ri";
+import { RiSendPlaneLine } from "react-icons/ri";
 
 export default function HomeFooter() {
   const [email, setEmail] = useState("");
@@ -131,42 +131,8 @@ export default function HomeFooter() {
             )}
           </div>
 
-          {/* Social icons */}
-          <div className="flex items-center gap-3 pt-8 self-start">
-            {[
-              { Icon: RiTwitterXFill,  label: "Twitter"   },
-              { Icon: RiLinkedinFill,  label: "LinkedIn"  },
-              { Icon: RiInstagramLine, label: "Instagram" },
-            ].map(({ Icon, label }) => (
-              <a
-                key={label}
-                href="#"
-                aria-label={label}
-                className="flex items-center justify-center w-9 h-9 rounded-full transition-colors"
-                style={{ background: "#1a1a1a", border: "1px solid #2a2a2a", color: "#888" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color       = "#fff";
-                  e.currentTarget.style.borderColor = "#444";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color       = "#888";
-                  e.currentTarget.style.borderColor = "#2a2a2a";
-                }}
-              >
-                <Icon size={15} />
-              </a>
-            ))}
-          </div>
         </div>
 
-        <style jsx>{`
-          @keyframes shoot {
-            0%   { opacity: 0; transform: rotate(35deg) translateX(-40px); }
-            20%  { opacity: 0.8; }
-            60%  { opacity: 0.8; }
-            100% { opacity: 0; transform: rotate(35deg) translateX(160px); }
-          }
-        `}</style>
       </footer>
     </div>
   );

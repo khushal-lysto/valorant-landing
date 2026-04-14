@@ -32,7 +32,7 @@
 
 /* ─── Nav ─── */
 .cc-nav-root .nav {
-  --nav-bg: rgba(10,10,15,0.85);
+  --nav-bg: rgba(10,10,15,0.97);
   --nav-border: var(--border);
   --nav-text: var(--text-secondary);
   --nav-text-hover: var(--text);
