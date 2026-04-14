@@ -1315,12 +1315,18 @@ html { scroll-behavior: smooth; }
   flex-shrink: 0;
 }
 
-.install-card .btn--primary {
+.install-card .btn--primary,
+.install-card a.btn--primary,
+.artemis-page-root .install-card a.btn--primary {
   background: #fff;
-  color: var(--primary);
+  color: #111111;
+  font-weight: 700;
+  font-size: 16px;
 }
-.install-card .btn--primary:hover {
+.install-card .btn--primary:hover,
+.install-card a.btn--primary:hover {
   background: rgba(255,255,255,.9);
+  color: #111111;
 }
 
 .install-card__visual {

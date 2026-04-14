@@ -56,10 +56,10 @@ export default function ArtemisPage() {
           </div>
           <div className="hero__proof">
             <div className="hero__avatars">
-              <img className="avatar avatar--img" src="/logo-spiritx.png" alt="SpiritX Esports" />
-              <img className="avatar avatar--img" src="/logo-ascend.png" alt="Mach Esports" />
-              <img className="avatar avatar--img" src="/logo-maniac.png" alt="Maniac Esports" />
-              <img className="avatar avatar--img" src="/logo-rvnc.png" alt="RVNC" />
+              <img className="avatar avatar--img" src={`${process.env.NEXT_PUBLIC_BASEPATH || ''}/logo-spiritx.png`} alt="SpiritX Esports" />
+              <img className="avatar avatar--img" src={`${process.env.NEXT_PUBLIC_BASEPATH || ''}/logo-ascend.png`} alt="Mach Esports" />
+              <img className="avatar avatar--img" src={`${process.env.NEXT_PUBLIC_BASEPATH || ''}/logo-maniac.png`} alt="Maniac Esports" />
+              <img className="avatar avatar--img" src={`${process.env.NEXT_PUBLIC_BASEPATH || ''}/logo-rvnc.png`} alt="RVNC" />
             </div>
             <p>Trusted by <strong>200+</strong> community owners</p>
           </div>
@@ -432,7 +432,7 @@ export default function ArtemisPage() {
               <div className="testimonial__stars">★★★★★</div>
               <p>&quot;Members grab gift cards in a few clicks right inside Discord — no redirects, no hassle. The loyalty wallet and reward drops keep them coming back, and our repeat purchase rate is over 50%. Artemis just fits naturally into how our community runs.&quot;</p>
               <div className="testimonial__author">
-                <img className="avatar avatar--img" src="/logo-ascend.png" alt="Ascend" />
+                <img className="avatar avatar--img" src={`${process.env.NEXT_PUBLIC_BASEPATH || ''}/logo-ascend.png`} alt="Ascend" />
                 <div>
                   <strong>Ascend</strong>
                   <span>Gaming Community — Valorant</span>
@@ -443,7 +443,7 @@ export default function ArtemisPage() {
               <div className="testimonial__stars">★★★★★</div>
               <p>&quot;We have members across Valorant, Roblox, and Steam — Artemis covers gift cards for all of them in one place. The engagement features and reward drops turned our store channel into one of the most active spots on the server.&quot;</p>
               <div className="testimonial__author">
-                <img className="avatar avatar--img" src="/logo-maniac.png" alt="Maniac Esports" />
+                <img className="avatar avatar--img" src={`${process.env.NEXT_PUBLIC_BASEPATH || ''}/logo-maniac.png`} alt="Maniac Esports" />
                 <div>
                   <strong>Maniac Esports</strong>
                   <span>Chill Gaming Community — Valorant, Roblox &amp; Steam</span>
@@ -454,7 +454,7 @@ export default function ArtemisPage() {
               <div className="testimonial__stars">★★★★★</div>
               <p>&quot;Artemis helped us monetize our server from the very first month. Our BGMI players love the discounted gift cards and the random rewards keep the community buzzing. Now we&apos;re focused on growing it further for more revenue share.&quot;</p>
               <div className="testimonial__author">
-                <img className="avatar avatar--img" src="/logo-rvnc.png" alt="RVNC Esports" />
+                <img className="avatar avatar--img" src={`${process.env.NEXT_PUBLIC_BASEPATH || ''}/logo-rvnc.png`} alt="RVNC Esports" />
                 <div>
                   <strong>RVNC Esports</strong>
                   <span>Gaming Community — BGMI</span>
@@ -471,7 +471,7 @@ export default function ArtemisPage() {
           <span className="partners-strip__label">Exclusive Partners</span>
           <div className="partners-strip__items">
             <div className="partner-item">
-              <img src="/logo-ascend.png" alt="Ascend Play" className="partner-item__logo" />
+              <img src={`${process.env.NEXT_PUBLIC_BASEPATH || ''}/logo-ascend.png`} alt="Ascend Play" className="partner-item__logo" />
               <div className="partner-item__info">
                 <strong>Ascend Play</strong>
                 <span>Valorant</span>
@@ -503,7 +503,7 @@ export default function ArtemisPage() {
                 </div>
               </div>
               <a href="https://discord.com/oauth2/authorize?client_id=1414466801852481606" target="_blank" rel="noopener noreferrer" className="btn btn--primary btn--lg">
-                <svg width="20" height="16" viewBox="0 0 127.14 96.36" fill="currentColor">
+                <svg width="20" height="16" viewBox="0 0 127.14 96.36" fill="#111111">
                   <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
                 </svg>
                 Add Artemis to Discord — It&apos;s Free
@@ -518,7 +518,7 @@ export default function ArtemisPage() {
         <div className="container footer__inner">
           <div className="footer__brand">
             <a href="/" className="navbar__logo">
-              <img src="/logo-artemis.png" alt="Artemis" className="logo-img" /> Artemis
+              <img src={`${process.env.NEXT_PUBLIC_BASEPATH || ''}/logo-artemis.png`} alt="Artemis" className="logo-img" /> Artemis
             </a>
             <p>The Discord bot that turns gaming communities into gift card marketplaces.</p>
           </div>
