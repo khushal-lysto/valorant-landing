@@ -49,10 +49,30 @@
   border-bottom: 1px solid var(--nav-border);
 }
 .cc-nav-root .nav-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 48px;
+}
+/* Center: nav links */
+.cc-nav-root .nav-inner > .nav-links {
+  justify-self: center;
+}
+/* Right: CTA + hamburger grouped together, pushed to end */
+.cc-nav-root .nav-right {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 48px;
+  gap: 8px;
+  justify-self: end;
+}
+/* On mobile: collapse to 2-col, hide CTA */
+@media (max-width: 767px) {
+  .cc-nav-root .nav-inner {
+    grid-template-columns: 1fr auto;
+  }
+  .cc-nav-root .nav-right .nav-cta {
+    display: none;
+  }
 }
 .cc-nav-root .nav-brand {
   display: flex;

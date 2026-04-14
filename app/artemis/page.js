@@ -1,8 +1,97 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CreatorCommerceNav from "@/components/CreatorCommerceNav";
 
+const PDF_URL = `${process.env.NEXT_PUBLIC_BASEPATH || ""}/artemis_setup_guide.pdf`;
+
+function PdfModal({ onClose }) {
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        background: "rgba(0,0,0,0.82)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "24px",
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          position: "relative",
+          width: "100%",
+          maxWidth: "860px",
+          height: "88vh",
+          background: "#1e1f22",
+          borderRadius: "12px",
+          overflow: "hidden",
+          boxShadow: "0 24px 80px rgba(0,0,0,0.6)",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {/* Header bar */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "12px 20px",
+            borderBottom: "1px solid rgba(255,255,255,0.08)",
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ color: "#fff", fontWeight: 600, fontSize: "15px" }}>
+            Artemis Setup Guide
+          </span>
+          <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+            <a
+              href={PDF_URL}
+              download="artemis_setup_guide.pdf"
+              style={{
+                color: "#a78bfa",
+                fontSize: "13px",
+                textDecoration: "none",
+                fontWeight: 500,
+              }}
+            >
+              Download PDF
+            </a>
+            <button
+              onClick={onClose}
+              style={{
+                background: "none",
+                border: "none",
+                color: "rgba(255,255,255,0.5)",
+                cursor: "pointer",
+                fontSize: "22px",
+                lineHeight: 1,
+                padding: "2px 6px",
+              }}
+              aria-label="Close"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+        {/* PDF viewer */}
+        <iframe
+          src={`${PDF_URL}#toolbar=0&navpanes=0`}
+          style={{ flex: 1, border: "none", width: "100%" }}
+          title="Artemis Setup Guide"
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function ArtemisPage() {
+  const [pdfOpen, setPdfOpen] = useState(false);
+
   useEffect(() => {
     // Animate elements on scroll
     const observer = new IntersectionObserver(
@@ -31,6 +120,7 @@ export default function ArtemisPage() {
 
   return (
     <div className="artemis-page-root">
+      {pdfOpen && <PdfModal onClose={() => setPdfOpen(false)} />}
       <CreatorCommerceNav />
 
       {/* HERO */}
@@ -355,7 +445,7 @@ export default function ArtemisPage() {
           </div>
 
           <div className="setup-cta">
-            <a href="#" className="btn btn--ghost btn--lg">See Documentation →</a>
+            <button onClick={() => setPdfOpen(true)} className="btn btn--ghost btn--lg">See Documentation →</button>
           </div>
         </div>
       </section>
@@ -370,13 +460,14 @@ export default function ArtemisPage() {
           </div>
 
           <div className="demo-card">
-            <div className="demo-card__play">
-              <div className="play-btn">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <p>Live Demo — Gaming Hub Community</p>
+            <div className="demo-card__video">
+              <video
+                src={`${process.env.NEXT_PUBLIC_BASEPATH || ""}/artemis-demo.mp4`}
+                controls
+                playsInline
+                preload="metadata"
+                style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
+              />
             </div>
             <div className="demo-card__info">
               <div className="demo-stat">
@@ -532,7 +623,7 @@ export default function ArtemisPage() {
             </div>
             <div className="footer__col">
               <h4>Resources</h4>
-              <a href="#">Documentation</a>
+              <button onClick={() => setPdfOpen(true)} style={{ background: "none", border: "none", padding: 0, cursor: "pointer", color: "inherit", font: "inherit", textAlign: "left" }}>Documentation</button>
               <a href="#">Support Server</a>
               <a href="#">Status Page</a>
             </div>

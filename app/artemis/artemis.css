@@ -1023,39 +1023,21 @@ html { scroll-behavior: smooth; }
   transform: translateY(0);
 }
 
-.demo-card__play {
-  height: 360px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  background: var(--bg-warm);
-  cursor: pointer;
-  transition: background .3s;
+.demo-card__video {
+  height: 420px;
+  background: #000;
+  overflow: hidden;
 }
-.demo-card__play:hover {
-  background: #EDE7DB;
+.demo-card__video video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
 }
-
-.play-btn {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  box-shadow: var(--shadow-lg);
-  transition: transform .2s;
-}
-.demo-card__play:hover .play-btn { transform: scale(1.06); }
-
-.demo-card__play p {
-  font-size: 15px;
-  color: var(--text-secondary);
-  font-weight: 400;
+@media (max-width: 640px) {
+  .demo-card__video {
+    height: 240px;
+  }
 }
 
 .demo-card__info {
