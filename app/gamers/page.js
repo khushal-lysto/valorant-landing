@@ -15,12 +15,17 @@ import {
 } from "react-icons/ri";
 
 /* ── data ──────────────────────────────────────────────────────────────── */
-const gameLogos = [
-  { label: "BGMI",      bg: "#1a1a1a", src: "/logos/bgmi.svg",      noFilter: true },
-  { label: "Valorant",  bg: "#ff4655", src: "/logos/valorant.svg"                   },
-  { label: "Steam",     bg: "#1b2838", src: "/logos/steam.svg",      noFilter: true },
-  { label: "Genshin",   bg: "#1e4fa3", src: "/logos/genshin.svg"                    },
-  { label: "Minecraft", bg: "#5a8a35", src: "/logos/minecraft.svg",  noFilter: true },
+
+/* Used for carousel — all 8 available logos, duplicated for seamless loop */
+const carouselLogos = [
+  { label: "BGMI",        bg: "#1a1a1a", src: "/logos/bgmi.svg",         noFilter: true  },
+  { label: "Valorant",    bg: "#ff4655", src: "/logos/valorant.svg",      noFilter: false },
+  { label: "Steam",       bg: "#1b2838", src: "/logos/steam.svg",         noFilter: true  },
+  { label: "Genshin",     bg: "#1e4fa3", src: "/logos/genshin.svg",       noFilter: false },
+  { label: "Minecraft",   bg: "#5a8a35", src: "/logos/minecraft.svg",     noFilter: true  },
+  { label: "PlayStation", bg: "#003087", src: "/logos/playstation.svg",   noFilter: true  },
+  { label: "Roblox",      bg: "#cc0000", src: "/logos/roblox.svg",        noFilter: false },
+  { label: "Xbox",        bg: "#107c10", src: "/logos/xbox.svg",          noFilter: true  },
 ];
 
 const helpCards = [
@@ -40,19 +45,186 @@ const steps = [
   {
     n: "Step 1", heading: "Tap",
     body: "Open DM and type /shop. Pick your game and denomination in a couple taps—no alt-tab, no forms.",
-    img: "/usecase-dm-bot.png",
+    stepType: "tap",
   },
   {
     n: "Step 2", heading: "Pay",
     body: "Checkout inside Discord with secure UPI/cards/wallets. We verify every purchase, lock fraud, and send an invoice to your DM.",
-    img: "/usecase-community-server.png",
+    stepType: "pay",
   },
   {
     n: "Step 3", heading: "Play",
     body: "Your code/top-up lands instantly with redeem instructions and auto-history in DM—reload and jump straight back into the match.",
-    img: "/usecase-friend-server.png",
+    stepType: "play",
   },
 ];
+
+/* ── Discord-style illustrations ────────────────────────────────────────── */
+
+function DMChatIllustration({ compact = false }) {
+  const fs = compact ? 0.85 : 1;
+  return (
+    <div style={{ background:"#313338", width:"100%", height:"100%", display:"flex", flexDirection:"column", fontFamily:"sans-serif", overflow:"hidden" }}>
+      {/* header */}
+      <div style={{ display:"flex", alignItems:"center", gap:8, padding:`${10*fs}px ${12*fs}px`, background:"#2b2d31", borderBottom:"1px solid rgba(255,255,255,0.06)", flexShrink:0 }}>
+        <div style={{ width:26*fs, height:26*fs, borderRadius:"50%", background:"#5865F2", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontSize:11*fs, fontWeight:700, flexShrink:0 }}>A</div>
+        <div>
+          <div style={{ color:"#fff", fontSize:12*fs, fontWeight:600, lineHeight:1.2 }}>Artemis</div>
+          <div style={{ color:"#43b581", fontSize:10*fs, display:"flex", alignItems:"center", gap:3 }}>
+            <span style={{ width:5*fs, height:5*fs, borderRadius:"50%", background:"#43b581", display:"inline-block" }}/>
+            Online
+          </div>
+        </div>
+      </div>
+      {/* messages */}
+      <div style={{ flex:1, padding:`${10*fs}px`, display:"flex", flexDirection:"column", gap:8*fs, overflowY:"hidden" }}>
+        <div style={{ display:"flex", justifyContent:"flex-end" }}>
+          <div style={{ background:"#5865F2", color:"#fff", padding:`${6*fs}px ${11*fs}px`, borderRadius:"12px 12px 3px 12px", fontSize:11*fs, fontFamily:"monospace", fontWeight:600 }}>/shop</div>
+        </div>
+        <div style={{ display:"flex", gap:6*fs }}>
+          <div style={{ width:20*fs, height:20*fs, borderRadius:"50%", background:"#5865F2", flexShrink:0, marginTop:2, display:"flex", alignItems:"center", justifyContent:"center", fontSize:8*fs, color:"#fff", fontWeight:700 }}>A</div>
+          <div style={{ background:"#2b2d31", borderRadius:"3px 10px 10px 10px", padding:`${8*fs}px ${10*fs}px`, flex:1, borderLeft:`3px solid #5865F2` }}>
+            <div style={{ color:"#fff", fontWeight:700, fontSize:10*fs, marginBottom:6*fs }}>🎁 Gift Card Store</div>
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:4*fs }}>
+              {[
+                { name:"Steam",   color:"#1b2838", price:"₹500" },
+                { name:"Valorant",color:"#ff4655", price:"₹399" },
+                { name:"BGMI",    color:"#1a1a2a", price:"₹250" },
+                { name:"Genshin", color:"#1e4fa3", price:"₹160" },
+              ].map(c=>(
+                <div key={c.name} style={{ background:c.color, borderRadius:6*fs, padding:`${5*fs}px ${7*fs}px` }}>
+                  <div style={{ color:"#fff", fontSize:9*fs, fontWeight:700 }}>{c.name}</div>
+                  <div style={{ color:"rgba(255,255,255,0.6)", fontSize:9*fs }}>{c.price}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div style={{ display:"flex", gap:6*fs }}>
+          <div style={{ width:20*fs, height:20*fs, borderRadius:"50%", background:"#5865F2", flexShrink:0, marginTop:2, display:"flex", alignItems:"center", justifyContent:"center", fontSize:8*fs, color:"#fff", fontWeight:700 }}>A</div>
+          <div style={{ background:"#2b2d31", borderRadius:"3px 10px 10px 10px", padding:`${8*fs}px ${10*fs}px`, borderLeft:"3px solid #43b581" }}>
+            <div style={{ color:"#43b581", fontWeight:700, fontSize:10*fs, marginBottom:1 }}>✓ Code Delivered</div>
+            <div style={{ color:"#888", fontSize:9*fs }}>Steam ₹500 — Check your DM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PayIllustration() {
+  return (
+    <div style={{ background:"linear-gradient(160deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%)", height:"100%", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:24, gap:14, fontFamily:"sans-serif" }}>
+      {/* payment card */}
+      <div style={{ background:"linear-gradient(135deg,#5865F2,#4752C4)", borderRadius:14, padding:"16px 20px", width:"100%", maxWidth:200, boxShadow:"0 8px 32px rgba(88,101,242,0.35)" }}>
+        <div style={{ color:"rgba(255,255,255,0.55)", fontSize:9, marginBottom:4, textTransform:"uppercase", letterSpacing:"0.06em" }}>Total</div>
+        <div style={{ color:"#fff", fontSize:22, fontWeight:700, marginBottom:2 }}>₹500</div>
+        <div style={{ color:"rgba(255,255,255,0.65)", fontSize:10 }}>Steam Gift Card</div>
+      </div>
+      {/* payment method pills */}
+      <div style={{ display:"flex", gap:6, width:"100%", maxWidth:200 }}>
+        {["UPI","Card","Wallet"].map(m=>(
+          <div key={m} style={{ flex:1, background:"rgba(255,255,255,0.07)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:8, padding:"7px 4px", textAlign:"center" }}>
+            <div style={{ color:"#ccc", fontSize:9.5, fontWeight:600 }}>{m}</div>
+          </div>
+        ))}
+      </div>
+      {/* security badge */}
+      <div style={{ display:"flex", alignItems:"center", gap:6, background:"rgba(67,181,129,0.12)", border:"1px solid rgba(67,181,129,0.25)", borderRadius:20, padding:"5px 12px" }}>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#43b581"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        <span style={{ color:"#43b581", fontSize:9, fontWeight:600 }}>Bank-grade security</span>
+      </div>
+      {/* pay button */}
+      <div style={{ background:"#5865F2", color:"#fff", padding:"9px 28px", borderRadius:20, fontSize:12, fontWeight:700, boxShadow:"0 4px 16px rgba(88,101,242,0.4)" }}>
+        Pay Now
+      </div>
+    </div>
+  );
+}
+
+function PlayIllustration() {
+  return (
+    <div style={{ background:"#313338", height:"100%", display:"flex", flexDirection:"column", fontFamily:"sans-serif", overflow:"hidden" }}>
+      {/* header */}
+      <div style={{ display:"flex", alignItems:"center", gap:8, padding:"10px 12px", background:"#2b2d31", flexShrink:0 }}>
+        <div style={{ width:24, height:24, borderRadius:"50%", background:"#5865F2", display:"flex", alignItems:"center", justifyContent:"center", fontSize:9, color:"#fff", fontWeight:700, flexShrink:0 }}>A</div>
+        <div style={{ color:"#fff", fontSize:11, fontWeight:600 }}>Artemis</div>
+      </div>
+      {/* body */}
+      <div style={{ flex:1, padding:"12px", display:"flex", flexDirection:"column", gap:8, overflowY:"hidden" }}>
+        {/* success embed */}
+        <div style={{ background:"#2b2d31", borderRadius:"3px 10px 10px 10px", padding:"10px 12px", borderLeft:"3px solid #43b581" }}>
+          <div style={{ color:"#43b581", fontWeight:700, fontSize:11, marginBottom:4 }}>✓ Order Complete!</div>
+          <div style={{ color:"#ccc", fontSize:10, fontWeight:600, marginBottom:2 }}>Steam Gift Card — ₹500</div>
+          <div style={{ color:"#888", fontSize:9, marginBottom:10 }}>Code has been delivered</div>
+          <div style={{ background:"#1e1f22", borderRadius:7, padding:"8px 10px", border:"1px solid rgba(255,255,255,0.08)" }}>
+            <div style={{ color:"#666", fontSize:8, marginBottom:3, textTransform:"uppercase", letterSpacing:"0.05em" }}>Redeem code</div>
+            <div style={{ color:"#fff", fontSize:12, fontFamily:"monospace", fontWeight:700, letterSpacing:"0.05em" }}>XXXX-XXXX-XXXX</div>
+          </div>
+        </div>
+        {/* history */}
+        <div style={{ background:"#2b2d31", borderRadius:8, padding:"8px 10px" }}>
+          <div style={{ color:"#666", fontSize:8.5, marginBottom:5, textTransform:"uppercase", letterSpacing:"0.04em" }}>Purchase history</div>
+          {[
+            { game:"Steam ₹500",  date:"Today"      },
+            { game:"BGMI ₹250",   date:"Yesterday"  },
+            { game:"Valorant ₹399",date:"3 days ago" },
+          ].map((h,i)=>(
+            <div key={i} style={{ display:"flex", justifyContent:"space-between", padding:"3px 0", borderTop:i>0?"1px solid rgba(255,255,255,0.05)":"none" }}>
+              <span style={{ color:"#ccc", fontSize:9 }}>{h.game}</span>
+              <span style={{ color:"#555", fontSize:9 }}>{h.date}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CommunityServerIllustration({ compact = false }) {
+  const fs = compact ? 0.85 : 1;
+  return (
+    <div style={{ background:"#313338", width:"100%", height:"100%", display:"flex", fontFamily:"sans-serif", overflow:"hidden" }}>
+      <div style={{ width:46*fs, background:"#1e1f22", display:"flex", flexDirection:"column", alignItems:"center", padding:`${10*fs}px 0`, gap:6*fs, flexShrink:0 }}>
+        <div style={{ width:32*fs, height:32*fs, borderRadius:12*fs, background:"#ff4655", display:"flex", alignItems:"center", justifyContent:"center", fontSize:10*fs, color:"#fff", fontWeight:700 }}>VX</div>
+        <div style={{ width:20*fs, height:1.5, background:"rgba(255,255,255,0.1)", margin:`${2*fs}px 0` }}/>
+        <div style={{ width:32*fs, height:32*fs, borderRadius:"50%", background:"#3a3b3f" }}/>
+        <div style={{ width:32*fs, height:32*fs, borderRadius:"50%", background:"#3a3b3f" }}/>
+      </div>
+      <div style={{ width:112*fs, background:"#2b2d31", padding:`${10*fs}px ${7*fs}px`, flexShrink:0, overflowY:"hidden" }}>
+        <div style={{ color:"#6d6f78", fontSize:8.5*fs, fontWeight:700, textTransform:"uppercase", letterSpacing:"0.06em", marginBottom:5*fs }}>Community Hub</div>
+        {["# announcements","# general","🛍 shop"].map((ch,i)=>(
+          <div key={ch} style={{ color:i===2?"#fff":"#949ba4", fontSize:10*fs, padding:`${3*fs}px ${5*fs}px`, borderRadius:4*fs, background:i===2?"rgba(255,255,255,0.08)":"transparent", marginBottom:2*fs }}>{ch}</div>
+        ))}
+        <div style={{ marginTop:7*fs, background:"rgba(88,101,242,0.15)", borderRadius:6*fs, padding:`${5*fs}px ${6*fs}px` }}>
+          <div style={{ color:"#5865F2", fontSize:9*fs, fontWeight:700 }}>12,400 members</div>
+          <div style={{ color:"#43b581", fontSize:9*fs }}>4,200 online</div>
+        </div>
+      </div>
+      <div style={{ flex:1, padding:`${8*fs}px`, overflowY:"hidden" }}>
+        <div style={{ color:"#6d6f78", fontSize:8*fs, textAlign:"center", marginBottom:5*fs }}>🛍 shop</div>
+        <div style={{ background:"#2b2d31", borderRadius:8*fs, padding:`${7*fs}px ${9*fs}px`, marginBottom:5*fs, borderLeft:"3px solid #ff4655" }}>
+          <div style={{ color:"#fff", fontWeight:700, fontSize:9.5*fs, marginBottom:3*fs }}>⚡ Flash Sale</div>
+          <div style={{ display:"flex", gap:3*fs, flexWrap:"wrap" }}>
+            {["Valorant","Steam","BGMI"].map(g=>(
+              <span key={g} style={{ background:"rgba(255,255,255,0.07)", color:"#ccc", fontSize:8.5*fs, padding:`${2*fs}px ${5*fs}px`, borderRadius:3*fs }}>{g}</span>
+            ))}
+          </div>
+        </div>
+        <div style={{ color:"#6d6f78", fontSize:8.5*fs, display:"flex", alignItems:"center", gap:3 }}>
+          <span>💬</span> 800+ orders today
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* map stepType → illustration */
+const stepIllustrations = {
+  tap:  <DMChatIllustration />,
+  pay:  <PayIllustration />,
+  play: <PlayIllustration />,
+};
 
 /* ── useFadeIn ─────────────────────────────────────────────────────────── */
 function useFadeIn(threshold = 0.1) {
@@ -106,6 +278,41 @@ function HelixShape() {
   );
 }
 
+/* ── infinite logo carousel ────────────────────────────────────────────── */
+function LogoCarousel({ dark = false, label }) {
+  const doubled = [...carouselLogos, ...carouselLogos];
+  const fadeBg  = dark ? "#060606" : "#f5f0e8";
+  return (
+    <div style={{ position:"relative", overflow:"hidden" }}>
+      {/* edge fades */}
+      <div style={{ position:"absolute", left:0, top:0, bottom:0, width:64, background:`linear-gradient(to right,${fadeBg},transparent)`, zIndex:2, pointerEvents:"none" }}/>
+      <div style={{ position:"absolute", right:0, top:0, bottom:0, width:64, background:`linear-gradient(to left,${fadeBg},transparent)`, zIndex:2, pointerEvents:"none" }}/>
+
+      {label && (
+        <p style={{ textAlign:"center", marginBottom:12, fontSize:11, fontWeight:700, textTransform:"uppercase", letterSpacing:"0.08em", color: dark ? "#555" : "#999" }}>
+          {label}
+        </p>
+      )}
+
+      <div style={{ display:"flex", gap:10, width:"max-content", animation:"gamersMarquee 32s linear infinite" }}>
+        {doubled.map((g, i) => (
+          <div key={i}
+            className="w-[88px] h-[64px] md:w-[110px] md:h-[78px] shrink-0 flex flex-col items-center justify-center gap-[5px]"
+            style={{ borderRadius:10, background:g.bg, border:`1px solid ${dark?"rgba(255,255,255,0.07)":"rgba(0,0,0,0.08)"}` }}>
+            <Image src={g.src} alt={g.label} width={32} height={32}
+              className="w-[22px] h-[22px] md:w-[28px] md:h-[28px]"
+              style={g.noFilter ? {} : { filter:"brightness(0) invert(1)" }}/>
+            <span className="text-[8px] md:text-[9px]"
+              style={{ color:"#fff", fontWeight:600, opacity:0.85, letterSpacing:"0.03em", textTransform:"uppercase" }}>
+              {g.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ── page ──────────────────────────────────────────────────────────────── */
 export default function GamersPage() {
   const [scrollY, setScrollY] = useState(0);
@@ -147,7 +354,7 @@ export default function GamersPage() {
     transition: "transform 0.75s cubic-bezier(0.22,1,0.36,1), opacity 0.75s ease-out",
   });
 
-  /* ── stable star positions (memoized so scroll re-renders don't re-randomize) ── */
+  /* ── stable star positions ── */
   const stars = useMemo(() =>
     Array.from({length: 55}).map(() => ({
       w:       Math.random() < 0.7 ? 1.5 : 2.5,
@@ -187,12 +394,10 @@ export default function GamersPage() {
             </a>
           </div>
 
-          {/* phone + shapes — scroll-driven */}
+          {/* phone + shapes */}
           <div className="flex items-end justify-center pt-2 overflow-hidden min-h-[400px] md:min-h-[560px]">
             <div style={{ alignSelf:"center", marginRight:-24, zIndex:5, transform: jackTransform }}>
-              <div className="md:scale-[1.35] origin-bottom">
-                <JackShape/>
-              </div>
+              <div className="md:scale-[1.35] origin-bottom"><JackShape/></div>
             </div>
             <div className="relative z-10 w-[230px] md:w-[300px] shrink-0"
               style={{ transform: `translateY(-${phoneParallax}px)` }}>
@@ -200,9 +405,7 @@ export default function GamersPage() {
                 style={{ width:"100%", height:"auto", display:"block" }} priority/>
             </div>
             <div style={{ alignSelf:"center", marginLeft:-20, zIndex:5, transform: helixTransform }}>
-              <div className="md:scale-[1.35] origin-bottom">
-                <HelixShape/>
-              </div>
+              <div className="md:scale-[1.35] origin-bottom"><HelixShape/></div>
             </div>
           </div>
         </div>
@@ -213,21 +416,9 @@ export default function GamersPage() {
           widest catalogue of gaming titles · best discounts
         </p>
 
-        {/* logo row */}
-        <div className="flex items-center justify-center gap-3 md:gap-4 px-5 pb-12 md:pb-16 flex-wrap">
-          {gameLogos.map(g=>(
-            <div key={g.label}
-              className="w-20 h-[60px] md:w-28 md:h-20 shrink-0 flex flex-col items-center justify-center gap-[5px]"
-              style={{ borderRadius:10, background:g.bg, border:"1px solid rgba(0,0,0,0.08)" }}>
-              <Image src={g.src} alt={g.label} width={36} height={36}
-                className="w-[26px] h-[26px] md:w-9 md:h-9"
-                style={g.noFilter?{}:{filter:"brightness(0) invert(1)"}}/>
-              <span className="text-[8px] md:text-[10px]"
-                style={{ color:"#fff", fontWeight:600, opacity:0.85, letterSpacing:"0.02em" }}>
-                {g.label}
-              </span>
-            </div>
-          ))}
+        {/* ── infinite logo carousel (light) ── */}
+        <div className="pb-12 md:pb-16">
+          <LogoCarousel label="Available titles" />
         </div>
       </section>
 
@@ -253,20 +444,19 @@ export default function GamersPage() {
           style={{ background:"#eae5dc", borderRadius:20, ...scaleIn(mosaicVis) }}>
           <div className="grid gap-2.5 md:gap-4"
             style={{ gridTemplateColumns:"1fr 1fr", gridTemplateRows:"auto auto" }}>
-            {/* left tall */}
-            <div style={{ gridRow:"1/3", borderRadius:14, overflow:"hidden", background:"#1e1f22" }}>
-              <Image src="/usecase-dm-bot.png" alt="DM bot shop" width={600} height={900}
-                style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
+
+            {/* left tall — DM chat illustration */}
+            <div style={{ gridRow:"1/3", borderRadius:14, overflow:"hidden", background:"#313338", minHeight:320 }}>
+              <DMChatIllustration />
             </div>
-            {/* top-right */}
+
+            {/* top-right — artemis logo + small community preview */}
             <div className="min-h-[180px] md:min-h-[280px] gap-3 md:gap-5 px-3 md:px-5 py-4"
               style={{ borderRadius:14, overflow:"hidden", background:"#f8f8f8",
                 display:"flex", alignItems:"center", justifyContent:"center" }}>
               <div className="w-[72px] h-[148px] md:w-[100px] md:h-[200px] shrink-0"
-                style={{ borderRadius:14, border:"2px solid #ddd", background:"#1a1a1a", overflow:"hidden" }}>
-                <Image src="/usecase-community-server.png" alt="screenshot"
-                  width={300} height={500}
-                  style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
+                style={{ borderRadius:14, border:"2px solid #ddd", background:"#1e1f22", overflow:"hidden" }}>
+                <CommunityServerIllustration compact />
               </div>
               <div className="w-[72px] h-[72px] md:w-[100px] md:h-[100px] shrink-0"
                 style={{ borderRadius:"50%", overflow:"hidden",
@@ -275,12 +465,11 @@ export default function GamersPage() {
                   style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
               </div>
             </div>
-            {/* bottom-right */}
+
+            {/* bottom-right — community server illustration */}
             <div className="min-h-[120px] md:min-h-[160px]"
-              style={{ borderRadius:14, overflow:"hidden", background:"#1e1f22" }}>
-              <Image src="/usecase-friend-server.png" alt="friend server"
-                width={600} height={400}
-                style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
+              style={{ borderRadius:14, overflow:"hidden", background:"#313338" }}>
+              <CommunityServerIllustration />
             </div>
           </div>
         </div>
@@ -344,22 +533,9 @@ export default function GamersPage() {
               ))}
             </div>
 
-            {/* game art strip */}
-            <div className="rounded-2xl p-5 md:p-6 flex gap-2.5 md:gap-4 overflow-x-auto no-scrollbar"
-              style={{ background:"#111" }}>
-              {gameLogos.map(g=>(
-                <div key={g.label}
-                  className="w-[100px] h-[72px] md:w-[130px] md:h-[90px] shrink-0 overflow-hidden flex flex-col items-center justify-center gap-[6px]"
-                  style={{ borderRadius:10, background:g.bg, border:"1px solid rgba(255,255,255,0.07)" }}>
-                  <Image src={g.src} alt={g.label} width={36} height={36}
-                    className="w-8 h-8 md:w-10 md:h-10"
-                    style={g.noFilter?{}:{filter:"brightness(0) invert(1)"}}/>
-                  <span className="text-[9px] md:text-[11px]"
-                    style={{ color:"#fff", fontWeight:600, opacity:0.8, letterSpacing:"0.02em" }}>
-                    {g.label}
-                  </span>
-                </div>
-              ))}
+            {/* ── infinite logo carousel (dark) ── */}
+            <div className="rounded-2xl py-5 md:py-6 overflow-hidden" style={{ background:"#111" }}>
+              <LogoCarousel dark />
             </div>
           </div>
           <div className="h-9 md:h-14"/>
@@ -387,7 +563,7 @@ export default function GamersPage() {
             <div key={s.n}
               className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-16 items-center"
               style={{ ...fadeIn(stepsVis, i * 0.15) }}>
-              {/* text — flip order on alternate rows on desktop */}
+              {/* text */}
               <div style={{ order: i % 2 === 1 ? 2 : 1 }}>
                 <p style={{ fontWeight:700, color:"#5865F2", fontFamily:"var(--font-lexend),sans-serif",
                   fontSize:13, letterSpacing:"0.04em", textTransform:"uppercase", marginBottom:12 }}>
@@ -406,11 +582,10 @@ export default function GamersPage() {
                   )}
                 </p>
               </div>
-              {/* screenshot card */}
-              <div style={{ borderRadius:"clamp(16px,2vw,24px)", overflow:"hidden", position:"relative",
-                background:"#e0ddd8", aspectRatio:"3/4", order: i % 2 === 1 ? 1 : 2 }}>
-                <Image src={s.img} alt={s.heading} fill
-                  style={{ objectFit:"cover", objectPosition:"top" }}/>
+              {/* illustration card */}
+              <div style={{ borderRadius:"clamp(16px,2vw,24px)", overflow:"hidden",
+                background:"#1e1f22", aspectRatio:"3/4", order: i % 2 === 1 ? 1 : 2 }}>
+                {stepIllustrations[s.stepType]}
               </div>
             </div>
           ))}
@@ -503,7 +678,7 @@ export default function GamersPage() {
                     className="w-full sm:w-[200px] md:w-[240px] text-[13px] md:text-sm"
                     style={{ background:"#1a1a1a", border:"1px solid #2a2a2a",
                       color:"#fff", borderRadius:10, padding:"10px 14px", outline:"none" }}/>
-                  <button onClick={handleSubscribe}
+                  <button type="button" onClick={handleSubscribe}
                     className="flex items-center justify-center gap-[6px] text-[13px] md:text-sm"
                     style={{ background:"#1a1a1a", border:"1px solid #2a2a2a", color:"#fff",
                       borderRadius:10, padding:"10px 14px",
@@ -539,6 +714,10 @@ export default function GamersPage() {
               20%  { opacity:0.8; }
               60%  { opacity:0.8; }
               100% { opacity:0; transform:rotate(35deg) translateX(160px); }
+            }
+            @keyframes gamersMarquee {
+              0%   { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
             }
           `}</style>
         </footer>
