@@ -65,6 +65,7 @@ export default function HomeFooter() {
 
         {/* Main tagline */}
         <div className="relative z-10 py-32 px-8 text-center">
+          <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <p
             className="uppercase text-white"
             style={{
@@ -76,6 +77,7 @@ export default function HomeFooter() {
           >
             TOP UP IN SECONDS.<br />PLAY FOR HOURS.
           </p>
+          </div>
         </div>
 
         {/* Gradient blob */}
@@ -93,10 +95,8 @@ export default function HomeFooter() {
         />
 
         {/* Footer bottom row */}
-        <div
-          className="relative z-10 flex flex-wrap items-start justify-between gap-8 px-8 md:px-16 pb-12"
-          style={{ borderTop: "1px solid #1f1f1f" }}
-        >
+        <div className="relative z-10 px-8 md:px-16 pb-12" style={{ borderTop: "1px solid #1f1f1f" }}>
+        <div className="flex flex-wrap items-start justify-between gap-8" style={{ maxWidth: 1200, margin: "0 auto" }}>
           {/* Stay in touch */}
           <div className="flex flex-col gap-4 pt-8">
             <p className="text-sm font-medium" style={{ color: "#aaa", fontFamily: "var(--font-dm-sans), sans-serif" }}>
@@ -132,7 +132,8 @@ export default function HomeFooter() {
             )}
           </div>
 
-        </div>
+        </div>{/* end inner max-width */}
+        </div>{/* end bottom row padding */}
 
       </footer>
       </div>

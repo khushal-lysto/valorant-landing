@@ -550,7 +550,7 @@ export default function GamersPage() {
       {/* ── 6. How it works — Tap / Pay / Play ───────────────────── */}
       <section ref={stepsRef} style={{ background:"#ebebeb", padding:"clamp(48px,6vw,96px) clamp(16px,3vw,32px)" }}>
         {/* Section header */}
-        <div style={{ maxWidth:1160, margin:"0 auto 48px" }}>
+        <div style={{ maxWidth:1200, margin:"0 auto 48px" }}>
           <div style={{ display:"inline-flex", alignItems:"center", gap:6,
             background:"rgba(0,0,0,0.06)", borderRadius:100, padding:"5px 14px",
             fontSize:11, fontWeight:700, letterSpacing:"0.08em", textTransform:"uppercase",
@@ -633,11 +633,13 @@ export default function GamersPage() {
 
           {/* tagline */}
           <div className="relative z-10 px-8 pt-20 pb-12 text-center md:px-16 md:pt-28 md:pb-16">
+            <div style={{ maxWidth:1200, margin:"0 auto" }}>
             <p style={{ fontSize:"clamp(2.4rem,8vw,5.5rem)", lineHeight:1.05,
               color:"#fff", fontWeight:700, letterSpacing:"-0.01em",
               fontFamily:"var(--font-lexend),sans-serif", textTransform:"uppercase" }}>
               TOP UP IN SECONDS.<br/>PLAY FOR HOURS.
             </p>
+            </div>
           </div>
 
           {/* conic blob */}
@@ -648,8 +650,8 @@ export default function GamersPage() {
             transform:"translate(-50%,30%)", pointerEvents:"none" }}/>
 
           {/* bottom row */}
-          <div className="relative z-10 flex flex-wrap items-start justify-between gap-6 px-7 py-8 md:px-16 md:py-12"
-            style={{ borderTop:"1px solid #1f1f1f" }}>
+          <div className="relative z-10 px-7 py-8 md:px-16 md:py-12" style={{ borderTop:"1px solid #1f1f1f" }}>
+          <div className="flex flex-wrap items-start justify-between gap-6" style={{ maxWidth:1200, margin:"0 auto" }}>
 
             {/* nav links */}
             <nav style={{ display:"flex", flexDirection:"column", gap:8 }}>
@@ -698,7 +700,8 @@ export default function GamersPage() {
               )}
             </div>
 
-          </div>
+          </div>{/* end inner max-width */}
+          </div>{/* end bottom row padding */}
 
         </footer>
         </div>

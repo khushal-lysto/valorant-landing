@@ -30,6 +30,17 @@
 @media (min-width: 768px) { .cc-nav-root .container { padding: 0 40px; } }
 @media (min-width: 1024px) { .cc-nav-root .container { padding: 0 48px; } }
 
+/* ─── Light-page nav theme (home, gamers, artemis) ─── */
+.cc-nav-root.cc-nav-light .nav {
+  --nav-bg: rgba(255, 255, 255, 0.88);
+  --nav-border: rgba(0, 0, 0, 0.08);
+  --nav-text: #777;
+  --nav-text-hover: #111;
+  --nav-active-bg: rgba(0, 0, 0, 0.06);
+  --nav-brand-color: #111;
+  --nav-toggle-color: #111;
+}
+
 /* ─── Nav ─── */
 .cc-nav-root .nav {
   --nav-bg: rgba(10,10,15,0.97);

@@ -36,8 +36,11 @@ export default function CreatorCommerceNav() {
     return stripped === href || (href !== "/" && stripped.startsWith(href));
   };
 
+  const strippedPath = pathname.replace(/^\/valorant-landing/, "") || "/";
+  const isLightPage = strippedPath === "/" || strippedPath === "/gamers" || strippedPath === "/artemis";
+
   return (
-    <div className="cc-nav-root">
+    <div className={`cc-nav-root${isLightPage ? " cc-nav-light" : ""}`}>
       {/* ─── Main nav ─── */}
       <nav className="nav" role="navigation" aria-label="Main navigation">
         <div className="container">
