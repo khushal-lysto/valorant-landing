@@ -1356,9 +1356,15 @@ html { scroll-behavior: smooth; }
 
 .footer__inner {
   display: grid;
-  grid-template-columns: 1fr auto auto auto;
+  grid-template-columns: 1fr auto;
   gap: 64px;
   padding-bottom: 48px;
+}
+
+.footer__links {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
 }
 
 .footer__brand {
@@ -1384,7 +1390,8 @@ html { scroll-behavior: smooth; }
   text-transform: uppercase;
   letter-spacing: .06em;
   color: var(--text);
-  margin-bottom: var(--sp-1);
+  margin-bottom: var(--sp-2);
+  padding-top: 0;
 }
 .footer__col a {
   font-size: 14px;
@@ -1540,6 +1547,10 @@ html { scroll-behavior: smooth; }
   .footer__inner {
     grid-template-columns: 1fr;
     gap: var(--sp-8);
+  }
+  .footer__links {
+    flex-wrap: wrap;
+    gap: 40px;
   }
 }
 
