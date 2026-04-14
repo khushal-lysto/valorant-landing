@@ -57,8 +57,9 @@ export default function HomeHero() {
       {/* ── Sticky shrinking heading ── */}
       <div
         className="sticky top-0 z-10 flex items-center justify-center pointer-events-none"
-        style={{ background: "#f5f0e8", paddingTop: "clamp(64px, 8vw, 112px)", paddingBottom: "clamp(48px, 6vw, 80px)", paddingLeft: 24, paddingRight: 24 }}
+        style={{ background: "#f5f0e8", paddingTop: "clamp(64px, 8vw, 112px)", paddingBottom: "clamp(48px, 6vw, 80px)" }}
       >
+        <div style={{ width: "100%", maxWidth: 1200, paddingLeft: 24, paddingRight: 24, display: "flex", justifyContent: "center" }}>
         <h1
           className="text-center max-w-4xl"
           style={{
@@ -76,11 +77,12 @@ export default function HomeHero() {
         >
           Top up your favorite games in seconds
         </h1>
+        </div>
       </div>
 
       {/* ── Phone + notifications ── */}
       <div className="relative px-4 md:px-8 pb-20 md:pb-28" style={{ background: "#f5f0e8", zIndex: 20 }}>
-        <div className="max-w-6xl mx-auto">
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
 
           <div className="relative flex justify-center" style={{ minHeight: "min(620px, 80vw)" }}>
 

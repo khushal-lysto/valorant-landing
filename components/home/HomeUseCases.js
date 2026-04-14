@@ -199,7 +199,7 @@ export default function HomeUseCases() {
         style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(100,160,200,0.08) 0%, transparent 60%)" }}
       />
 
-      <div style={{ maxWidth: 1160, margin: "0 auto", position: "relative" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative" }}>
 
         {/* Section header */}
         <div style={{ textAlign: "center", marginBottom: "clamp(40px,5vw,64px)" }}>

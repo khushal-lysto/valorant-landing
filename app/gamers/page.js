@@ -367,6 +367,7 @@ export default function GamersPage() {
 
       {/* ── 1. Hero ───────────────────────────────────────────────── */}
       <section className="px-4 md:px-8 pt-10 pb-0 md:pt-16" style={{ background:"#f5f0e8" }}>
+        <div style={{ maxWidth:1200, margin:"0 auto" }}>
         <div className="max-w-[540px] md:max-w-none mx-auto"
           style={{ borderRadius:22, overflow:"hidden", background:"#f5f0e8", boxShadow:"0 2px 24px rgba(0,0,0,0.06)" }}>
 
@@ -417,11 +418,12 @@ export default function GamersPage() {
         <div className="pb-12 md:pb-16">
           <LogoCarousel label="Available titles" />
         </div>
+        </div>
       </section>
 
       {/* ── 2. Features text ─────────────────────────────────────── */}
       <section ref={featuresRef} style={{ background:"#f5f0e8", padding:"clamp(40px,6vw,72px) clamp(20px,5vw,64px)", ...fadeIn(featuresVis) }}>
-        <div style={{ maxWidth:1160, margin:"0 auto" }}>
+        <div style={{ maxWidth:1200, margin:"0 auto" }}>
         <div style={{ maxWidth:680 }}>
           <p style={{ fontSize:"clamp(1.25rem,3.5vw,2.25rem)", color:"#111",
             lineHeight:1.45, fontFamily:"var(--font-lexend),sans-serif", marginBottom:"clamp(24px,3vw,40px)" }}>
@@ -439,7 +441,7 @@ export default function GamersPage() {
 
       {/* ── 3. Screenshots mosaic ────────────────────────────────── */}
       <section style={{ background:"#f5f0e8", padding:"0 clamp(16px,3vw,32px) clamp(40px,5vw,64px)" }}>
-        <div style={{ maxWidth:1160, margin:"0 auto" }}>
+        <div style={{ maxWidth:1200, margin:"0 auto" }}>
         <div ref={mosaicRef} className="max-w-[540px] md:max-w-none mx-auto p-4 md:p-6"
           style={{ background:"#eae5dc", borderRadius:20, ...scaleIn(mosaicVis) }}>
           <div className="grid gap-2.5 md:gap-4"
@@ -478,7 +480,7 @@ export default function GamersPage() {
 
       {/* ── 4. "Artemis helps you" cards ─────────────────────────── */}
       <section ref={cardsRef} style={{ background:"#f5f0e8", padding:"clamp(40px,5vw,72px) clamp(16px,3vw,32px)" }}>
-        <div style={{ maxWidth:1160, margin:"0 auto" }}>
+        <div style={{ maxWidth:1200, margin:"0 auto" }}>
           <h2 style={{ textAlign:"center", marginBottom:"clamp(28px,4vw,48px)",
             fontSize:"clamp(1.5rem,3.5vw,2.25rem)", fontWeight:400, color:"#111",
             fontFamily:"var(--font-source-serif),serif", letterSpacing:"-0.01em" }}>
@@ -510,6 +512,7 @@ export default function GamersPage() {
 
       {/* ── 5. Dark "pocket game shop" section ───────────────────── */}
       <section style={{ background:"#f0eeea", padding:"clamp(32px,4vw,56px) clamp(16px,3vw,32px)" }}>
+        <div style={{ maxWidth:1200, margin:"0 auto" }}>
         <div ref={darkRef} className="max-w-[540px] md:max-w-none mx-auto"
           style={{ background:"#060606", borderRadius:24, overflow:"hidden", ...scaleIn(darkVis) }}>
           <div className="px-7 pt-12 pb-0 md:px-16 md:pt-16">
@@ -541,6 +544,7 @@ export default function GamersPage() {
           </div>
           <div className="h-9 md:h-14"/>
         </div>
+        </div>
       </section>
 
       {/* ── 6. How it works — Tap / Pay / Play ───────────────────── */}
@@ -559,7 +563,7 @@ export default function GamersPage() {
           </h2>
         </div>
 
-        <div style={{ maxWidth:1160, margin:"0 auto", display:"flex", flexDirection:"column", gap:"clamp(40px,6vw,80px)" }}>
+        <div style={{ maxWidth:1200, margin:"0 auto", display:"flex", flexDirection:"column", gap:"clamp(40px,6vw,80px)" }}>
           {steps.map((s, i)=>(
             <div key={s.n}
               className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-16 items-center"
@@ -598,6 +602,7 @@ export default function GamersPage() {
 
       {/* ── 7. Footer ────────────────────────────────────────────── */}
       <div style={{ background:"#ebebeb", padding:"0 clamp(16px,3vw,32px) clamp(16px,2vw,32px)" }}>
+        <div style={{ maxWidth:1200, margin:"0 auto" }}>
         <footer style={{ background:"#0a0a0a", borderRadius:24, overflow:"hidden", position:"relative" }}>
 
           {/* starfield */}
@@ -696,6 +701,7 @@ export default function GamersPage() {
           </div>
 
         </footer>
+        </div>
       </div>
 
     </main>

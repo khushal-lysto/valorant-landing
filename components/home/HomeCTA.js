@@ -5,7 +5,7 @@ export default function HomeCTA() {
     <section style={{ background: "#f5f0e8", padding: "40px 16px" }}>
       <div
         style={{
-          maxWidth:       1160,
+          maxWidth:       1200,
           margin:         "0 auto",
           display:        "flex",
           flexWrap:       "wrap",

@@ -14,6 +14,7 @@ export default function HomeFooter() {
   return (
     /* Outer wrapper gives the footer a floating card feel with all 4 corners visible */
     <div className="px-4 md:px-8 pb-4" style={{ background: "#f0ebe3" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
       <footer
         className="relative overflow-hidden"
         style={{ background: "#0a0a0a", borderRadius: 24 }}
@@ -134,6 +135,7 @@ export default function HomeFooter() {
         </div>
 
       </footer>
+      </div>
     </div>
   );
 }
