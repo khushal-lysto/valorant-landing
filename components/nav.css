@@ -63,6 +63,8 @@
   background: #f5f0e8;
   border-bottom-color: rgba(0, 0, 0, 0.06);
 }
+.cc-nav-root.cc-nav-cream .nav-cta { background: #111; color: #fff; }
+.cc-nav-root.cc-nav-cream .nav-cta:hover { background: #333; transform: translateY(-1px); }
 
 /* ─── Paper nav theme (artemis) ─── */
 .cc-nav-root.cc-nav-paper .nav {
@@ -76,6 +78,8 @@
   background: #FAF8F5;
   border-bottom-color: rgba(17, 17, 17, 0.08);
 }
+.cc-nav-root.cc-nav-paper .nav-cta { background: #111; color: #fff; }
+.cc-nav-root.cc-nav-paper .nav-cta:hover { background: #333; transform: translateY(-1px); }
 
 /* ─── Spacer: reserves height equal to fixed nav so content isn't hidden under it ─── */
 .cc-nav-spacer { height: 80px; }

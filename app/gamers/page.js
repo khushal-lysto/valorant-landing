@@ -327,6 +327,13 @@ export default function GamersPage() {
   const jackTransform  = `rotate(-15deg) translateY(${10 + heroProgress * 26}px) translateX(${-heroProgress * 34}px)`;
   const helixTransform = `rotate(10deg) translateY(${-8 - heroProgress * 26}px) translateX(${heroProgress * 34}px)`;
 
+  /* ── pillar cycling ── */
+  const [activePillar, setActivePillar] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setActivePillar(p => (p + 1) % 3), 2000);
+    return () => clearInterval(id);
+  }, []);
+
   /* ── section fade-ins ── */
   const [featuresRef, featuresVis] = useFadeIn(0.1);
   const [mosaicRef,   mosaicVis]   = useFadeIn(0.08);
@@ -522,12 +529,18 @@ export default function GamersPage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 md:gap-5 mb-7 md:mb-10">
               {pillars.map((p,i)=>(
                 <div key={p.title} className="px-[14px] py-[18px] md:p-6"
-                  style={{ background: i===0 ? "#1e1e1e" : "transparent", borderRadius:14 }}>
+                  style={{
+                    background: i===activePillar ? "#1e1e1e" : "transparent",
+                    borderRadius:14,
+                    transition: "background 0.4s ease",
+                  }}>
                   <p className="text-[13px] md:text-base mb-2"
-                    style={{ fontWeight:700, color: i===0 ? "#fff" : "#777",
-                      lineHeight:1.3, fontFamily:"var(--font-lexend),sans-serif" }}>{p.title}</p>
+                    style={{ fontWeight:700, color: i===activePillar ? "#fff" : "#777",
+                      lineHeight:1.3, fontFamily:"var(--font-lexend),sans-serif",
+                      transition: "color 0.4s ease" }}>{p.title}</p>
                   <p className="text-[11px] md:text-sm"
-                    style={{ color: i===0 ? "#aaa" : "#555", lineHeight:1.6, margin:0 }}>{p.desc}</p>
+                    style={{ color: i===activePillar ? "#aaa" : "#555", lineHeight:1.6, margin:0,
+                      transition: "color 0.4s ease" }}>{p.desc}</p>
                 </div>
               ))}
             </div>
@@ -584,8 +597,8 @@ export default function GamersPage() {
               </div>
               {/* illustration card */}
               <div style={{ borderRadius:"clamp(16px,2vw,24px)", overflow:"hidden",
-                background:"#1e1f22", aspectRatio:"3/4", order: i % 2 === 1 ? 1 : 2,
-                position:"relative", minHeight:320 }}>
+                background:"#1e1f22", aspectRatio:"4/3", order: i % 2 === 1 ? 1 : 2,
+                position:"relative", minHeight:220 }}>
                 <div style={{ position:"absolute", inset:0 }}>
                   {stepIllustrations[s.stepType]}
                 </div>

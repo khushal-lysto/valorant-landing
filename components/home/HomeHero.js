@@ -183,7 +183,7 @@ export default function HomeHero() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 w-full sm:w-auto justify-center transition-opacity hover:opacity-80"
                   style={{
-                    background:   primary ? "#e8003d" : "#111",
+                    background:   primary ? "#5865F2" : "#111",
                     color:        "#fff",
                     padding:      "13px 24px",
                     borderRadius: 100,

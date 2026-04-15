@@ -183,7 +183,7 @@ export default function HomeDemo() {
               key={label}
               href="#"
               className="flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-semibold transition-opacity hover:opacity-90"
-              style={{ background: "#e8003d" }}
+              style={{ background: "#5865F2" }}
             >
               <Icon size={16} />
               {label}

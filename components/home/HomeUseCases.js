@@ -242,6 +242,8 @@ export default function HomeUseCases() {
             display:             "grid",
             gridTemplateColumns: "1fr",
             gap:                 "clamp(14px,1.5vw,20px)",
+            maxWidth:            900,
+            margin:              "0 auto",
           }}
           className="md:grid-cols-3"
         >
