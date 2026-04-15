@@ -267,7 +267,7 @@ export default function HomeBento() {
             WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
           }}
         >
-          <div className="flex gap-4 w-max" style={{ animation: "scrollIcons 77s linear infinite" }}>
+          <div className="flex gap-4 w-max" style={{ animation: "scrollIcons 40s linear infinite", willChange: "transform" }}>
             {[...carouselItems, ...carouselItems].map((g, i) => (
               <div
                 key={i}
@@ -284,7 +284,7 @@ export default function HomeBento() {
         <style jsx>{`
           @keyframes scrollIcons {
             from { transform: translateX(0); }
-            to   { transform: translateX(-3264px); }
+            to   { transform: translateX(-50%); }
           }
         `}</style>
       </div>

@@ -1,5 +1,6 @@
 import { Lexend, Barlow_Condensed, Source_Serif_4, DM_Sans } from "next/font/google";
 import "./globals.css";
+import "./creator-commerce/creator-commerce.css";
 
 const lexend = Lexend({
   subsets: ["latin"],

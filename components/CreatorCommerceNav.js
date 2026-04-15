@@ -37,10 +37,13 @@ export default function CreatorCommerceNav() {
   };
 
   const strippedPath = pathname.replace(/^\/valorant-landing/, "") || "/";
-  const isLightPage = strippedPath === "/" || strippedPath === "/gamers" || strippedPath === "/artemis";
+  let navPageClass = "";
+  if (strippedPath === "/" || strippedPath === "/gamers") navPageClass = " cc-nav-cream";
+  else if (strippedPath === "/artemis") navPageClass = " cc-nav-paper";
 
   return (
-    <div className={`cc-nav-root${isLightPage ? " cc-nav-light" : ""}`}>
+    <>
+    <div className={`cc-nav-root${navPageClass}`}>
       {/* ─── Main nav ─── */}
       <nav className="nav" role="navigation" aria-label="Main navigation">
         <div className="container">
@@ -143,5 +146,7 @@ export default function CreatorCommerceNav() {
         </div>
       </div>
     </div>
+    <div className="cc-nav-spacer" />
+    </>
   );
 }

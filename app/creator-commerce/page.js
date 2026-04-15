@@ -1,4 +1,5 @@
 "use client";
+import "./creator-commerce.css";
 import { useState, useEffect, useRef } from "react";
 import CreatorCommerceNav from "@/components/CreatorCommerceNav";
 

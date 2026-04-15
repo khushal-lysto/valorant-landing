@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, useMemo } from "react";
+import HomeFooter from "@/components/home/HomeFooter";
 import Image from "next/image";
 import CreatorCommerceNav from "@/components/CreatorCommerceNav";
 import {
@@ -8,7 +9,6 @@ import {
   RiBarChartLine,
   RiBellLine,
   RiCursorLine,
-  RiSendPlaneLine,
 } from "react-icons/ri";
 
 /* ── data ──────────────────────────────────────────────────────────────── */
@@ -277,8 +277,10 @@ function HelixShape() {
 
 /* ── infinite logo carousel ────────────────────────────────────────────── */
 function LogoCarousel({ dark = false, label }) {
-  const doubled = [...carouselLogos, ...carouselLogos];
-  const fadeBg  = dark ? "#060606" : "#f5f0e8";
+  /* 4 copies — animation moves exactly one set width (-25%), ensuring the
+     strip always overflows the viewport on any screen size */
+  const quad = [...carouselLogos, ...carouselLogos, ...carouselLogos, ...carouselLogos];
+  const fadeBg = dark ? "#060606" : "#f5f0e8";
   return (
     <div style={{ position:"relative", overflow:"hidden" }}>
       {/* edge fades */}
@@ -291,8 +293,8 @@ function LogoCarousel({ dark = false, label }) {
         </p>
       )}
 
-      <div style={{ display:"flex", gap:10, width:"max-content", animation:"gamersMarquee 32s linear infinite" }}>
-        {doubled.map((g, i) => (
+      <div style={{ display:"flex", gap:10, width:"max-content", animation:"gamersMarquee 32s linear infinite", willChange:"transform" }}>
+        {quad.map((g, i) => (
           <div key={i}
             className="w-[88px] h-[64px] md:w-[110px] md:h-[78px] shrink-0 flex flex-col items-center justify-center gap-[5px]"
             style={{ borderRadius:10, background:g.bg, border:`1px solid ${dark?"rgba(255,255,255,0.07)":"rgba(0,0,0,0.08)"}` }}>
@@ -313,13 +315,6 @@ function LogoCarousel({ dark = false, label }) {
 /* ── page ──────────────────────────────────────────────────────────────── */
 export default function GamersPage() {
   const [scrollY, setScrollY] = useState(0);
-  const [subEmail, setSubEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = () => {
-    if (!subEmail.trim()) return;
-    setSubscribed(true);
-  };
   useEffect(() => {
     const fn = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", fn, { passive: true });
@@ -351,15 +346,6 @@ export default function GamersPage() {
     transition: "transform 0.75s cubic-bezier(0.22,1,0.36,1), opacity 0.75s ease-out",
   });
 
-  /* ── stable star positions ── */
-  const stars = useMemo(() =>
-    Array.from({length: 55}).map(() => ({
-      w:       Math.random() < 0.7 ? 1.5 : 2.5,
-      opacity: 0.15 + Math.random() * 0.45,
-      top:     `${Math.random() * 80}%`,
-      left:    `${Math.random() * 100}%`,
-    }))
-  , []);
 
   return (
     <main style={{ fontFamily:"var(--font-dm-sans),sans-serif", background:"#f0eeea", minHeight:"100vh" }}>
@@ -374,7 +360,7 @@ export default function GamersPage() {
           {/* copy */}
           <div className="px-8 pt-11 pb-7 text-center md:px-20 md:pt-16 md:pb-10">
             <h1 style={{ fontSize:"clamp(1.9rem,5.5vw,3.75rem)", fontWeight:700, lineHeight:1.1,
-              color:"#0a0a0a", fontFamily:"var(--font-dm-sans),sans-serif", marginBottom:18 }}>
+              color:"#0a0a0a", fontFamily:"var(--font-lexend),sans-serif", marginBottom:18 }}>
               Top-up your games, right from your Discord DM
             </h1>
             <p className="md:text-base md:max-w-lg md:mx-auto"
@@ -610,109 +596,7 @@ export default function GamersPage() {
       </section>
 
       {/* ── 7. Footer ────────────────────────────────────────────── */}
-      <div style={{ background:"#ebebeb", padding:"0 clamp(16px,3vw,32px) clamp(16px,2vw,32px)" }}>
-        <div style={{ maxWidth:1200, margin:"0 auto" }}>
-        <footer style={{ background:"#0a0a0a", borderRadius:24, overflow:"hidden", position:"relative" }}>
-
-          {/* starfield */}
-          <div style={{ position:"absolute", inset:0, pointerEvents:"none" }}>
-            {stars.map((s, i)=>(
-              <div key={i} style={{ position:"absolute", borderRadius:"50%",
-                width:s.w, height:s.w, background:"#fff",
-                opacity:s.opacity, top:s.top, left:s.left }}/>
-            ))}
-          </div>
-
-          {/* shooting stars */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[
-              { left:"15%", top:"20%", delay:"0s"   },
-              { left:"40%", top:"12%", delay:"1.4s" },
-              { left:"65%", top:"35%", delay:"2.8s" },
-              { left:"80%", top:"8%",  delay:"0.7s" },
-            ].map((s, i)=>(
-              <div key={i} className="absolute"
-                style={{ left:s.left, top:s.top, width:120, height:1.5,
-                  background:"linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent)",
-                  transform:"rotate(35deg)",
-                  animation:"shoot 3.5s ease-in-out infinite",
-                  animationDelay:s.delay, opacity:0 }}/>
-            ))}
-          </div>
-
-          {/* tagline */}
-          <div className="relative z-10 w-full pt-20 pb-12 text-center md:pt-28 md:pb-16">
-            <p style={{ fontSize:"clamp(2.4rem,8vw,5.5rem)", lineHeight:1.05,
-              color:"#fff", fontWeight:700, letterSpacing:"-0.01em",
-              fontFamily:"var(--font-lexend),sans-serif", textTransform:"uppercase" }}>
-              TOP UP IN SECONDS.<br/>PLAY FOR HOURS.
-            </p>
-          </div>
-
-          {/* conic blob */}
-          <div style={{ position:"absolute", bottom:0, left:"50%",
-            width:"80%", height:240,
-            background:"conic-gradient(from 200deg at 50% 100%, #ff6b35 0%, #f7c59f 20%, #5bc0eb 50%, #9b59b6 70%, #ff4655 90%, #ff6b35 100%)",
-            filter:"blur(70px)", opacity:0.35,
-            transform:"translate(-50%,30%)", pointerEvents:"none" }}/>
-
-          {/* bottom row */}
-          <div className="relative z-10 px-7 py-8 md:px-16 md:py-12" style={{ borderTop:"1px solid #1f1f1f" }}>
-          <div className="flex flex-wrap items-start justify-between gap-6" style={{ maxWidth:1200, margin:"0 auto" }}>
-
-            {/* nav links */}
-            <nav style={{ display:"flex", flexDirection:"column", gap:8 }}>
-              {[
-                { label:"Home",    href:"/"    },
-                { label:"Guides",  href:"#"    },
-                { label:"Support", href:"#"    },
-              ].map(({label,href})=>(
-                <a key={label} href={href} className="text-[13px] md:text-sm"
-                  style={{ color:"#666", textDecoration:"none", fontFamily:"var(--font-dm-sans),sans-serif" }}
-                  onMouseEnter={e=>e.currentTarget.style.color="#fff"}
-                  onMouseLeave={e=>e.currentTarget.style.color="#666"}>
-                  {label}
-                </a>
-              ))}
-            </nav>
-
-            {/* email */}
-            <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-              <p className="text-[13px] md:text-sm"
-                style={{ color:"#aaa", margin:0, fontFamily:"var(--font-dm-sans),sans-serif" }}>
-                Stay in touch
-              </p>
-              {subscribed ? (
-                <p className="text-[13px] md:text-sm"
-                  style={{ color:"#4ade80", margin:0, fontFamily:"var(--font-dm-sans),sans-serif" }}>
-                  Thanks! You&apos;re on the list.
-                </p>
-              ) : (
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                  <input type="email" placeholder="name@email.com"
-                    value={subEmail}
-                    onChange={e=>setSubEmail(e.target.value)}
-                    onKeyDown={e=>{ if(e.key==="Enter") handleSubscribe(); }}
-                    className="w-full sm:w-[200px] md:w-[240px] text-[13px] md:text-sm"
-                    style={{ background:"#1a1a1a", border:"1px solid #2a2a2a",
-                      color:"#fff", borderRadius:10, padding:"10px 14px", outline:"none" }}/>
-                  <button type="button" onClick={handleSubscribe}
-                    className="flex items-center justify-center gap-[6px] text-[13px] md:text-sm"
-                    style={{ background:"#1a1a1a", border:"1px solid #2a2a2a", color:"#fff",
-                      borderRadius:10, padding:"10px 14px",
-                      fontWeight:500, cursor:"pointer" }}>
-                    <RiSendPlaneLine size={13}/> Subscribe
-                  </button>
-                </div>
-              )}
-            </div>
-
-          </div>{/* end inner max-width */}
-          </div>{/* end bottom row padding */}
-
-        </footer>
-        </div>
-      </div>
+      <HomeFooter bgColor="#ebebeb" />
 
     </main>
   );

@@ -1,6 +1,11 @@
 /* ─── Scoped wrapper: sets CC design tokens only for nav + modal ─── */
 /* DM Sans is loaded globally via next/font/google in app/layout.js */
 .cc-nav-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   --bg: #0A0A0F;
   --surface: #141419;
   --dark-card: #141419;
@@ -30,18 +35,7 @@
 @media (min-width: 768px) { .cc-nav-root .container { padding: 0 40px; } }
 @media (min-width: 1024px) { .cc-nav-root .container { padding: 0 48px; } }
 
-/* ─── Light-page nav theme (home, gamers, artemis) ─── */
-.cc-nav-root.cc-nav-light .nav {
-  --nav-bg: rgba(255, 255, 255, 0.88);
-  --nav-border: rgba(0, 0, 0, 0.08);
-  --nav-text: #777;
-  --nav-text-hover: #111;
-  --nav-active-bg: rgba(0, 0, 0, 0.06);
-  --nav-brand-color: #111;
-  --nav-toggle-color: #111;
-}
-
-/* ─── Nav ─── */
+/* ─── Nav base (dark default) ─── */
 .cc-nav-root .nav {
   --nav-bg: rgba(10,10,15,0.97);
   --nav-border: var(--border);
@@ -51,14 +45,41 @@
   --nav-brand-color: var(--text);
   --nav-toggle-color: var(--text);
   padding: 16px 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
   background: var(--nav-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--nav-border);
 }
+
+/* ─── Cream nav theme (home, gamers) ─── */
+.cc-nav-root.cc-nav-cream .nav {
+  --nav-bg: #f5f0e8;
+  --nav-border: rgba(0, 0, 0, 0.06);
+  --nav-text: #777;
+  --nav-text-hover: #111;
+  --nav-active-bg: rgba(0, 0, 0, 0.06);
+  --nav-brand-color: #111;
+  --nav-toggle-color: #111;
+  background: #f5f0e8;
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+/* ─── Paper nav theme (artemis) ─── */
+.cc-nav-root.cc-nav-paper .nav {
+  --nav-bg: #FAF8F5;
+  --nav-border: rgba(17, 17, 17, 0.08);
+  --nav-text: #777;
+  --nav-text-hover: #111;
+  --nav-active-bg: rgba(17, 17, 17, 0.06);
+  --nav-brand-color: #111;
+  --nav-toggle-color: #111;
+  background: #FAF8F5;
+  border-bottom-color: rgba(17, 17, 17, 0.08);
+}
+
+/* ─── Spacer: reserves height equal to fixed nav so content isn't hidden under it ─── */
+.cc-nav-spacer { height: 80px; }
+
 .cc-nav-root .nav-inner {
   display: grid;
   grid-template-columns: 1fr auto 1fr;

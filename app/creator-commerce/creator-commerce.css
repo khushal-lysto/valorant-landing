@@ -68,9 +68,9 @@
     /* ═══════════════════════════════════════════
        LAYOUT
        ═══════════════════════════════════════════ */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    @media (min-width: 768px) { .container { padding: 0 40px; } }
-    @media (min-width: 1024px) { .container { padding: 0 48px; } }
+    .cc-page-root .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    @media (min-width: 768px) { .cc-page-root .container { padding: 0 40px; } }
+    @media (min-width: 1024px) { .cc-page-root .container { padding: 0 48px; } }
 
     /* ═══════════════════════════════════════════
        HERO BANNER
@@ -340,7 +340,7 @@
       color: var(--text-muted);
     }
 
-    .hero-btn {
+    .cc-page-root .hero-btn {
       display: inline-flex; align-items: center; justify-content: center;
       height: 48px; padding: 0 28px;
       background: #C6F135; color: #0A0A0F;
@@ -350,8 +350,8 @@
       transition: transform 250ms var(--ease-out), box-shadow 250ms var(--ease-out);
       flex-shrink: 0; position: relative; z-index: 1;
     }
-    .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(198,241,53,0.3); }
-    .hero-btn:active { transform: translateY(0); box-shadow: 0 0 24px rgba(198,241,53,0.2); }
+    .cc-page-root .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(198,241,53,0.3); }
+    .cc-page-root .hero-btn:active { transform: translateY(0); box-shadow: 0 0 24px rgba(198,241,53,0.2); }
 
     /* ═══════════════════════════════════════════
        INTRO — "What is"
@@ -627,7 +627,7 @@
       color: var(--text-secondary);
       max-width: 420px; margin: 0 auto 36px;
     }
-    .cta-submit {
+    .cc-page-root .cta-submit {
       display: inline-flex; align-items: center; justify-content: center;
       height: 52px; padding: 0 32px;
       background: #000000; color: #ffffff;
@@ -635,11 +635,11 @@
       border-radius: var(--radius-full);
       transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
     }
-    .cta-submit:hover {
+    .cc-page-root .cta-submit:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
-    .cta-submit:active { transform: translateY(0); }
+    .cc-page-root .cta-submit:active { transform: translateY(0); }
 
     /* ═══════════════════════════════════════════
        MODAL

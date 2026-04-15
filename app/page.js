@@ -2,7 +2,6 @@ import CreatorCommerceNav from "@/components/CreatorCommerceNav";
 import HomeHero from "@/components/home/HomeHero";
 import HomeBento from "@/components/home/HomeBento";
 import HomeUseCases from "@/components/home/HomeUseCases";
-import HomeCTA from "@/components/home/HomeCTA";
 import HomeFooter from "@/components/home/HomeFooter";
 
 export default function Home() {
@@ -11,9 +10,8 @@ export default function Home() {
       <CreatorCommerceNav />
       <HomeHero />
       <HomeBento />
-      <HomeCTA />
       <HomeUseCases />
-      <HomeFooter />
+      <HomeFooter bgColor="#f0ebe3" />
     </main>
   );
 }
