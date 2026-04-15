@@ -46,12 +46,6 @@ export default function CreatorCommerceNav() {
         <div className="container">
           <div className="nav-inner">
             <Link href="/" className="nav-brand" aria-label="Home">
-              <div className="nav-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                </svg>
-              </div>
-              <div className="nav-brand-text">CreatorCommerce</div>
             </Link>
 
             <div className="nav-links">
@@ -80,12 +74,6 @@ export default function CreatorCommerceNav() {
       <div className={`mobile-menu${mobileOpen ? " is-open" : ""}`}>
         <div className="mobile-menu-header">
           <Link href="/" className="nav-brand" onClick={closeMobile}>
-            <div className="nav-icon" style={{ color: "#F0F0F2" }}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-              </svg>
-            </div>
-            <div className="nav-brand-text" style={{ color: "#F0F0F2" }}>CreatorCommerce</div>
           </Link>
           <button className="mobile-menu-close" onClick={closeMobile} aria-label="Close menu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">

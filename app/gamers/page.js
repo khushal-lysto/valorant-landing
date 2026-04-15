@@ -374,7 +374,7 @@ export default function GamersPage() {
           {/* copy */}
           <div className="px-8 pt-11 pb-7 text-center md:px-20 md:pt-16 md:pb-10">
             <h1 style={{ fontSize:"clamp(1.9rem,5.5vw,3.75rem)", fontWeight:700, lineHeight:1.1,
-              color:"#0a0a0a", fontFamily:"var(--font-lexend),sans-serif", marginBottom:18 }}>
+              color:"#0a0a0a", fontFamily:"var(--font-dm-sans),sans-serif", marginBottom:18 }}>
               Top-up your games, right from your Discord DM
             </h1>
             <p className="md:text-base md:max-w-lg md:mx-auto"
@@ -390,6 +390,15 @@ export default function GamersPage() {
                 fontWeight:600, textDecoration:"none", letterSpacing:"0.01em" }}>
               Add to my Discord DM <RiArrowRightLine size={14}/>
             </a>
+            <span
+              style={{ display:"inline-flex", alignItems:"center", gap:8, background:"#e8e8e8",
+                color:"#999", padding:"13px 26px", borderRadius:100, fontSize:14,
+                fontWeight:600, letterSpacing:"0.01em", cursor:"default", userSelect:"none" }}
+            >
+              Add to friend server
+              <span style={{ fontSize:11, fontWeight:500, background:"#d0d0d0", color:"#888",
+                padding:"2px 7px", borderRadius:100 }}>Coming soon</span>
+            </span>
           </div>
 
           {/* phone + shapes */}
@@ -632,14 +641,12 @@ export default function GamersPage() {
           </div>
 
           {/* tagline */}
-          <div className="relative z-10 px-8 pt-20 pb-12 text-center md:px-16 md:pt-28 md:pb-16">
-            <div style={{ maxWidth:1200, margin:"0 auto" }}>
+          <div className="relative z-10 w-full pt-20 pb-12 text-center md:pt-28 md:pb-16">
             <p style={{ fontSize:"clamp(2.4rem,8vw,5.5rem)", lineHeight:1.05,
               color:"#fff", fontWeight:700, letterSpacing:"-0.01em",
               fontFamily:"var(--font-lexend),sans-serif", textTransform:"uppercase" }}>
               TOP UP IN SECONDS.<br/>PLAY FOR HOURS.
             </p>
-            </div>
           </div>
 
           {/* conic blob */}

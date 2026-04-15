@@ -32,8 +32,8 @@ export default function Header() {
   return (
     <>
       <header
-        className="sticky top-0 z-50 w-full relative flex items-center justify-between px-8 md:px-16 py-4"
-        style={{ borderBottom: "1px solid #2A5298", background: "#0B1924" }}
+        className="sticky top-0 z-50 w-full flex items-center justify-between px-8 md:px-16 py-4"
+        style={{ borderBottom: "1px solid #2A5298", background: "#0F1923" }}
       >
         {/* Back button */}
         <button

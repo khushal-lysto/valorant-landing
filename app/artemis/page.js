@@ -640,13 +640,13 @@ export default function ArtemisPage() {
             <div className="footer__col">
               <h4>Resources</h4>
               <button onClick={() => setPdfOpen(true)} style={{ background: "none", border: "none", padding: 0, cursor: "pointer", color: "inherit", font: "inherit", textAlign: "left" }}>Documentation</button>
-              <a href="#">Support Server</a>
-              <a href="#">Status Page</a>
+              <span className="coming-soon-wrap"><a href="#" onClick={e=>e.preventDefault()}>Support Server</a><span className="coming-soon-tip">Coming soon</span></span>
+              <span className="coming-soon-wrap"><a href="#" onClick={e=>e.preventDefault()}>Status Page</a><span className="coming-soon-tip">Coming soon</span></span>
             </div>
             <div className="footer__col">
               <h4>Legal</h4>
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
+              <span className="coming-soon-wrap"><a href="#" onClick={e=>e.preventDefault()}>Privacy Policy</a><span className="coming-soon-tip">Coming soon</span></span>
+              <span className="coming-soon-wrap"><a href="#" onClick={e=>e.preventDefault()}>Terms of Service</a><span className="coming-soon-tip">Coming soon</span></span>
             </div>
           </div>
         </div>

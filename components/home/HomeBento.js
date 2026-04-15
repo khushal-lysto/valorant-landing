@@ -210,8 +210,8 @@ export default function HomeBento() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 self-start transition-opacity hover:opacity-80"
               style={{
-                background:   "#1a1a1a",
-                border:       "1px solid #2a2a2a",
+                background:   "#5865F2",
+                border:       "1px solid #5865F2",
                 color:        "#fff",
                 padding:      "10px 20px",
                 borderRadius: 100,
